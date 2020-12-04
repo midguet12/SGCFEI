@@ -9,7 +9,7 @@ create table Documento (
 	fechaSubida DateTime not null,
 	ruta varchar(200) not null,
 	referenciaPlantilla varchar(200) not null,
-	primary key (idDocumento),
+	primary key (idDocumento)
 
 );
 
