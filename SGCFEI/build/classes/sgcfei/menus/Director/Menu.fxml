@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="450.0" spacing="8.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Director.MenuController">
+   <children>
+      <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarIndicadores" text="Consultar Indicadores" />
+      <Label />
+      <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarReportes" text=" Consultar reportes" />
+      <Label />
+      <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarCatalogos" text="Consultar catálogos" />
+   </children>
+</VBox>
