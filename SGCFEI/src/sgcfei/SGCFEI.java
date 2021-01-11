@@ -5,6 +5,8 @@
  */
 package sgcfei;
 
+import DAO.PlanCursoDAO;
+import Domain.PlanCurso;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +29,11 @@ public class SGCFEI extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                PlanCurso planCurso = new PlanCurso(18526, "Principios de diseño", 6,1,"18012193","Agosto-Diciembre");
+                
+                PlanCursoDAO planCursoDAO = new PlanCursoDAO();
+                planCursoDAO.insertPlanCurso(planCurso);
+                //System.out.println(planCursoDAO.getPlanCurso(2));
             }
         });
         
