@@ -13,7 +13,6 @@ public class Usuario {
     private int idUsuario;
     private String username; 
     private String password;
-    private Academico academico;
 
     public Usuario() {
     }
@@ -45,9 +44,4 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setAcademico(Academico academico) {
-        this.academico = academico;
-    }
-    
 }
