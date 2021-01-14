@@ -11,5 +11,60 @@ package pojos;
  */
 public class Academico {
     private int idAcademico;
-    private 
+    private String numeroPersonal;
+    private String nombre;
+    private String correo;
+    private String rol;
+
+    public Academico() {
+    }
+
+    public int getIdAcademico() {
+        return idAcademico;
+    }
+
+    public String getNumeroPersonal() {
+        return numeroPersonal;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setIdAcademico(int idAcademico) {
+        this.idAcademico = idAcademico;
+    }
+
+    public void setNumeroPersonal(String numeroPersonal) {
+        this.numeroPersonal = numeroPersonal;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Academico(int idAcademico, String numeroPersonal, String nombre, String correo, String rol) {
+        this.idAcademico = idAcademico;
+        this.numeroPersonal = numeroPersonal;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.rol = rol;
+    }
+    
 }
