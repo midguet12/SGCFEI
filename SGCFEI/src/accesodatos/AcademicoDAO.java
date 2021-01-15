@@ -5,28 +5,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pojos.Academia;
+import pojos.Academico;
 import util.RegistroExcepciones;
 
-public class AcademiaDAO implements DAO{
+public class AcademicoDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
 
-    public AcademiaDAO() {
+    public AcademicoDAO() {
         db = new ConexionDB();
     }
 
-    public void insertar(Academia academia) {
+    public void insertar(Academico academico) {
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO academia(nombre, descripcion, idCoordinador)"
+        String consulta = "INSERT INTO academico(nombre, correo, rol)"
                      + " VALUES(?, ?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
+            consultaPreparada.setString(1, academico.getNombre());
+            consultaPreparada.setString(2, academico.getCorreo());
+            consultaPreparada.setString(3, academico.getRol());
             
             consultaPreparada.executeUpdate();
         }
@@ -44,23 +44,23 @@ public class AcademiaDAO implements DAO{
         }
     }
 
-    public Academia obtener(int id) {
-        Academia academia = null;
+    public Academico obtener(String numeroPersonal) {
+        Academico academico = null;
         conexion = db.obtenerConexion();
-        String consulta = "SELECT * FROM academia WHERE idAcademia = ?;";
+        String consulta = "SELECT * FROM academico WHERE numeroPersonal = ?;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, id);
+            consultaPreparada.setString(1, numeroPersonal);
 
             resultados = consultaPreparada.executeQuery(); 
             resultados.next();
             
-            academia = new Academia(
-                    resultados.getInt("idAcademia"),
+            academico = new Academico(
+                    resultados.getString("numeroPersonal"),
                     resultados.getString("nombre"),
-                    resultados.getString("descripcion"),
-                    resultados.getString("idCoordinador"));
+                    resultados.getString("correo"),
+                    resultados.getString("Rol"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -74,19 +74,19 @@ public class AcademiaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
-        return academia;
+        return academico;
     }
 
-    public void actualizar(Academia academia) {
+    public void actualizar(Academico academico) {
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE academia SET nombre = ?, descripcion = ?, idCoordinador = ? WHERE idAcademia = ?;";
+        String consulta = "UPDATE academico SET nombre = ?, correo = ?, rol = ? WHERE idAcademico = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
-            consultaPreparada.setInt(4, academia.getIdAcademia());
+            consultaPreparada.setString(1, academico.getNombre());
+            consultaPreparada.setString(2, academico.getCorreo());
+            consultaPreparada.setString(3, academico.getRol());
+            consultaPreparada.setString(4, academico.getNumeroPersonal());
             
             consultaPreparada.executeUpdate();
         }
@@ -104,12 +104,12 @@ public class AcademiaDAO implements DAO{
         }
     }
 
-    public void eliminar(int id) {
+    public void eliminar(String numeroPersonal) {
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM academia WHERE idAcademia = ?;";
+        String consulta = "DELETE FROM academico WHERE idAcademico = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, id);
+            consultaPreparada.setString(1, numeroPersonal);
             consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    

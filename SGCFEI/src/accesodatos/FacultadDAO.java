@@ -5,28 +5,25 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pojos.Academia;
+import pojos.Facultad;
 import util.RegistroExcepciones;
 
-public class AcademiaDAO implements DAO{
+public class FacultadDAO {
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
 
-    public AcademiaDAO() {
+    public FacultadDAO() {
         db = new ConexionDB();
     }
 
-    public void insertar(Academia academia) {
+    public void insertar(Facultad facultad) {
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO academia(nombre, descripcion, idCoordinador)"
-                     + " VALUES(?, ?, ?);";
+        String consulta = "INSERT INTO facultad(nombre) VALUES(?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
+            consultaPreparada.setString(1, facultad.getNombre());
             
             consultaPreparada.executeUpdate();
         }
@@ -44,10 +41,10 @@ public class AcademiaDAO implements DAO{
         }
     }
 
-    public Academia obtener(int id) {
-        Academia academia = null;
+    public Facultad obtener(int id) {
+        Facultad facultad = null;
         conexion = db.obtenerConexion();
-        String consulta = "SELECT * FROM academia WHERE idAcademia = ?;";
+        String consulta = "SELECT * FROM facultad WHERE idFacultad = ?;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -56,11 +53,9 @@ public class AcademiaDAO implements DAO{
             resultados = consultaPreparada.executeQuery(); 
             resultados.next();
             
-            academia = new Academia(
-                    resultados.getInt("idAcademia"),
-                    resultados.getString("nombre"),
-                    resultados.getString("descripcion"),
-                    resultados.getString("idCoordinador"));
+            facultad = new Facultad(
+                    resultados.getInt("idFacultad"),
+                    resultados.getString("nombre"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -74,19 +69,17 @@ public class AcademiaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
-        return academia;
+        return facultad;
     }
 
-    public void actualizar(Academia academia) {
+    public void actualizar(Facultad facultad) {
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE academia SET nombre = ?, descripcion = ?, idCoordinador = ? WHERE idAcademia = ?;";
+        String consulta = "UPDATE facultad SET nombre = ?, WHERE idFacultad = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
-            consultaPreparada.setInt(4, academia.getIdAcademia());
+            consultaPreparada.setString(1, facultad.getNombre());
+            consultaPreparada.setInt(2, facultad.getIdFacultad());
             
             consultaPreparada.executeUpdate();
         }
@@ -106,7 +99,7 @@ public class AcademiaDAO implements DAO{
 
     public void eliminar(int id) {
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM academia WHERE idAcademia = ?;";
+        String consulta = "DELETE FROM facultad WHERE idFacultad = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
@@ -125,5 +118,4 @@ public class AcademiaDAO implements DAO{
             db.cerrarConexion();
         }
     }
-        
 }

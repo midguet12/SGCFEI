@@ -5,28 +5,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pojos.Academia;
+import pojos.ExperienciaEducativa;
 import util.RegistroExcepciones;
 
-public class AcademiaDAO implements DAO{
+public class ExperienciaEducativaDAO {
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
 
-    public AcademiaDAO() {
+    public ExperienciaEducativaDAO() {
         db = new ConexionDB();
     }
 
-    public void insertar(Academia academia) {
+    public void insertar(ExperienciaEducativa experienciaEducativa) {
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO academia(nombre, descripcion, idCoordinador)"
-                     + " VALUES(?, ?, ?);";
+        String consulta = "INSERT INTO experienciaEducativa(nombre, idAcademia) VALUES(?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
+            consultaPreparada.setString(1, experienciaEducativa.getNombre());
+            consultaPreparada.setInt(2, experienciaEducativa.getIdAcademia());
             
             consultaPreparada.executeUpdate();
         }
@@ -44,23 +42,22 @@ public class AcademiaDAO implements DAO{
         }
     }
 
-    public Academia obtener(int id) {
-        Academia academia = null;
+    public ExperienciaEducativa obtener(int nrc) {
+        ExperienciaEducativa experienciaEducativa = null;
         conexion = db.obtenerConexion();
-        String consulta = "SELECT * FROM academia WHERE idAcademia = ?;";
+        String consulta = "SELECT * FROM experienciaEducativa WHERE nrc = ?;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, id);
+            consultaPreparada.setInt(1, nrc);
 
             resultados = consultaPreparada.executeQuery(); 
             resultados.next();
             
-            academia = new Academia(
-                    resultados.getInt("idAcademia"),
+            experienciaEducativa = new ExperienciaEducativa(
+                    resultados.getInt("nrc"),
                     resultados.getString("nombre"),
-                    resultados.getString("descripcion"),
-                    resultados.getString("idCoordinador"));
+                    resultados.getInt("idAcademia"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -74,19 +71,18 @@ public class AcademiaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
-        return academia;
+        return experienciaEducativa;
     }
 
-    public void actualizar(Academia academia) {
+    public void actualizar(ExperienciaEducativa experienciaEducativa) {
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE academia SET nombre = ?, descripcion = ?, idCoordinador = ? WHERE idAcademia = ?;";
+        String consulta = "UPDATE experienciaEducativa SET nombre = ?, idAcademia = ? WHERE nrc = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, academia.getNombre());
-            consultaPreparada.setString(2, academia.getDescripcion());
-            consultaPreparada.setString(3, academia.getIdCoordinador());
-            consultaPreparada.setInt(4, academia.getIdAcademia());
+            consultaPreparada.setString(1, experienciaEducativa.getNombre());
+            consultaPreparada.setInt(2, experienciaEducativa.getIdAcademia());
+            consultaPreparada.setInt(3, experienciaEducativa.getNrc());
             
             consultaPreparada.executeUpdate();
         }
@@ -104,12 +100,12 @@ public class AcademiaDAO implements DAO{
         }
     }
 
-    public void eliminar(int id) {
+    public void eliminar(int nrc) {
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM academia WHERE idAcademia = ?;";
+        String consulta = "DELETE FROM experienciaEducativa WHERE nrc = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, id);
+            consultaPreparada.setInt(1, nrc);
             consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
@@ -125,5 +121,4 @@ public class AcademiaDAO implements DAO{
             db.cerrarConexion();
         }
     }
-        
 }

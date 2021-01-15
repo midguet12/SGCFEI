@@ -6,9 +6,22 @@ public class Usuario implements POJO{
     private String password;
     private String idAcademico;
 
-    public Usuario() {
+    public Usuario(int idUsuario, String username, String password, String idAcademico) {
+        this.idUsuario = idUsuario;
+        this.username = username;
+        this.password = password;
+        this.idAcademico = idAcademico;
     }
 
+    public Usuario(String username, String password, String idAcademico) {
+        this.username = username;
+        this.password = password;
+        this.idAcademico = idAcademico;
+    }
+
+    public Usuario() {
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }
