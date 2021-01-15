@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pojos;
 
-/**
- *
- * @author Luis
- */
-public class Minuta {
+import java.sql.Date;
+import java.sql.Time;
+
+public class Minuta implements POJO{
     private int idMinuta;
     private int idAcademia;
     private int idCarrera;
-    private String fecha;
-    private String hora;
+    private Date fecha;
+    private Time hora;
     private String periodo;
     private String lugar;
     private String objetivo;
@@ -36,11 +30,11 @@ public class Minuta {
         return idCarrera;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public String getHora() {
+    public Time getHora() {
         return hora;
     }
 
@@ -76,11 +70,11 @@ public class Minuta {
         this.idCarrera = idCarrera;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public void setHora(String hora) {
+    public void setHora(Time hora) {
         this.hora = hora;
     }
 
@@ -102,6 +96,11 @@ public class Minuta {
 
     public void setConclusiones(String conclusiones) {
         this.conclusiones = conclusiones;
+    }
+
+    @Override
+    public String toString() {
+        return "Minuta{" + "idMinuta=" + idMinuta + ", idAcademia=" + idAcademia + ", idCarrera=" + idCarrera + ", fecha=" + fecha + ", hora=" + hora + ", periodo=" + periodo + ", lugar=" + lugar + ", objetivo=" + objetivo + ", temas=" + temas + ", conclusiones=" + conclusiones + '}';
     }
     
 }

@@ -1,19 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pojos;
 
-/**
- *
- * @author Luis
- */
-public class AspectoMinuta {
+public class AspectoMinuta implements POJO{
     private int idAspectoMinuta;
     private String asunto;
-    private int idAcademico;
+    private String idAcademico;
     private int idMinuta;
+
+    public AspectoMinuta(int idAspectoMinuta, String asunto, String idAcademico, int idMinuta) {
+        this.idAspectoMinuta = idAspectoMinuta;
+        this.asunto = asunto;
+        this.idAcademico = idAcademico;
+        this.idMinuta = idMinuta;
+    }
+
+    public AspectoMinuta(String asunto, String idAcademico, int idMinuta) {
+        this.asunto = asunto;
+        this.idAcademico = idAcademico;
+        this.idMinuta = idMinuta;
+    }
 
     public AspectoMinuta() {
     }
@@ -26,7 +30,7 @@ public class AspectoMinuta {
         return asunto;
     }
 
-    public int getIdAcademico() {
+    public String getIdAcademico() {
         return idAcademico;
     }
 
@@ -42,12 +46,17 @@ public class AspectoMinuta {
         this.asunto = asunto;
     }
 
-    public void setIdAcademico(int idAcademico) {
+    public void setIdAcademico(String idAcademico) {
         this.idAcademico = idAcademico;
     }
 
     public void setIdMinuta(int idMinuta) {
         this.idMinuta = idMinuta;
+    }
+
+    @Override
+    public String toString() {
+        return "AspectoMinuta{" + "idAspectoMinuta=" + idAspectoMinuta + ", asunto=" + asunto + ", idAcademico=" + idAcademico + ", idMinuta=" + idMinuta + '}';
     }
     
 }

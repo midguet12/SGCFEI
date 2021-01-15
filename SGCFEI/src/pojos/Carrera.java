@@ -1,18 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pojos;
 
-/**
- *
- * @author Luis
- */
-public class Carrera {
+public class Carrera implements POJO{
     private int idCarrera;
     private String nombre;
     private int idFacultad;
+
+    public Carrera(int idCarrera, String nombre, int idFacultad) {
+        this.idCarrera = idCarrera;
+        this.nombre = nombre;
+        this.idFacultad = idFacultad;
+    }
+
+    public Carrera(String nombre, int idFacultad) {
+        this.nombre = nombre;
+        this.idFacultad = idFacultad;
+    }
 
     public Carrera() {
     }
@@ -40,5 +42,9 @@ public class Carrera {
     public void setIdFacultad(int idFacultad) {
         this.idFacultad = idFacultad;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Carrera{" + "idCarrera=" + idCarrera + ", nombre=" + nombre + ", idFacultad=" + idFacultad + '}';
+    }
 }

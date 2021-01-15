@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pojos;
 
-import java.text.CharacterIterator;
-
-/**
- *
- * @author Luis
- */
-public class Facultad {
+public class Facultad implements POJO{
     private int idFacultad;
     private String nombre;
 
+    public Facultad(int idFacultad, String nombre) {
+        this.idFacultad = idFacultad;
+        this.nombre = nombre;
+    }
+
+    public Facultad(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public Facultad() {
     }
 
@@ -33,6 +31,10 @@ public class Facultad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Facultad{" + "idFacultad=" + idFacultad + ", nombre=" + nombre + '}';
+    }
+        
 }
