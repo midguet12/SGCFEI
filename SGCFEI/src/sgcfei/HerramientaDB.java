@@ -1,4 +1,4 @@
-package main;
+package sgcfei;
 
 import database.ControladorCredenciales;
 import database.DBCredenciales;
