@@ -15,8 +15,6 @@ public class Academico {
     private String nombre;
     private String correo;
     private String rol;
-    private Usuario usuario;
-    
 
     public Academico() {
     }
@@ -41,10 +39,6 @@ public class Academico {
         return rol;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     public void setIdAcademico(int idAcademico) {
         this.idAcademico = idAcademico;
     }
@@ -65,13 +59,9 @@ public class Academico {
         this.rol = rol;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
     @Override
     public String toString() {
-        return "Academico{" + "idAcademico=" + idAcademico + ", numeroPersonal=" + numeroPersonal + ", nombre=" + nombre + ", correo=" + correo + ", rol=" + rol + ", usuario=" + usuario + '}';
+        return "Academico{" + "idAcademico=" + idAcademico + ", numeroPersonal=" + numeroPersonal + ", nombre=" + nombre + ", correo=" + correo + ", rol=" + rol + '}';
     }
     
 }

@@ -9,10 +9,12 @@ package pojos;
  *
  * @author Luis
  */
+
 public class Usuario {
     private int idUsuario;
     private String username; 
     private String password;
+    private int idAcademico;
 
     public Usuario() {
     }
@@ -29,8 +31,8 @@ public class Usuario {
         return password;
     }
 
-    public Academico getAcademico() {
-        return academico;
+    public int getIdAcademico() {
+        return idAcademico;
     }
 
     public void setIdUsuario(int idUsuario) {
@@ -44,4 +46,9 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setIdAcademico(int idAcademico) {
+        this.idAcademico = idAcademico;
+    }
+    
 }
