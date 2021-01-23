@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 import pojos.Academico;
 import pojos.Rol;
 import pojos.Usuario;
-import util.Alerta;
+import util.ControladorVentanas;
 import util.Encriptacion;
 import util.Portapapeles;
 import util.Validador;
@@ -124,7 +124,7 @@ public class RegistrarUsuarioController implements Initializable {
         if(datosValidos && cbTipoUsuario.getSelectionModel().getSelectedItem() != null){
             validarNumeroPersonal();
         }else{
-            alerta = Alerta.builderAlert("Informacion invalida", "Favor de verificar su informacion", Alert.AlertType.ERROR);
+            alerta = ControladorVentanas.crearAlerta("Informacion invalida", "Favor de verificar su informacion", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
     }
@@ -132,7 +132,7 @@ public class RegistrarUsuarioController implements Initializable {
     private void validarNumeroPersonal() {
         boolean numeroPersonalRegistrado = new AcademicoDAO().esNumeroPersonalRegistrado(tfNumeroPersonal.getText());  
         if(numeroPersonalRegistrado){
-            alerta = Alerta.builderAlert("Numero personal registrado", "El numero personal ingresado ya se encuentra registrado", Alert.AlertType.ERROR);
+            alerta = ControladorVentanas.crearAlerta("Numero personal registrado", "El numero personal ingresado ya se encuentra registrado", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }else{
             validarCorreo();
@@ -142,7 +142,7 @@ public class RegistrarUsuarioController implements Initializable {
     private void validarCorreo() {
         boolean esCorreoRegistrado = new UsuarioDAO().esCorreoRegistrado(tfCorreo.getText());
         if(esCorreoRegistrado){
-            alerta = Alerta.builderAlert("Correo registrado", "El correo ingresado ya se encuentra registrado", Alert.AlertType.ERROR);
+            alerta = ControladorVentanas.crearAlerta("Correo registrado", "El correo ingresado ya se encuentra registrado", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }else{
             guardarUsuario();
@@ -158,7 +158,7 @@ public class RegistrarUsuarioController implements Initializable {
             boolean seInsertoUsuario = new UsuarioDAO().insertar(usuario);
             if (seInsertoUsuario) {
                 Portapapeles.CopiarAlPortapapeles(tfCorreo.getText(), password);
-                alerta = Alerta.builderAlert("Usuario registrado", "El usuario se ha registrado en el sistama, su contraseña se ha copiado al portapapeles", Alert.AlertType.INFORMATION);
+                alerta = ControladorVentanas.crearAlerta("Usuario registrado", "El usuario se ha registrado en el sistama, su contraseña se ha copiado al portapapeles", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
             }
         }

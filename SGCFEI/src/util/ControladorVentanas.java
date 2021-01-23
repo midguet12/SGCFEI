@@ -4,6 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,13 +23,12 @@ public class ControladorVentanas {
 
             nuevaStage.show();
         }
-        catch (IOException e) {
-            System.out.println(e);
-            //TODO Tratar excepcion correctamente
+        catch (IOException ex) {
+            RegistroExcepciones.escribirExcepcion(ex, "ControladorVentanas");
         }
     }
 
-    public static void abrir(String nombreFXML, String titulo, Stage stageActual){
+    public static void abrirYCerrar(String nombreFXML, String titulo, Stage stageActual){
         abrir(nombreFXML, titulo);
         stageActual.close();
     }
@@ -47,31 +47,37 @@ public class ControladorVentanas {
 
             nuevaStage.showAndWait();
         }
-        catch (IOException e) {
-            System.out.println(e);
-            ///TODO Tratar excepcion correctamente
+        catch (IOException ex) {
+            RegistroExcepciones.escribirExcepcion(ex, "ControladorVentanas");
         }
     }
 
-//    public static void abrirWithController(String nombreFXML, String titulo, ControllerInterface controller){
-//        FXMLLoader fxmlLoader;
-//        Parent raiz;
-//
-//        try {
-//            fxmlLoader = new FXMLLoader(ViewUtilities.class.getResource(nombreFXML));
-//            fxmlLoader.setController(controller);
-//            raiz = (Parent) fxmlLoader.load();
-//
-//            Stage nuevaStage = new Stage();
-//            nuevaStage.setScene(new Scene(raiz));
-//            nuevaStage.setTitle(titulo);
-//            nuevaStage.initModality(Modality.APPLICATION_MODAL);
-//
-//            nuevaStage.showAndWait();
-//        }
-//        catch (IOException e) {
-//            System.out.println(e);
-//            //TODO Tratar excepcion correctamente
-//        }
-//    }
+    public static void abrirConControlador(String nombreFXML, String titulo, Object controller){ //Cambiar el tipo de objeto a recibirt
+        FXMLLoader fxmlLoader;
+        Parent raiz;
+
+        try {
+            fxmlLoader = new FXMLLoader(ControladorVentanas.class.getResource(nombreFXML));
+            fxmlLoader.setController(controller);
+            raiz = (Parent) fxmlLoader.load();
+
+            Stage nuevaStage = new Stage();
+            nuevaStage.setScene(new Scene(raiz));
+            nuevaStage.setTitle(titulo);
+            nuevaStage.initModality(Modality.APPLICATION_MODAL);
+
+            nuevaStage.showAndWait();
+        }
+        catch (IOException ex) {
+            RegistroExcepciones.escribirExcepcion(ex, "ControladorVentanas");
+        }
+    }
+    
+    public static Alert builderAlert(String titulo, String mensaje, Alert.AlertType tipo){
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        return alert;
+    }
 }

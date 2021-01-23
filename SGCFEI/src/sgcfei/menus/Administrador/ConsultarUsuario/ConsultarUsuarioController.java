@@ -20,7 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import pojos.Academico;
-import util.Alerta;
+import util.ControladorVentanas;
 
 /**
  * FXML Controller class
@@ -77,7 +77,7 @@ public class ConsultarUsuarioController implements Initializable {
         if (academicos.size() > 0) {
             cargarAcademicos(academicos);
         }else{
-            alerta = Alerta.builderAlert("Sin usuario registrador", "No hay usuarios guardados en el sistema", Alert.AlertType.INFORMATION);
+            alerta = ControladorVentanas.crearAlerta("Sin usuario registrador", "No hay usuarios guardados en el sistema", Alert.AlertType.INFORMATION);
             alerta.showAndWait();
         }
     }

@@ -45,19 +45,19 @@ public class LoginController implements Initializable {
         
         if(userLogin.equals("admin")){
             System.out.println("Entrando como " + userLogin);
-            ControladorVentanas.abrir("/sgcfei/menus/Administrador/Menu.fxml", "Menu principal", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Menu.fxml", "Menu principal", stageActual);
         }
         else if(userLogin.equals("coord")){
             System.out.println("Entrando como " + userLogin);
-            ControladorVentanas.abrir("/sgcfei/menus/Coordinador/Menu.fxml", "Menu principal", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Menu.fxml", "Menu principal", stageActual);
         }
         else if(userLogin.equals("dir")){
             System.out.println("Entrando como " + userLogin);
-            ControladorVentanas.abrir("/sgcfei/menus/Director/Menu.fxml", "Menu principal", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Director/Menu.fxml", "Menu principal", stageActual);
         }
         else if(userLogin.equals("doc")){
             System.out.println("Entrando como " + userLogin);
-            ControladorVentanas.abrir("/sgcfei/menus/Docente/Menu.fxml", "Menu principal", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Docente/Menu.fxml", "Menu principal", stageActual);
         }
     }
 }
