@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.Carrera;
 import util.RegistroExcepciones;
 
-public class CarreraDAO {
+public class CarreraDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -17,7 +17,8 @@ public class CarreraDAO {
         db = new ConexionDB();
     }
 
-    public void insertar(Carrera carrera) {
+    public boolean insertar(Carrera carrera) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO carrera(nombre, idFacultad) VALUES(?, ?);";
         
@@ -26,7 +27,7 @@ public class CarreraDAO {
             consultaPreparada.setString(1, carrera.getNombre());
             consultaPreparada.setInt(2, carrera.getIdFacultad());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -40,6 +41,8 @@ public class CarreraDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public Carrera obtener(int id) {
@@ -74,7 +77,8 @@ public class CarreraDAO {
         return carrera;
     }
 
-    public void actualizar(Carrera carrera) {
+    public boolean actualizar(Carrera carrera) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE carrera SET nombre = ?, idFacultad = ? WHERE idCarrera = ?;";
         
@@ -84,7 +88,7 @@ public class CarreraDAO {
             consultaPreparada.setInt(2, carrera.getIdFacultad());
             consultaPreparada.setInt(3, carrera.getIdCarrera());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -98,9 +102,12 @@ public class CarreraDAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int id) {
+    public boolean eliminar(int id) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM carrera WHERE idCarrera = ?;";
         try{            
@@ -120,5 +127,7 @@ public class CarreraDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 }

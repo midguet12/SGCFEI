@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.CuerpoAcademico;
 import util.RegistroExcepciones;
 
-public class CuerpoAcademicoDAO {
+public class CuerpoAcademicoDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -17,7 +17,8 @@ public class CuerpoAcademicoDAO {
         db = new ConexionDB();
     }
 
-    public void insertar(CuerpoAcademico cuerpoAcademico) {
+    public boolean insertar(CuerpoAcademico cuerpoAcademico) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO cuerpoAcademico(nombre, idCoordinador) VALUES(?, ?);";
         
@@ -26,7 +27,7 @@ public class CuerpoAcademicoDAO {
             consultaPreparada.setString(1, cuerpoAcademico.getNombre());
             consultaPreparada.setString(2, cuerpoAcademico.getIdCoordinador());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -40,6 +41,8 @@ public class CuerpoAcademicoDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public CuerpoAcademico obtener(int id) {
@@ -71,10 +74,12 @@ public class CuerpoAcademicoDAO {
         finally{
             db.cerrarConexion();
         }
+        
         return cuerpoAcademico;
     }
 
-    public void actualizar(CuerpoAcademico cuerpoAcademico) {
+    public boolean actualizar(CuerpoAcademico cuerpoAcademico) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE cuerpoAcademico SET nombre = ?, idCoordinador = ? WHERE idCuerpoAcademico = ?;";
         
@@ -84,7 +89,7 @@ public class CuerpoAcademicoDAO {
             consultaPreparada.setString(2, cuerpoAcademico.getIdCoordinador());
             consultaPreparada.setInt(3, cuerpoAcademico.getIdCuerpoAcademico());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -98,15 +103,18 @@ public class CuerpoAcademicoDAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int id) {
+    public boolean eliminar(int id) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM cuerpoAcademico WHERE idCuerpoAcademico = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -120,5 +128,7 @@ public class CuerpoAcademicoDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 }

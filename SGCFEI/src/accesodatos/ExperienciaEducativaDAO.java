@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.ExperienciaEducativa;
 import util.RegistroExcepciones;
 
-public class ExperienciaEducativaDAO {
+public class ExperienciaEducativaDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -17,7 +17,8 @@ public class ExperienciaEducativaDAO {
         db = new ConexionDB();
     }
 
-    public void insertar(ExperienciaEducativa experienciaEducativa) {
+    public boolean insertar(ExperienciaEducativa experienciaEducativa) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO experienciaEducativa(nombre, idAcademia) VALUES(?, ?);";
         
@@ -26,7 +27,7 @@ public class ExperienciaEducativaDAO {
             consultaPreparada.setString(1, experienciaEducativa.getNombre());
             consultaPreparada.setInt(2, experienciaEducativa.getIdAcademia());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -40,6 +41,8 @@ public class ExperienciaEducativaDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public ExperienciaEducativa obtener(int nrc) {
@@ -71,10 +74,12 @@ public class ExperienciaEducativaDAO {
         finally{
             db.cerrarConexion();
         }
+        
         return experienciaEducativa;
     }
 
-    public void actualizar(ExperienciaEducativa experienciaEducativa) {
+    public boolean actualizar(ExperienciaEducativa experienciaEducativa) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE experienciaEducativa SET nombre = ?, idAcademia = ? WHERE nrc = ?;";
         
@@ -84,7 +89,7 @@ public class ExperienciaEducativaDAO {
             consultaPreparada.setInt(2, experienciaEducativa.getIdAcademia());
             consultaPreparada.setInt(3, experienciaEducativa.getNrc());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -98,15 +103,18 @@ public class ExperienciaEducativaDAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int nrc) {
+    public boolean eliminar(int nrc) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM experienciaEducativa WHERE nrc = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, nrc);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -120,5 +128,7 @@ public class ExperienciaEducativaDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 }

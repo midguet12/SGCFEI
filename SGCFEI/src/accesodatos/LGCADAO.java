@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.LGCA;
 import util.RegistroExcepciones;
 
-public class LGCADAO {
+public class LGCADAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -17,7 +17,8 @@ public class LGCADAO {
         db = new ConexionDB();
     }
 
-    public void insertar(LGCA lgca) {
+    public boolean insertar(LGCA lgca) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO lgca(clave, descripcion, idResponsable) VALUES(?, ?, ?);";
         
@@ -27,7 +28,7 @@ public class LGCADAO {
             consultaPreparada.setString(2, lgca.getDescripcion());
             consultaPreparada.setString(3, lgca.getIdResponsable());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -41,6 +42,8 @@ public class LGCADAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public LGCA obtener(int id) {
@@ -73,10 +76,12 @@ public class LGCADAO {
         finally{
             db.cerrarConexion();
         }
+        
         return lgca;
     }
 
-    public void actualizar(LGCA lgca) {
+    public boolean actualizar(LGCA lgca) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE lgca SET clave = ?, descripcion = ?, idResponsable = ? WHERE idLGCA = ?;";
         
@@ -87,7 +92,7 @@ public class LGCADAO {
             consultaPreparada.setString(3, lgca.getIdResponsable());
             consultaPreparada.setInt(4, lgca.getIdLGCA());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -101,15 +106,18 @@ public class LGCADAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;        
     }
 
-    public void eliminar(int id) {
+    public boolean eliminar(int id) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM lgca WHERE idLGCA = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -123,5 +131,7 @@ public class LGCADAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 }

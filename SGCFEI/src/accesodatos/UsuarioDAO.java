@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.Usuario;
 import util.RegistroExcepciones;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -18,7 +18,7 @@ public class UsuarioDAO {
     }
 
     public boolean insertar(Usuario usuario) {
-        int count = 0;
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO usuario(username, password, idAcademico) VALUES(?, ?, ?);";
         
@@ -27,7 +27,8 @@ public class UsuarioDAO {
             consultaPreparada.setString(1, usuario.getUsername());
             consultaPreparada.setString(2, usuario.getPassword());
             consultaPreparada.setString(3, usuario.getIdAcademico());
-            count = consultaPreparada.executeUpdate();
+            
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -41,7 +42,7 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
-        return count > 0;
+        return filasModificadas > 0;
     }
 
     public Usuario obtener(int id) {
@@ -74,10 +75,12 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
+        
         return usuario;
     }
 
-    public void actualizar(Usuario usuario) {
+    public boolean actualizar(Usuario usuario) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE usuario SET username = ?, password = ?, idAcademico = ? WHERE idUsuario = ?;";
         
@@ -88,7 +91,8 @@ public class UsuarioDAO {
             consultaPreparada.setString(3, usuario.getIdAcademico());
             consultaPreparada.setInt(4, usuario.getIdUsuario());
             
-            consultaPreparada.executeUpdate();
+            
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -102,15 +106,19 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int id) {
+    public boolean eliminar(int id) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM usuario WHERE idUsuario = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
-            consultaPreparada.executeUpdate();
+            
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -124,6 +132,8 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
     
     public boolean esCorreoRegistrado(String correo){

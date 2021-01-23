@@ -20,7 +20,7 @@ public class AcademicoDAO implements DAO{
     }
 
     public boolean insertar(Academico academico) {
-        int insertado = 0;
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO academico(numeroPersonal, nombre, correo, rol)"
                      + " VALUES(?, ?, ?, ?);";
@@ -31,7 +31,8 @@ public class AcademicoDAO implements DAO{
             consultaPreparada.setString(2, academico.getNombre());
             consultaPreparada.setString(3, academico.getCorreo());
             consultaPreparada.setString(4, academico.getRol());
-            insertado = consultaPreparada.executeUpdate();
+            
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -46,7 +47,7 @@ public class AcademicoDAO implements DAO{
             db.cerrarConexion();
         }
         
-        return insertado > 0;
+        return filasModificadas > 0;
     }
 
     public Academico obtener(String numeroPersonal) {
@@ -78,10 +79,12 @@ public class AcademicoDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
         return academico;
     }
 
-    public void actualizar(Academico academico) {
+    public boolean actualizar(Academico academico) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE academico SET nombre = ?, correo = ?, rol = ? WHERE idAcademico = ?;";
         
@@ -92,7 +95,7 @@ public class AcademicoDAO implements DAO{
             consultaPreparada.setString(3, academico.getRol());
             consultaPreparada.setString(4, academico.getNumeroPersonal());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -106,15 +109,18 @@ public class AcademicoDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(String numeroPersonal) {
+    public boolean eliminar(String numeroPersonal) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM academico WHERE idAcademico = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, numeroPersonal);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -128,6 +134,8 @@ public class AcademicoDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
     
     public List<Academico> obtenerTodosAcademicos() {
@@ -158,6 +166,7 @@ public class AcademicoDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
         return academicos;
     }
     
@@ -187,6 +196,7 @@ public class AcademicoDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
         return esRegistrado;
     }
         

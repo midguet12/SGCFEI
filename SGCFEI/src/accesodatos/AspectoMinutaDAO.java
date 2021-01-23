@@ -17,7 +17,8 @@ public class AspectoMinutaDAO implements DAO{
         db = new ConexionDB();
     }
 
-    public void insertar(AspectoMinuta aspectoMinuta) {
+    public boolean insertar(AspectoMinuta aspectoMinuta) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO aspectoMinuta(asunto, idAcademico, idMinuta)"
                      + " VALUES(?, ?, ?);";
@@ -28,7 +29,7 @@ public class AspectoMinutaDAO implements DAO{
             consultaPreparada.setString(2, aspectoMinuta.getIdAcademico());
             consultaPreparada.setInt(3, aspectoMinuta.getIdMinuta());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -42,6 +43,8 @@ public class AspectoMinutaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public AspectoMinuta obtener(int idAspectoMinuta) {
@@ -74,10 +77,12 @@ public class AspectoMinutaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
         return aspectoMinuta;
     }
 
-    public void actualizar(AspectoMinuta aspectoMinuta) {
+    public boolean actualizar(AspectoMinuta aspectoMinuta) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE aspectoMinuta SET asunto = ?, idAcademico = ?, idMinuta = ? WHERE idAspectoMinuta = ?;";
         
@@ -88,7 +93,7 @@ public class AspectoMinutaDAO implements DAO{
             consultaPreparada.setInt(3, aspectoMinuta.getIdMinuta());
             consultaPreparada.setInt(4, aspectoMinuta.getIdAspectoMinuta());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -102,15 +107,18 @@ public class AspectoMinutaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int idAspectoMinuta) {
+    public boolean eliminar(int idAspectoMinuta) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM aspectoMinuta WHERE idAspectoMinuta = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, idAspectoMinuta);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -124,6 +132,8 @@ public class AspectoMinutaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
         
 }

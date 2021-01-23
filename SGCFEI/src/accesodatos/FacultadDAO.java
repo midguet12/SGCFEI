@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import pojos.Facultad;
 import util.RegistroExcepciones;
 
-public class FacultadDAO {
+public class FacultadDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
@@ -17,7 +17,8 @@ public class FacultadDAO {
         db = new ConexionDB();
     }
 
-    public void insertar(Facultad facultad) {
+    public boolean insertar(Facultad facultad) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO facultad(nombre) VALUES(?);";
         
@@ -25,7 +26,7 @@ public class FacultadDAO {
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, facultad.getNombre());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -39,6 +40,8 @@ public class FacultadDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 
     public Facultad obtener(int id) {
@@ -69,10 +72,12 @@ public class FacultadDAO {
         finally{
             db.cerrarConexion();
         }
+        
         return facultad;
     }
 
-    public void actualizar(Facultad facultad) {
+    public boolean actualizar(Facultad facultad) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "UPDATE facultad SET nombre = ?, WHERE idFacultad = ?;";
         
@@ -81,7 +86,7 @@ public class FacultadDAO {
             consultaPreparada.setString(1, facultad.getNombre());
             consultaPreparada.setInt(2, facultad.getIdFacultad());
             
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -95,15 +100,18 @@ public class FacultadDAO {
         finally{
             db.cerrarConexion();
         }
+         
+        return filasModificadas > 0;
     }
 
-    public void eliminar(int id) {
+    public boolean eliminar(int id) {
+        int filasModificadas = 0;
         conexion = db.obtenerConexion();
         String consulta = "DELETE FROM facultad WHERE idFacultad = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
-            consultaPreparada.executeUpdate();
+            filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -117,5 +125,7 @@ public class FacultadDAO {
         finally{
             db.cerrarConexion();
         }
+        
+        return filasModificadas > 0;
     }
 }
