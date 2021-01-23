@@ -73,7 +73,7 @@ public class ControladorVentanas {
         }
     }
     
-    public static Alert builderAlert(String titulo, String mensaje, Alert.AlertType tipo){
+    public static Alert crearAlerta(String titulo, String mensaje, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);
         alert.setTitle(titulo);
         alert.setHeaderText(null);
