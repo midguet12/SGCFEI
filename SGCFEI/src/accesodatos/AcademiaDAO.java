@@ -124,6 +124,5 @@ public class AcademiaDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
-    }
-        
+    }   
 }

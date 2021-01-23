@@ -17,7 +17,8 @@ public class UsuarioDAO {
         db = new ConexionDB();
     }
 
-    public void insertar(Usuario usuario) {
+    public boolean insertar(Usuario usuario) {
+        int count = 0;
         conexion = db.obtenerConexion();
         String consulta = "INSERT INTO usuario(username, password, idAcademico) VALUES(?, ?, ?);";
         
@@ -26,8 +27,7 @@ public class UsuarioDAO {
             consultaPreparada.setString(1, usuario.getUsername());
             consultaPreparada.setString(2, usuario.getPassword());
             consultaPreparada.setString(3, usuario.getIdAcademico());
-            
-            consultaPreparada.executeUpdate();
+            count = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -41,6 +41,7 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
+        return count > 0;
     }
 
     public Usuario obtener(int id) {
@@ -123,5 +124,33 @@ public class UsuarioDAO {
         finally{
             db.cerrarConexion();
         }
+    }
+    
+    public boolean esCorreoRegistrado(String correo){
+        conexion = db.obtenerConexion();
+        boolean esRegistrado = true;
+        String consulta = "SELECT * FROM usuario WHERE username = ?";
+        try {
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, correo);
+            resultados = consultaPreparada.executeQuery();
+            if(resultados.next()){
+                esRegistrado = true;
+            }else{
+                esRegistrado = false;
+            }
+        } catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return esRegistrado;
     }
 }
