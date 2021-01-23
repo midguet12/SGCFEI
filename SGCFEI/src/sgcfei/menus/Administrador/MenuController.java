@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import util.ControladorVentanas;
 
 public class MenuController implements Initializable {
 
@@ -15,10 +16,12 @@ public class MenuController implements Initializable {
 
     @FXML
     private void registrarUsuario(MouseEvent event) {
+        ControladorVentanas.abrirYEsperar("/sgcfei/menus/Administrador/RegistrarUsuario/RegistrarUsuario.FXML", "Registrar Usuario");
     }
 
     @FXML
     private void consultarUsuario(MouseEvent event) {
+        ControladorVentanas.abrirYEsperar("/sgcfei/menus/Administrador/ConsultarUsuario/ConsultarUsuario.FXML", "Registrar Usuario");
     }
 
     @FXML
