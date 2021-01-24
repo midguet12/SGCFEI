@@ -55,8 +55,12 @@ public class Academia implements POJO{
         this.idCoordinador = idCoordinador;
     } 
 
-    @Override
-    public String toString() {
+    public String toText() {
         return "Academia{" + "idAcademia=" + idAcademia + ", nombre=" + nombre + ", descripcion=" + descripcion + ", idCoordinador=" + idCoordinador + '}';
     }   
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }
