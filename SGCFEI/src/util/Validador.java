@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author Luis
- */
 public class Validador {
 
-    public boolean validarCorreo (String correo) {
+    public static boolean validarCorreo (String correo) {
         boolean esValidoCorreo;
         Pattern pattern = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -24,7 +15,7 @@ public class Validador {
         return esValidoCorreo;
     }
 
-    public boolean validarNombre (String nombre) {
+    public static boolean validarNombre (String nombre) {
         boolean esValidoNombre;
         Pattern pattern = Pattern
                 .compile("([A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,}(\\ [A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,})*)");
@@ -33,7 +24,7 @@ public class Validador {
         return esValidoNombre;
     }
 
-    public boolean numeroPersonal (String numeroPersonal) {
+    public static boolean numeroPersonal (String numeroPersonal) {
         boolean esValidoNumeroPersonal;
         Pattern pattern = Pattern
                 .compile("([0-9]{8,10})");

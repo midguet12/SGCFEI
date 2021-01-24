@@ -52,7 +52,7 @@ public class ControladorVentanas {
         }
     }
 
-    public static void abrirConControlador(String nombreFXML, String titulo, Object controller){ //Cambiar el tipo de objeto a recibirt
+    public static void abrirConControlador(String nombreFXML, String titulo, Object controller){
         FXMLLoader fxmlLoader;
         Parent raiz;
 
@@ -71,6 +71,11 @@ public class ControladorVentanas {
         catch (IOException ex) {
             RegistroExcepciones.escribirExcepcion(ex, "ControladorVentanas");
         }
+    }
+    
+    public static void abrirYCerrarConControlador(String nombreFXML, String titulo, Object controller, Stage stageActual){
+        abrirConControlador(nombreFXML, titulo, controller);
+        stageActual.close();
     }
     
     public static Alert crearAlerta(String titulo, String mensaje, Alert.AlertType tipo){

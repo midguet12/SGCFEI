@@ -170,6 +170,39 @@ public class AcademicoDAO implements DAO{
         return academicos;
     }
     
+    public List<Academico> obtenerAcademicosPorRol(String rol) {
+        List<Academico> academicos = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico where rol = ?;";    
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, rol);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                Academico academico = new Academico();
+                academico.setNumeroPersonal(resultados.getString("numeroPersonal"));
+                academico.setNombre(resultados.getString("nombre"));
+                academico.setCorreo(resultados.getString("correo"));
+                academico.setRol(resultados.getString("rol"));
+                academicos.add(academico);
+            }
+        }catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return academicos;
+    }
+    
     public boolean esNumeroPersonalRegistrado(String numeroPersonal) {
         conexion = db.obtenerConexion();
         boolean esRegistrado = true;

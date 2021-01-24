@@ -54,9 +54,12 @@ public class Academico implements POJO{
         this.rol = rol;
     }
 
-    @Override
-    public String toString() {
+    public String toText() {
         return "Academico{" + "numeroPersonal=" + numeroPersonal + ", nombre=" + nombre + ", correo=" + correo + ", rol=" + rol + '}';
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre;
+    }   
 }

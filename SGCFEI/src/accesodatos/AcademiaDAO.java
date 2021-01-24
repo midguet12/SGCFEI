@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pojos.Academia;
 import util.RegistroExcepciones;
 
@@ -133,5 +135,38 @@ public class AcademiaDAO implements DAO{
         }
         
         return filasModificadas > 0;
-    }   
+    }
+    
+     public List<Academia> obtenerTodasAcademias() {
+        List<Academia> academias = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT * FROM academia;";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                Academia academia = new Academia(
+                    resultados.getInt("idAcademia"),
+                    resultados.getString("nombre"),
+                    resultados.getString("descripcion"),
+                    resultados.getString("idCoordinador"));
+                
+                academias.add(academia);
+            }
+        }catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return academias;
+    }
 }
