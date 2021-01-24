@@ -1,59 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Coordinador.MenuController">
-   <children>
-      <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de trabajo de academia" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanAcademia" text="Registrar" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanAcademia" text="Consultar" />
-         </children>
-      </HBox>
-      <Label />
-      <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de curso" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanCurso" text="Registrar" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanCurso" text="Consultar" />
-         </children>
-      </HBox>
-      <Label />
-      <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Minutas" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarMinuta" text="Registrar" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarMinuta" text="Consultar" />
-         </children>
-      </HBox>
-      <Label />
-      <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de estudios" textAlignment="CENTER" textOverrun="CLIP">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanEstudios" text="Registrar" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Consultar" />
-         </children>
-      </HBox>
-   </children>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="8.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sgcfei.menus.Coordinador.MenuController">
+  <children>
+    <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de trabajo de academia" textAlignment="CENTER" textOverrun="CLIP">
+      <font>
+        <Font size="18.0" fx:id="x1" />
+      </font>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <children>
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanAcademia" text="Registrar" />
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanAcademia" text="Consultar" />
+      </children>
+    </HBox>
+    <Label />
+    <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de curso" textAlignment="CENTER" textOverrun="CLIP" />
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <children>
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanCurso" text="Registrar" />
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanCurso" text="Consultar" />
+      </children>
+    </HBox>
+    <Label />
+    <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Minutas" textAlignment="CENTER" textOverrun="CLIP" />
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <children>
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarMinuta" text="Registrar" />
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarMinuta" text="Consultar" />
+      </children>
+    </HBox>
+    <Label />
+    <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Registrar programa Experiencia educativa" textAlignment="CENTER" textOverrun="CLIP" />
+    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <children>
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanEstudios" text="Registrar" />
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Consultar" />
+      </children>
+    </HBox>
+  </children>
 </VBox>
