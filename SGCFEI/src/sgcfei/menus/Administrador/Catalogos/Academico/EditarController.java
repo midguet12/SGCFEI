@@ -42,7 +42,7 @@ public class EditarController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        roles.addAll("Administrador", "Coordinador", "Profesor");
+        roles.addAll("Administrador", "Director", "Coordinador", "Profesor");
         cboxRol.setItems(roles);
         cboxRol.getSelectionModel().select(0);
         

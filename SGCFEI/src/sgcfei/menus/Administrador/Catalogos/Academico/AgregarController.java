@@ -38,7 +38,7 @@ public class AgregarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        roles.addAll("Administrador", "Coordiandor", "Profesor");
+        roles.addAll("Administrador", "Director", "Coordiandor", "Profesor");
         cboxRol.setItems(roles);
         cboxRol.getSelectionModel().select(0);
     }    
