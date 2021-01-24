@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import pojos.Academico;
 import pojos.Usuario;
 import util.RegistroExcepciones;
 
@@ -143,6 +144,61 @@ public class UsuarioDAO implements DAO{
         try {
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, correo);
+            resultados = consultaPreparada.executeQuery();
+            if(resultados.next()){
+                esRegistrado = true;
+            }else{
+                esRegistrado = false;
+            }
+        } catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return esRegistrado;
+    }
+    
+    public boolean actualizarCorreoUsuario(Usuario usuario){
+        conexion = db.obtenerConexion();
+        int filasModificadas = 0;
+        String consulta = "UPDATE usuario SET username = ?, WHERE idAcademico = ?;";
+        
+         try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, usuario.getUsername());
+            consultaPreparada.setString(2, usuario.getIdAcademico());
+            filasModificadas = consultaPreparada.executeUpdate();
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return filasModificadas > 0;
+    }
+    
+    public boolean esCorreoRegistradoModificar(String correo, String idAcademico){
+        conexion = db.obtenerConexion();
+        boolean esRegistrado = true;
+        String consulta = "SELECT * FROM usuario WHERE username = ? AND idAcademico != ?";
+        try {
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, correo);
+            consultaPreparada.setString(2, idAcademico);
             resultados = consultaPreparada.executeQuery();
             if(resultados.next()){
                 esRegistrado = true;
