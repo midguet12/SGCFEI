@@ -2,8 +2,39 @@ package pojos;
 
 public class ExperienciaEducativa implements POJO{
     private int nrc;
+    private String codigo;
     private String nombre;
+    private String areaFormacionPrincipal;
+    private String areaFormacionSecundaria;
+    private int creditos;
+    private int teoria;
+    private int totalHoras;
+    private String equivalencias;
+    private String modalidad;
+    private String oportunidadesEvaluacion;
+    private String requisitos;
+    private String coRequisitos;    
     private int idAcademia;
+    
+    /*
+        ncr int not null,
+	codigo varchar(20),
+	nombre varchar (50) not null,
+	areaFormacionPrincipal varchar(255),
+	areaFormacionSecundaria varchar(255),
+	creditos int,
+	teoria int,
+	practica int,
+	totalHoras int,
+	equivalencias varchar(255),
+	modalidad varchar(255),
+	oportunidadesEvaluacion varchar(255),
+	requisitos varchar(255),
+	coRequisitos varchar(255),
+	academia int not null,
+	primary key (ncr)
+    */
+    
 
     public ExperienciaEducativa(int nrc, String nombre, int idAcademia) {
         this.nrc = nrc;
