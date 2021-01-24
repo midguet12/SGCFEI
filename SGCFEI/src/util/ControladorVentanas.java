@@ -66,7 +66,7 @@ public class ControladorVentanas {
             nuevaStage.setTitle(titulo);
             nuevaStage.initModality(Modality.APPLICATION_MODAL);
 
-            nuevaStage.showAndWait();
+            nuevaStage.show();
         }
         catch (IOException ex) {
             RegistroExcepciones.escribirExcepcion(ex, "ControladorVentanas");
