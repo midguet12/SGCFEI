@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="8" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.LoginController">
-    <TextField fx:id="username"  onKeyPressed="#loginPorIntro" maxWidth="200" promptText="Usuario" />
-    <PasswordField fx:id="password"  onKeyPressed="#loginPorIntro" maxWidth="200" promptText="Contraseña" />
-    <Label fx:id="alertLabel" />
+    <TextField fx:id="tfUsername"  onKeyPressed="#loginPorIntro" maxWidth="200" promptText="Usuario" />
+    <PasswordField fx:id="tfPassword"  onKeyPressed="#loginPorIntro" maxWidth="200" promptText="Contraseña" />
+    <Label/>
     <Button fx:id="button" onMouseClicked="#loginPorClick" text="Iniciar sesión"/>
 </VBox>
 
