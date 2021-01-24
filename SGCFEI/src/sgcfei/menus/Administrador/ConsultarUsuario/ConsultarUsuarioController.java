@@ -108,7 +108,7 @@ public class ConsultarUsuarioController implements Initializable {
     }
 
     private void recuperarAcademicos() {
-        List<Academico> academicos = new AcademicoDAO().obtenerTodosAcademicos();
+        List<Academico> academicos = new AcademicoDAO().obtenerTodosAcademicosConCuenta();
         if (academicos.size() > 0) {
             cargarAcademicos(academicos);
         }else{
