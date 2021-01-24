@@ -39,19 +39,19 @@ public class SeleccionarCatalogoController implements Initializable {
         }
         if(seleccion.equals("Academico")){
             ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Registros.fxml",
-                    "Consultar registro", stageActual);
+                    "Consultar Academico", stageActual);
         }
         if(seleccion.equals("Experiencia Educativa")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/ConsultarRegistro.fxml",
-                    "Consultar registro", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Registros.fxml",
+                    "Consultar Experiencia Educativa", stageActual);
         }
         if(seleccion.equals("LGCA")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/ConsultarRegistro.fxml",
-                    "Consultar registro", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/LGCA/Registro.fxml",
+                    "Consultar LGCA", stageActual);
         }
         if(seleccion.equals("Usuario")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/ConsultarRegistro.fxml",
-                    "Consultar registro", stageActual);
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Usuario/Registro.fxml",
+                    "Consultar usuario", stageActual);
         }
     }
 

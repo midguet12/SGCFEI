@@ -55,7 +55,7 @@ public class RegistrosController implements Initializable {
     private void clickAgregar(MouseEvent event) {
         Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Agregar.fxml",
-                    "Agregar Academia", stageActual);
+                    "Agregar Academico", stageActual);
     }
 
     @FXML
@@ -70,7 +70,7 @@ public class RegistrosController implements Initializable {
             Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
             EditarController controlador = new EditarController(academico);
             ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/Academico/Editar.fxml",
-                    "Editar Academia", controlador, stageActual);
+                    "Editar Academico", controlador, stageActual);
         }
     }
 
