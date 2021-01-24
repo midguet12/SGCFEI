@@ -36,6 +36,14 @@ public class ExperienciaEducativa implements POJO{
 	primary key (ncr)
     */
 
+    public ExperienciaEducativa(int nrc, String nombre, int idAcademia) {
+        this.nrc = nrc;
+        this.nombre = nombre;
+        this.idAcademia = idAcademia;
+    }
+    
+    
+
     public ExperienciaEducativa(int nrc, String codigo, String nombre, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int practica, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, int idAcademia) {
         this.nrc = nrc;
         this.codigo = codigo;
