@@ -37,7 +37,7 @@ public class RegistrosController implements Initializable {
     private Button btnEliminar;
     @FXML
     private Button btnCancelar;
-    private ObservableList<Academico> listaAcademias;
+    private ObservableList<Academico> listaAcademicos;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,18 +97,18 @@ public class RegistrosController implements Initializable {
     private void clickCancelar(MouseEvent event) {
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/SeleccionarCatalogo.fxml",
-                    "Consultar Academia", stageActual);
+                    "Seleccionar Catalogo", stageActual);
     }
 
     private void cargarTabla() {
         AcademicoDAO dao = new AcademicoDAO();
-        listaAcademias = FXCollections.observableArrayList();
+        listaAcademicos = FXCollections.observableArrayList();
         
         cNumeroPersonal.setCellValueFactory(new PropertyValueFactory<>("numeroPersonal"));
         cNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
-        listaAcademias.addAll(dao.obtenerTodosAcademicos());
-        tabla.setItems(listaAcademias);
+        listaAcademicos.addAll(dao.obtenerTodosAcademicos());
+        tabla.setItems(listaAcademicos);
     }
     
     private void consultar(){

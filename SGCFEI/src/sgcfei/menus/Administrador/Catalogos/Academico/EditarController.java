@@ -21,11 +21,11 @@ import util.Validador;
 
 public class EditarController implements Initializable {
     @FXML
-    private TextField lblNumeroPersonal;
+    private TextField tfNumeroPersonal;
     @FXML
-    private TextField lblNombre;
+    private TextField tfNombre;
     @FXML
-    private TextField lblCorreo;
+    private TextField tfCorreo;
     @FXML
     private Button btnAceptar;
     @FXML
@@ -33,7 +33,7 @@ public class EditarController implements Initializable {
     @FXML
     private ComboBox<String> cboxRol;
     private ObservableList<String> roles = FXCollections.observableArrayList();
-    private boolean datosCorrectos = true;
+    private boolean datosCorrectos;
     private Academico academico;
 
     public EditarController(Academico academico) {
@@ -46,17 +46,18 @@ public class EditarController implements Initializable {
         cboxRol.setItems(roles);
         cboxRol.getSelectionModel().select(0);
         
-        lblNumeroPersonal.setText(academico.getNumeroPersonal());
-        lblNombre.setText(academico.getNombre());
-        lblCorreo.setText(academico.getCorreo());
+        tfNumeroPersonal.setText(academico.getNumeroPersonal());
+        tfNombre.setText(academico.getNombre());
+        tfCorreo.setText(academico.getCorreo());
         cboxRol.getSelectionModel().select(academico.getRol());
     }    
 
     @FXML
     private void aceptar(MouseEvent event) {
-        String numeroPersonal = lblNumeroPersonal.getText();
-        String nombre = lblNombre.getText();
-        String correo = lblCorreo.getText();
+        datosCorrectos = true;
+        String numeroPersonal = tfNumeroPersonal.getText();
+        String nombre = tfNombre.getText();
+        String correo = tfCorreo.getText();
         String rol = cboxRol.getValue();
         
         if(!Validador.validarNombre(nombre)){

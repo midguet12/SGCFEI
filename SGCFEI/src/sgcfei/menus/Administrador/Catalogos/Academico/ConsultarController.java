@@ -31,8 +31,6 @@ public class ConsultarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(academico);
-        
         lblNumeroPersonal.setText(academico.getNumeroPersonal());
         lblNombre.setText(academico.getNombre());
         lblCorreo.setText(academico.getCorreo());

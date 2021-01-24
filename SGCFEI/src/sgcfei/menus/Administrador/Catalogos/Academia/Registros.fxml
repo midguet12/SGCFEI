@@ -7,21 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Administrador.Catalogos.Academia.RegistrosController">
     <children>
       <VBox alignment="CENTER" prefHeight="300.0" prefWidth="450.0" spacing="20.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-               <children>
-                  <Label text="Catálogo de Academia">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Label>
-               </children>
-            </HBox>
-            <TableView fx:id="tabla" maxWidth="390.0" minWidth="390.0" onMouseClicked="#clickTabla" prefHeight="200.0" prefWidth="390.0">
+            <Label />
+            <TableView fx:id="tabla" maxHeight="200.0" maxWidth="390.0" minHeight="200.0" minWidth="390.0" onMouseClicked="#clickTabla" prefHeight="200.0" prefWidth="390.0">
               <columns>
                 <TableColumn fx:id="cNombre" prefWidth="385.0" text="Nombre" />
               </columns>

@@ -1,6 +1,7 @@
-package sgcfei.menus.Administrador.Catalogos.Academico;
+package sgcfei.menus.Administrador.Catalogos.ExperienciaEducativa;
 
-import accesodatos.AcademicoDAO;
+import accesodatos.AcademiaDAO;
+import accesodatos.ExperienciaEducativaDAO;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -15,72 +16,74 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pojos.Academico;
+import pojos.Academia;
+import pojos.ExperienciaEducativa;
 import util.ControladorVentanas;
 import util.Validador;
 
-public class AgregarController implements Initializable {
+public class EditarController implements Initializable {
 
     @FXML
-    private TextField tfNumeroPersonal;
+    private TextField tfNrc;
     @FXML
     private TextField tfNombre;
     @FXML
-    private TextField tfCorreo;
+    private ComboBox<Academia> cboxAcademia;
     @FXML
     private Button btnAceptar;
     @FXML
     private Button btnCancelar;
-    @FXML
-    private ComboBox<String> cboxRol;
-    private ObservableList<String> roles;
+    private ObservableList<Academia> listaAcademias;
+    private ExperienciaEducativa experiencia;
     private boolean datosCorrectos;
 
+    public EditarController(ExperienciaEducativa experiencia) {
+        this.experiencia = experiencia;
+    }
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        roles = FXCollections.observableArrayList();
-        roles.addAll("Administrador", "Director", "Coordiandor", "Profesor");
-        cboxRol.setItems(roles);
-        cboxRol.getSelectionModel().select(0);
+        AcademiaDAO dao = new AcademiaDAO();
+        listaAcademias = FXCollections.observableArrayList();
+        listaAcademias.addAll(dao.obtenerTodasAcademias());
+        cboxAcademia.setItems(listaAcademias);      
+        
+        tfNrc.setText(Integer.toString(experiencia.getNrc()));
+        tfNombre.setText(experiencia.getNombre());
+        cboxAcademia.getSelectionModel().select(dao.obtener(experiencia.getIdAcademia()));
+        tfNrc.setDisable(true);
     }    
 
     @FXML
     private void aceptar(MouseEvent event) {
         datosCorrectos = true;
-        String numeroPersonal = tfNumeroPersonal.getText();
+        String nrc = tfNrc.getText();
         String nombre = tfNombre.getText();
-        String correo = tfCorreo.getText();
-        String rol = cboxRol.getValue();
+        Academia academia = cboxAcademia.getValue();
         
-        if(!Validador.validarNombre(nombre)){
+        if(!Validador.numero(nrc)){
+            datosCorrectos = false;
+        }
+        if(nrc.length() != 5){
             datosCorrectos = false;
         }
         if(nombre.length() > 254){
             datosCorrectos = false;
         }
-        if(numeroPersonal.length() > 10){
-            datosCorrectos = false;
-        }
-        if(!Validador.validarCorreo(correo)){
-            datosCorrectos = false;
-        }
-        if(correo.length() > 254){
-            datosCorrectos = false;
-        }
         
-        if(numeroPersonal.isEmpty() || nombre.isEmpty() || correo.isEmpty()){
+        if(nrc.isEmpty() || nombre.isEmpty()){
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         else{
             if(datosCorrectos){
-                Academico academico = new Academico(numeroPersonal, nombre, correo, rol);            
-                AcademicoDAO dao = new AcademicoDAO();
-                dao.insertar(academico);
+                ExperienciaEducativa experiencia = new ExperienciaEducativa(Integer.parseInt(nrc), nombre, academia.getIdAcademia());            
+                ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
+                dao.actualizar(experiencia);
                 
                 Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha agregado un academico correctamente", Alert.AlertType.INFORMATION);
+                        "Se ha actualizado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
                 
                 cerrar();
@@ -96,7 +99,7 @@ public class AgregarController implements Initializable {
     @FXML
     private void cancelar(MouseEvent event) {
         Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                        "¿Está seguro que desea cancelar el registro?", Alert.AlertType.CONFIRMATION);
+                        "¿Está seguro que desea cancelar los cambios?", Alert.AlertType.CONFIRMATION);
         Optional<ButtonType> respuesta = alerta.showAndWait();
         
         if(respuesta.get() == ButtonType.OK){
@@ -106,7 +109,8 @@ public class AgregarController implements Initializable {
         
     private void cerrar(){
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Registros.fxml",
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Registros.fxml",
                     "Catálogo de Academia", stageActual);
     }
+    
 }

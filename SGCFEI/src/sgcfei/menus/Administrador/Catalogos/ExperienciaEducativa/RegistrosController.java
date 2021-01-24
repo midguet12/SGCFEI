@@ -1,6 +1,6 @@
-package sgcfei.menus.Administrador.Catalogos.Academia;
+package sgcfei.menus.Administrador.Catalogos.ExperienciaEducativa;
 
-import accesodatos.AcademiaDAO;
+import accesodatos.ExperienciaEducativaDAO;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -16,46 +16,49 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pojos.Academia;
+import pojos.Academico;
+import pojos.ExperienciaEducativa;
 import util.ControladorVentanas;
 
 public class RegistrosController implements Initializable {
-    @FXML
-    private TableView<Academia> tabla;
-    @FXML
-    private TableColumn<Academia, String> cNombre;
-    @FXML
-    private Button btnAgregar = new Button();
-    @FXML
-    private Button btnConsultar = new Button();
-    @FXML
-    private Button btnEditar = new Button();
-    @FXML
-    private Button btnEliminar = new Button();
-    @FXML
-    private Button btnCancelar = new Button();
-    private ObservableList<Academia> listaAcademias;
 
-    
+    @FXML
+    private TableView<ExperienciaEducativa> tabla;
+    @FXML
+    private TableColumn<ExperienciaEducativa, String> cNRC;
+    @FXML
+    private TableColumn<ExperienciaEducativa, String> cNombre;
+    @FXML
+    private Button btnAgregar;
+    @FXML
+    private Button btnConsultar;
+    @FXML
+    private Button btnEditar;
+    @FXML
+    private Button btnEliminar;
+    @FXML
+    private Button btnCancelar;
+    private ObservableList<ExperienciaEducativa> listaExperiencias;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargarTabla();
-    } 
-    
+       cargarTabla();
+    }    
+
     @FXML
     private void clickTabla(MouseEvent event) {
         if(event.getClickCount() == 2){
             consultar();
         }
     }
-    
+
     @FXML
     private void clickAgregar(MouseEvent event) {
         Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academia/Agregar.fxml",
-                    "Agregar Academia", stageActual);
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Agregar.fxml",
+                    "Agregar Experiencia Educativa", stageActual);
     }
-    
+
     @FXML
     private void clickConsultar(MouseEvent event) {
         consultar();
@@ -64,25 +67,25 @@ public class RegistrosController implements Initializable {
     @FXML
     private void clickEditar(MouseEvent event) {
         if(validarSeleccion()){
-            Academia academia = tabla.getSelectionModel().getSelectedItem();
+            ExperienciaEducativa experienciaEducativa = tabla.getSelectionModel().getSelectedItem();
             Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
-            EditarController controlador = new EditarController(academia);
-            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/Academia/Editar.fxml",
-                    "Editar Academia", controlador, stageActual);
+            EditarController controlador = new EditarController(experienciaEducativa);
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Editar.fxml",
+                    "Editar Experiencia Educativa", controlador, stageActual);
         }
     }
 
     @FXML
     private void clickEliminar(MouseEvent event) {
         Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                        "¿Está seguro que desea eliminar esta academia?", Alert.AlertType.CONFIRMATION);
+                "¿Está seguro que desea eliminar esta Experiencia Educativa?", Alert.AlertType.CONFIRMATION);
         Optional<ButtonType> respuesta = alerta.showAndWait();
         
         if(respuesta.get() == ButtonType.OK){
-            int idAcademia = tabla.getSelectionModel().getSelectedItem().getIdAcademia();
+            int nrc = tabla.getSelectionModel().getSelectedItem().getNrc();
             
-            AcademiaDAO dao = new AcademiaDAO();
-            dao.eliminar(idAcademia);
+            ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
+            dao.eliminar(nrc);
             
             alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                         "Se ha eliminado la academia correctamente", Alert.AlertType.INFORMATION);
@@ -98,25 +101,26 @@ public class RegistrosController implements Initializable {
                     "Seleccionar catálogo", stageActual);
     }
     
-    private void cargarTabla(){
-        AcademiaDAO dao = new AcademiaDAO();
-        listaAcademias = FXCollections.observableArrayList();
+    private void cargarTabla() {
+        ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
+        listaExperiencias = FXCollections.observableArrayList();
         
+        cNRC.setCellValueFactory(new PropertyValueFactory<>("nrc"));
         cNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        listaAcademias.addAll(dao.obtenerTodasAcademias());
-        tabla.setItems(listaAcademias);
+
+        listaExperiencias.addAll(dao.obtenerTodasExperiencias());
+        tabla.setItems(listaExperiencias);
     }
     
     private void consultar(){
         if(validarSeleccion()){
-            Academia academia = tabla.getSelectionModel().getSelectedItem();
+            ExperienciaEducativa experienciaEducativa = tabla.getSelectionModel().getSelectedItem();
             Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
-            ConsultarController controlador = new ConsultarController(academia);
-            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/Academia/Consultar.fxml",
-                    "Consultar Academia", controlador, stageActual);
+            ConsultarController controlador = new ConsultarController(experienciaEducativa);
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Consultar.fxml",
+                    "Consultar Experiencia Educativa", controlador, stageActual);
         }
     }
-    
     private boolean validarSeleccion(){
         if(tabla.getSelectionModel().isEmpty()){
             Alert alerta = ControladorVentanas.crearAlerta("Elemento no seleccionado",

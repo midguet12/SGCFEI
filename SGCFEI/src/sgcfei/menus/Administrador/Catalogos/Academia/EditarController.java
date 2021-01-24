@@ -35,7 +35,7 @@ public class EditarController implements Initializable {
     private Button btnCancelar;
     private Academia academia;
     private ObservableList<Academico> coordinadores = FXCollections.observableArrayList();
-    private boolean datosCorrectos = true;
+    private boolean datosCorrectos;
 
     public EditarController(Academia academia) {
         this.academia = academia;
@@ -56,6 +56,7 @@ public class EditarController implements Initializable {
 
     @FXML
     private void aceptar(MouseEvent event) {
+        datosCorrectos = true;
         String nombre = tfNombre.getText();
         String descripcion = tfDescripcion.getText();
         String idCoordinador = cboxCoordinador.getValue().getNumeroPersonal();
