@@ -1,32 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author Luis
- */
 public class Encriptacion {
     private static final String SHA_256_FUNCTION = "SHA-256";
     private static final String MD5_FUNCTION = "MD5";
 
-    /***
-     * This method crypt any text in SHA256
-     * <p>
-     * It's used when someone needs to crypt some text.
-     * In this system, the use that is given is for Auth module.
-     * </p>
-     * @param string
-     * @return String encrypted.
-     */
     public static String encriptarSHA2(String string) {
         MessageDigest messageDigest = null;
         try {
@@ -42,15 +22,6 @@ public class Encriptacion {
         return stringBuffer.toString();
     }
 
-    /***
-     * This method crypt any text in SHA256
-     * <p>
-     * It's used when someone needs to crypt some text.
-     * In this system, the use that is given is for Auth module.
-     * </p>
-     * @param string
-     * @return String encrypted
-     */
     public static String encriptarMD5(String string) {
         MessageDigest messageDigest = null;
         try {
@@ -66,13 +37,6 @@ public class Encriptacion {
         return stringBuffer.toString();
     }
 
-    /***
-     * This method crypt a random number.
-     * <p>
-     * The purpose is generate a "random password" encrypted.
-     * </p>
-     * @return String encrypted in MD5
-     */
     public static String generarContraseñaAleatoria() {
         return encriptarMD5(String.valueOf( Math.random() ) );
     }
