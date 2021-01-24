@@ -1,6 +1,5 @@
-package sgcfei.menus.Administrador.Catalogos.Academia;
+package sgcfei.menus.Administrador.Catalogos.Academico;
 
-import accesodatos.AcademiaDAO;
 import accesodatos.AcademicoDAO;
 import java.net.URL;
 import java.util.Optional;
@@ -16,62 +15,70 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pojos.Academia;
 import pojos.Academico;
 import util.ControladorVentanas;
 import util.Validador;
 
 public class AgregarController implements Initializable {
+
     @FXML
-    private Button btnAceptar = new Button();
+    private TextField lblNumeroPersonal;
     @FXML
-    private Button btnCancelar = new Button();
+    private TextField lblNombre;
     @FXML
-    private TextField tfNombre;
+    private TextField lblCorreo;
     @FXML
-    private TextField tfDescripcion;
+    private Button btnAceptar;
     @FXML
-    private ComboBox<Academico> cboxCoordinador;
-    private ObservableList<Academico> coordinadores = FXCollections.observableArrayList();
+    private Button btnCancelar;
+    @FXML
+    private ComboBox<String> cboxRol;
+    private ObservableList<String> roles = FXCollections.observableArrayList();
     private boolean datosCorrectos = true;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        AcademicoDAO dao =  new AcademicoDAO();
-        coordinadores.setAll(dao.obtenerAcademicosPorRol("Coordinador"));
-        cboxCoordinador.setItems(coordinadores);
-        cboxCoordinador.getSelectionModel().select(0);
+        roles.addAll("Administrador", "Coordiandor", "Profesor");
+        cboxRol.setItems(roles);
+        cboxRol.getSelectionModel().select(0);
     }    
 
     @FXML
     private void aceptar(MouseEvent event) {
-        String nombre = tfNombre.getText();
-        String descripcion = tfDescripcion.getText();
-        String idCoordinador = cboxCoordinador.getValue().getNumeroPersonal();
+        String numeroPersonal = lblNumeroPersonal.getText();
+        String nombre = lblNombre.getText();
+        String correo = lblCorreo.getText();
+        String rol = cboxRol.getValue();
         
         if(!Validador.validarNombre(nombre)){
             datosCorrectos = false;
         }
-        else if(nombre.length() > 254){
+        if(nombre.length() > 254){
             datosCorrectos = false;
         }
-        else if(descripcion.length() > 254){
+        if(numeroPersonal.length() > 10){
+            datosCorrectos = false;
+        }
+        if(!Validador.validarCorreo(correo)){
+            datosCorrectos = false;
+        }
+        if(correo.length() > 254){
             datosCorrectos = false;
         }
         
-        if(nombre.isEmpty() || descripcion.isEmpty()){
+        if(numeroPersonal.isEmpty() || nombre.isEmpty() || correo.isEmpty()){
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         else{
             if(datosCorrectos){
-                Academia academia = new Academia(nombre, descripcion, idCoordinador);            
-                AcademiaDAO dao = new AcademiaDAO();
-                dao.insertar(academia);
+                Academico academico = new Academico(numeroPersonal, nombre, correo, rol);            
+                AcademicoDAO dao = new AcademicoDAO();
+                dao.insertar(academico);
                 
                 Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha agregado una academia correctamente", Alert.AlertType.INFORMATION);
+                        "Se ha agregado un academico correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
                 
                 cerrar();
@@ -94,10 +101,10 @@ public class AgregarController implements Initializable {
             cerrar();
         }
     }
-    
+        
     private void cerrar(){
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academia/Registros.fxml",
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Registros.fxml",
                     "Catálogo de Academia", stageActual);
     }
 }

@@ -38,7 +38,7 @@ public class SeleccionarCatalogoController implements Initializable {
                     "Catálogo de Academia", stageActual);
         }
         if(seleccion.equals("Academico")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/ConsultarRegistro.fxml",
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Registros.fxml",
                     "Consultar registro", stageActual);
         }
         if(seleccion.equals("Experiencia Educativa")){
