@@ -168,7 +168,7 @@ public class UsuarioDAO implements DAO{
     public boolean actualizarCorreoUsuario(Usuario usuario){
         conexion = db.obtenerConexion();
         int filasModificadas = 0;
-        String consulta = "UPDATE usuario SET username = ?, WHERE idAcademico = ?;";
+        String consulta = "UPDATE usuario SET username = ? WHERE idAcademico = ?";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);

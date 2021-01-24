@@ -232,5 +232,37 @@ public class AcademicoDAO implements DAO{
         
         return esRegistrado;
     }
+    
+    public List<Academico> obtenerTodosAcademicosConCuenta() {
+        List<Academico> academicos = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico AS AC INNER JOIN usuario AS US WHERE rol != 'Administrador' AND AC.numeroPersonal = US.idAcademico";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                Academico academico = new Academico();
+                academico.setNumeroPersonal(resultados.getString("numeroPersonal"));
+                academico.setNombre(resultados.getString("nombre"));
+                academico.setCorreo(resultados.getString("correo"));
+                academico.setRol(resultados.getString("rol"));
+                academicos.add(academico);
+            }
+        }catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return academicos;
+    }
         
 }
