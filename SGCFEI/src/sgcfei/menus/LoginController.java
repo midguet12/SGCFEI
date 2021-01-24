@@ -29,12 +29,14 @@ public class LoginController implements Initializable {
         //TODO
     }
     
+    @FXML
     public void loginPorIntro(KeyEvent keyEvent) {
         if(keyEvent.getCode().equals(KeyCode.ENTER)){
             login();
         }
     }
     
+    @FXML
     public void loginPorClick(MouseEvent e) {
         login();
     }
