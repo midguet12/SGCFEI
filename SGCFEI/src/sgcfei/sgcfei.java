@@ -1,11 +1,14 @@
 package sgcfei;
 
+import accesodatos.AcademiaDAO;
 import accesodatos.UsuarioDAO;
+import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import pojos.Academia;
 import pojos.Usuario;
 
 public class sgcfei extends Application{
@@ -20,14 +23,14 @@ public class sgcfei extends Application{
         stage.setTitle("Login");
         stage.setScene(new Scene(root, 300, 300));
         stage.show();*/
+        AcademiaDAO academiaDAO = new AcademiaDAO();
         
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
         
-        Usuario usuario = usuarioDAO.obtener(1);
+        List<Academia> academias = academiaDAO.obtenerTodasAcademias();
         
-        String x = usuario.getUsername();
-        
-        System.out.println(x);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(academias.get(i).getNombre());
+        }
         
         
         
