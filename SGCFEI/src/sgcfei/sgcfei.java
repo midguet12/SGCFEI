@@ -1,6 +1,7 @@
 package sgcfei;
 
 import accesodatos.AcademiaDAO;
+import accesodatos.CampusDAO;
 import accesodatos.ProgramaEducativoDAO;
 import accesodatos.UsuarioDAO;
 import java.util.List;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pojos.Academia;
+import pojos.Campus;
 import pojos.ProgramaEducativo;
 import pojos.Usuario;
 
@@ -26,9 +28,21 @@ public class sgcfei extends Application{
         stage.setScene(new Scene(root, 300, 300));
         stage.show();*/
         
-        ProgramaEducativoDAO programaEducativoDAO = new ProgramaEducativoDAO();
+        Campus campus = new CampusDAO().obtener(2);
+        campus.setNombre("Minatitlan");
         
-        programaEducativoDAO.eliminar(3);
+        
+        
+        //System.out.println(campus.getNombre());
+        
+        
+        
+        CampusDAO campusDAO = new CampusDAO();
+        campusDAO.eliminar(1);
+        
+        //campusDAO.insertar(campus);
+        
+        
         
         /*List<ProgramaEducativo> programasEducativos = programaEducativoDAO.obtenerTodosProgramas();
         for (int i = 0; i < 10; i++) {
