@@ -8,6 +8,7 @@ public class ExperienciaEducativa implements POJO{
     private String areaFormacionSecundaria;
     private int creditos;
     private int teoria;
+    private int practica;
     private int totalHoras;
     private String equivalencias;
     private String modalidad;
@@ -35,7 +36,7 @@ public class ExperienciaEducativa implements POJO{
 	primary key (ncr)
     */
 
-    public ExperienciaEducativa(int nrc, String codigo, String nombre, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, int idAcademia) {
+    public ExperienciaEducativa(int nrc, String codigo, String nombre, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int practica, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, int idAcademia) {
         this.nrc = nrc;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -43,6 +44,7 @@ public class ExperienciaEducativa implements POJO{
         this.areaFormacionSecundaria = areaFormacionSecundaria;
         this.creditos = creditos;
         this.teoria = teoria;
+        this.practica = practica;
         this.totalHoras = totalHoras;
         this.equivalencias = equivalencias;
         this.modalidad = modalidad;
@@ -108,6 +110,14 @@ public class ExperienciaEducativa implements POJO{
         this.teoria = teoria;
     }
 
+    public int getPractica() {
+        return practica;
+    }
+
+    public void setPractica(int practica) {
+        this.practica = practica;
+    }
+
     public int getTotalHoras() {
         return totalHoras;
     }
@@ -163,6 +173,8 @@ public class ExperienciaEducativa implements POJO{
     public void setIdAcademia(int idAcademia) {
         this.idAcademia = idAcademia;
     }
+
+   
     
     
 
