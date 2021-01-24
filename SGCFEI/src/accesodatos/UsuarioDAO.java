@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import pojos.Academico;
 import pojos.Usuario;
 import util.RegistroExcepciones;
 
@@ -54,6 +53,39 @@ public class UsuarioDAO implements DAO{
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
+
+            resultados = consultaPreparada.executeQuery(); 
+            resultados.next();
+            
+            usuario = new Usuario(
+                    resultados.getInt("idUsuario"),
+                    resultados.getString("username"),
+                    resultados.getString("password"),
+                    resultados.getString("idAcademico"));
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return usuario;
+    }
+    public Usuario obtener(String username) {
+        Usuario usuario = null;
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT * FROM usuario WHERE username = ?;";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, username);
 
             resultados = consultaPreparada.executeQuery(); 
             resultados.next();
