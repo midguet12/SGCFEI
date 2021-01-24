@@ -77,7 +77,7 @@ public class RegistrosController implements Initializable {
     @FXML
     private void clickEliminar(MouseEvent event) {
         Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                "¿Está seguro que desea eliminar esta academia?", Alert.AlertType.CONFIRMATION);
+                "¿Está seguro que desea eliminar este academico?", Alert.AlertType.CONFIRMATION);
         Optional<ButtonType> respuesta = alerta.showAndWait();
         
         if(respuesta.get() == ButtonType.OK){
@@ -87,7 +87,7 @@ public class RegistrosController implements Initializable {
             dao.eliminar(idAcademico);
             
             alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha eliminado la academia correctamente", Alert.AlertType.INFORMATION);
+                        "Se ha eliminado el academico correctamente", Alert.AlertType.INFORMATION);
             alerta.showAndWait();
             cargarTabla();
         }
