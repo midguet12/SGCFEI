@@ -116,7 +116,7 @@ public class AcademicoDAO implements DAO{
     public boolean eliminar(String numeroPersonal) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM academico WHERE idAcademico = ?;";
+        String consulta = "DELETE FROM academico WHERE numeroPersonal = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, numeroPersonal);
@@ -141,7 +141,7 @@ public class AcademicoDAO implements DAO{
     public List<Academico> obtenerTodosAcademicos() {
         List<Academico> academicos = new ArrayList<>();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico;";
+        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico WHERE rol != 'Administrador'";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);

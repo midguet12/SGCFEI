@@ -110,13 +110,13 @@ public class UsuarioDAO implements DAO{
         return filasModificadas > 0;
     }
 
-    public boolean eliminar(int id) {
+    public boolean eliminar(String idAcademico) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM usuario WHERE idUsuario = ?;";
+        String consulta = "DELETE FROM usuario WHERE idAcademico = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, id);
+            consultaPreparada.setString(1, idAcademico);
             
             filasModificadas = consultaPreparada.executeUpdate();
         }
