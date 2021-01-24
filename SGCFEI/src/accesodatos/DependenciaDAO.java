@@ -12,30 +12,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import pojos.Campus;
+import pojos.Dependencia;
 import util.RegistroExcepciones;
 
 /**
  *
  * @author midgu
  */
-public class CampusDAO implements DAO{
+public class DependenciaDAO implements DAO{
     private ConexionDB db;
     private Connection conexion;
     private ResultSet resultados;
     
-    public CampusDAO(){
+    public DependenciaDAO(){
         db = new ConexionDB();
     }
     
-    public boolean insertar(Campus campus){
+    public boolean insertar(Dependencia dependencia){
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO campus(nombre)"
+        String consulta = "INSERT INTO dependencia(nombre)"
                      + " VALUES(?);";
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, campus.getNombre());
+            consultaPreparada.setString(1, dependencia.getNombre());
             
             filasModificadas = consultaPreparada.executeUpdate();
         }
@@ -55,10 +55,10 @@ public class CampusDAO implements DAO{
         return filasModificadas > 0; 
     }
     
-    public Campus obtener(int id){
-        Campus campus = null;
+    public Dependencia obtener(int id){
+        Dependencia dependencia = null;
         conexion = db.obtenerConexion();
-        String consulta = "SELECT * FROM campus WHERE idCampus = ?;";
+        String consulta = "SELECT * FROM dependencia WHERE idDependencia = ?;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -67,8 +67,8 @@ public class CampusDAO implements DAO{
             resultados = consultaPreparada.executeQuery(); 
             resultados.next();
             
-            campus = new Campus(
-                    resultados.getInt("idCampus"),
+            dependencia = new Dependencia(
+                    resultados.getInt("idDependencia"),
                     resultados.getString("nombre"));
         }
         catch (SQLException ex){    
@@ -83,19 +83,19 @@ public class CampusDAO implements DAO{
         finally{
             db.cerrarConexion();
         }
-        return campus;
+        return dependencia;
         
     }
     
-    public boolean actualizar(Campus campus) {
+    public boolean actualizar(Dependencia dependencia) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE campus SET nombre = ? WHERE idCampus = ?;";
+        String consulta = "UPDATE dependencia SET nombre = ? WHERE idDependencia = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, campus.getNombre());
-            consultaPreparada.setInt(2, campus.getId());
+            consultaPreparada.setString(1, dependencia.getNombre());
+            consultaPreparada.setInt(2, dependencia.getId());
             
             filasModificadas = consultaPreparada.executeUpdate();
         }
@@ -118,7 +118,7 @@ public class CampusDAO implements DAO{
     public boolean eliminar(int id) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM campus WHERE idCampus = ?;";
+        String consulta = "DELETE FROM dependencia WHERE idDependencia = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, id);
@@ -140,20 +140,20 @@ public class CampusDAO implements DAO{
         return filasModificadas > 0;
     }
     
-    public List<Campus> obtenerTodosCampus() {
-        List<Campus> campuses = new ArrayList<>();
+    public List<Dependencia> obtenerTodasDependencias() {
+        List<Dependencia> dependencias = new ArrayList<>();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT * FROM campus;";
+        String consulta = "SELECT * FROM dependencia;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             resultados = consultaPreparada.executeQuery(); 
             while (resultados.next()) {
-                Campus campus = new Campus(
+                Dependencia dependencia = new Dependencia(
                     resultados.getInt("id"),
                     resultados.getString("nombre"));
                 
-                campuses.add(campus);
+                dependencias.add(dependencia);
             }
         }catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -168,7 +168,6 @@ public class CampusDAO implements DAO{
             db.cerrarConexion();
         }
         
-        return campuses;
+        return dependencias;
     }
-    
 }

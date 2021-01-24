@@ -36,3 +36,24 @@ create table ExperienciaEducativa (
 	primary key (ncr)
 );
 
+create table programaEducativo(
+	idPrograma int auto_increment not null,
+	nombre varchar(200) not null,
+	primary key(idPrograma)
+);
+
+create table campus(
+	idCampus int auto_increment not null,
+	nombre varchar(255) not null,
+	primary key(idCampus)
+);
+
+create table dependencia(
+	idDependencia int auto_increment not null,
+	nombre varchar(255) not null,
+	primary key(idDependencia)
+);
+
+insert into campus(nombre) values ('Xalapa');
+
+insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');
