@@ -26,7 +26,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import pojos.Academico;
+import sgcfei.menus.Administrador.ConsultarUsuario.EditarUsuario.EditarUsuarioController;
 import util.ControladorVentanas;
 
 /**
@@ -48,10 +50,9 @@ public class ConsultarUsuarioController implements Initializable {
     private TableColumn<Academico, String> cRol;
     @FXML
     private TextField tfBuscar;
-    
     private ObservableList<Academico> listaAcademicos;
-    
     private Alert alerta;
+    private Stage stageActual;
 
     /**
      * Initializes the controller class.
@@ -64,19 +65,24 @@ public class ConsultarUsuarioController implements Initializable {
 
     @FXML
     private void clicBotonModificar(ActionEvent event) {
-        
+        if(esUsuarioSeleccionado()) {
+            Academico academicoEditar = tbAcademico.getSelectionModel().getSelectedItem();
+            EditarUsuarioController editarUsuarioController = new EditarUsuarioController(academicoEditar.getNumeroPersonal());
+            stageActual = (Stage) tfBuscar.getScene().getWindow();
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/ConsultarUsuario/EditarUsuario/EditarUsuario.FXML", "Editar Usuario",editarUsuarioController, stageActual);
+        }else{
+            alerta = ControladorVentanas.crearAlerta("Sin seleccion", "Para editar un registro debes de seleccionarlo de la tabla", Alert.AlertType.WARNING);
+            alerta.showAndWait();
+        }
     }
 
 
     @FXML
     private void clicBotonEliminar(ActionEvent event) {
-        int seleccion = tbAcademico.getSelectionModel().getSelectedIndex();
-        if(seleccion >= 0){
-            Academico academicoEliminar = listaAcademicos.get(seleccion);
+        if(esUsuarioSeleccionado()){
+            Academico academicoEliminar = tbAcademico.getSelectionModel().getSelectedItem();
             alerta = ControladorVentanas.crearAlerta("Confirmacion de Eliminacion", "¿Estas seguro de eliminar a al Usuario " + academicoEliminar.getNombre() + " ?", Alert.AlertType.CONFIRMATION);
             Optional<ButtonType> resultadoDialog = alerta.showAndWait();
-            
-            //   OK - CANCEL !! YES - NO
             if(resultadoDialog.get() == ButtonType.OK){
                 boolean esAcademicoEliminado = new AcademicoDAO().eliminar(academicoEliminar.getNumeroPersonal());
                 if (esAcademicoEliminado) {
@@ -121,6 +127,8 @@ public class ConsultarUsuarioController implements Initializable {
 
     @FXML
     private void clicBotonCerrar(ActionEvent event) {
+        stageActual = (Stage) tfBuscar.getScene().getWindow();
+        stageActual.close();
     }
 
     private void agregarListener() {
@@ -152,6 +160,14 @@ public class ConsultarUsuarioController implements Initializable {
             SortedList<Academico> sortedData = new SortedList<>(filtroDatos);
             sortedData.comparatorProperty().bind(tbAcademico.comparatorProperty());
             tbAcademico.setItems(sortedData);
+        }
+    }
+
+    private boolean esUsuarioSeleccionado() {
+        if (tbAcademico.getSelectionModel().getSelectedItem() != null) {
+            return true;
+        }else{
+            return false;
         }
     }
 }

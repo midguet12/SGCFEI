@@ -20,7 +20,6 @@ public class ControladorVentanas {
             Stage nuevaStage = new Stage();
             nuevaStage.setScene(new Scene(raiz));
             nuevaStage.setTitle(titulo);
-
             nuevaStage.show();
         }
         catch (IOException ex) {
