@@ -20,9 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import pojos.Academico;
-import pojos.Rol;
 import pojos.Usuario;
 import util.ControladorVentanas;
 import util.Encriptacion;
@@ -43,11 +41,11 @@ public class RegistrarUsuarioController implements Initializable {
     @FXML
     private TextField tfCorreo;
     @FXML
-    private ComboBox<Rol> cbTipoUsuario;
+    private ComboBox<String> cbTipoUsuario;
     @FXML
     private Button btnRegistrar;
     
-    private ObservableList<Rol> roles = FXCollections.observableArrayList();
+    private ObservableList<String> roles = FXCollections.observableArrayList();
     private boolean datosValidos = false;
     Alert alerta;
 
@@ -62,16 +60,10 @@ public class RegistrarUsuarioController implements Initializable {
     }    
     
     private void cargarRoles(){
-        roles.add(new Rol("Administrador"));
-        roles.add(new Rol("Director"));
-        roles.add(new Rol("Coordinador"));
-        roles.add(new Rol("Docente"));
+        roles.add("Director");
+        roles.add("Coordinador");
+        roles.add("Docente");
         cbTipoUsuario.setItems(roles);
-    }
-
-    @FXML
-    private void botonRegistarPresionado(ActionEvent event) {
-        comprobarDatos();
     }
 
     private void agregarListenerTextFields() {
@@ -140,7 +132,7 @@ public class RegistrarUsuarioController implements Initializable {
     }
 
     private void validarCorreo() {
-        boolean esCorreoRegistrado = new UsuarioDAO().esCorreoRegistrado(tfCorreo.getText());
+        boolean esCorreoRegistrado = new UsuarioDAO().esCorreoRegistrado(tfCorreo.getText().toLowerCase());
         if(esCorreoRegistrado){
             alerta = ControladorVentanas.crearAlerta("Correo registrado", "El correo ingresado ya se encuentra registrado", Alert.AlertType.ERROR);
             alerta.showAndWait();
@@ -150,11 +142,11 @@ public class RegistrarUsuarioController implements Initializable {
     }
 
     private void guardarUsuario() {
-        Academico academico = new Academico(tfNumeroPersonal.getText(), tfNombre.getText(), tfCorreo.getText(), cbTipoUsuario.getSelectionModel().getSelectedItem().getNombreRol());
+        Academico academico = new Academico(tfNumeroPersonal.getText(), tfNombre.getText(), tfCorreo.getText().toLowerCase(), cbTipoUsuario.getSelectionModel().getSelectedItem());
         Boolean seInsertoAcademico = new AcademicoDAO().insertar(academico);
         if (seInsertoAcademico) {
             String password = Encriptacion.generarContraseñaAleatoria();
-            Usuario usuario = new Usuario(tfCorreo.getText(), Encriptacion.encriptarSHA2(password), tfNumeroPersonal.getText());
+            Usuario usuario = new Usuario(tfCorreo.getText().toLowerCase(), Encriptacion.encriptarSHA2(password), tfNumeroPersonal.getText());
             boolean seInsertoUsuario = new UsuarioDAO().insertar(usuario);
             if (seInsertoUsuario) {
                 Portapapeles.CopiarAlPortapapeles(tfCorreo.getText(), password);
@@ -162,5 +154,10 @@ public class RegistrarUsuarioController implements Initializable {
                 alerta.showAndWait();
             }
         }
+    }
+
+    @FXML
+    private void clicBotonRegistrar(ActionEvent event) {
+        comprobarDatos();
     }
 }

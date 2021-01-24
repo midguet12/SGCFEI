@@ -6,15 +6,22 @@
 package sgcfei.menus.Administrador.ConsultarUsuario;
 
 import accesodatos.AcademicoDAO;
+import accesodatos.UsuarioDAO;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -52,24 +59,46 @@ public class ConsultarUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         asosiarComponentes();
+        agregarListener();
     }    
 
     @FXML
     private void clicBotonModificar(ActionEvent event) {
+        
     }
 
-    @FXML
-    private void clicBotonRegistrar(ActionEvent event) {
-    }
 
     @FXML
     private void clicBotonEliminar(ActionEvent event) {
+        int seleccion = tbAcademico.getSelectionModel().getSelectedIndex();
+        if(seleccion >= 0){
+            Academico academicoEliminar = listaAcademicos.get(seleccion);
+            alerta = ControladorVentanas.crearAlerta("Confirmacion de Eliminacion", "¿Estas seguro de eliminar a al Usuario " + academicoEliminar.getNombre() + " ?", Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> resultadoDialog = alerta.showAndWait();
+            
+            //   OK - CANCEL !! YES - NO
+            if(resultadoDialog.get() == ButtonType.OK){
+                boolean esAcademicoEliminado = new AcademicoDAO().eliminar(academicoEliminar.getNumeroPersonal());
+                if (esAcademicoEliminado) {
+                    boolean esUsuarioEliminado = new UsuarioDAO().eliminar(academicoEliminar.getNumeroPersonal());
+                    if (esUsuarioEliminado) {
+                        recuperarAcademicos();
+                        alerta = ControladorVentanas.crearAlerta("Eliminacion exitosa", "El Usuario ha sido eliminado", Alert.AlertType.INFORMATION);
+                        alerta.showAndWait();
+                    }
+                }
+            }
+        }else{
+            alerta = ControladorVentanas.crearAlerta("Sin seleccion", "Para eliminar un registro debes de seleccionarlo de la tabla", Alert.AlertType.WARNING);
+            alerta.showAndWait();
+        }
     }
 
-    private void cargarAcademicos(List academicos) {
+    private void cargarAcademicos(List<Academico> academicos) {
         listaAcademicos = FXCollections.observableArrayList();
         listaAcademicos.addAll(academicos);
         tbAcademico.setItems(listaAcademicos);
+        tbAcademico.getSortOrder().setAll(cRol);
     }
 
     private void recuperarAcademicos() {
@@ -89,5 +118,40 @@ public class ConsultarUsuarioController implements Initializable {
         cRol.setCellValueFactory( new PropertyValueFactory<>("rol") );
         recuperarAcademicos();
     }
-    
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+    }
+
+    private void agregarListener() {
+        if(listaAcademicos.size() > 0){
+            FilteredList<Academico> filtroDatos = new FilteredList<>(listaAcademicos, p -> true);
+            
+            tfBuscar.textProperty().addListener(new ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    filtroDatos.setPredicate((busqueda) -> {
+                        
+                        if(newValue == null || newValue.isEmpty()){
+                            return true;
+                        }
+                        
+                        String lowerCaseFilter = newValue.toLowerCase();
+                        if(busqueda.getNombre().toLowerCase().contains(lowerCaseFilter)){
+                            return true;
+                        }else{
+                            if(busqueda.getNumeroPersonal().toLowerCase().contains(lowerCaseFilter)){
+                                return true;
+                            }
+                        }
+                        return false;
+                    });
+                }
+            });
+            
+            SortedList<Academico> sortedData = new SortedList<>(filtroDatos);
+            sortedData.comparatorProperty().bind(tbAcademico.comparatorProperty());
+            tbAcademico.setItems(sortedData);
+        }
+    }
 }

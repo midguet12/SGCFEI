@@ -141,7 +141,7 @@ public class AcademicoDAO implements DAO{
     public List<Academico> obtenerTodosAcademicos() {
         List<Academico> academicos = new ArrayList<>();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico;";
+        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico WHERE rol != 'Administrador'";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
