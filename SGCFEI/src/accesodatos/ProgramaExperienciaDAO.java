@@ -5,10 +5,17 @@
  */
 package accesodatos;
 
+import java.sql.Date;
+
 /**
  *
  * @author midgu
  */
-public class ProgramaExperienciaDAO {
+public class ProgramaExperienciaDAO implements DAO{
+   
+    
+    
+    
+    
     
 }
