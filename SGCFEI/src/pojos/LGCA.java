@@ -4,19 +4,16 @@ public class LGCA implements POJO{
     private int idLGCA;
     private int clave;
     private String descripcion;
-    private String idResponsable;
 
-    public LGCA(int idLGCA, int clave, String descripcion, String idResponsable) {
+    public LGCA(int idLGCA, int clave, String descripcion) {
         this.idLGCA = idLGCA;
         this.clave = clave;
         this.descripcion = descripcion;
-        this.idResponsable = idResponsable;
     }
 
-    public LGCA(int clave, String descripcion, String idResponsable) {
+    public LGCA(int clave, String descripcion) {
         this.clave = clave;
         this.descripcion = descripcion;
-        this.idResponsable = idResponsable;
     }
 
     public int getIdLGCA() {
@@ -43,17 +40,9 @@ public class LGCA implements POJO{
         this.descripcion = descripcion;
     }
 
-    public String getIdResponsable() {
-        return idResponsable;
-    }
-
-    public void setIdResponsable(String idResponsable) {
-        this.idResponsable = idResponsable;
-    }
-
     @Override
     public String toString() {
-        return "LGCA{" + "idLGCA=" + idLGCA + ", clave=" + clave + ", descripcion=" + descripcion + ", idResponsable=" + idResponsable + '}';
+        return "LGCA{" + "idLGCA=" + idLGCA + ", clave=" + clave + ", descripcion=" + descripcion + '}';
     }
     
 }

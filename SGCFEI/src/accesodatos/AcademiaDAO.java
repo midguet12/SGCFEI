@@ -137,7 +137,7 @@ public class AcademiaDAO implements DAO{
         return filasModificadas > 0;
     }
     
-     public List<Academia> obtenerTodasAcademias() {
+    public List<Academia> obtenerTodasAcademias() {
         List<Academia> academias = new ArrayList<>();
         conexion = db.obtenerConexion();
         String consulta = "SELECT * FROM academia;";
