@@ -39,7 +39,7 @@ public class AgregarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         roles = FXCollections.observableArrayList();
-        roles.addAll("Administrador", "Director", "Coordiandor", "Profesor");
+        roles.addAll("Administrador", "Director", "Coordiandor", "Docente");
         cboxRol.setItems(roles);
         cboxRol.getSelectionModel().select(0);
     }    
