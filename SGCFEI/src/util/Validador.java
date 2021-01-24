@@ -31,5 +31,13 @@ public class Validador {
         Matcher mather = pattern.matcher(numeroPersonal);
         esValidoNumeroPersonal = mather.find();
         return esValidoNumeroPersonal;
+    }
+    public static boolean numero (String numero) {
+        boolean esValidoNumeroPersonal;
+        Pattern pattern = Pattern
+                .compile("([0-9])");
+        Matcher mather = pattern.matcher(numero);
+        esValidoNumeroPersonal = mather.find();
+        return esValidoNumeroPersonal;
     } 
 }

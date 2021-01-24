@@ -86,7 +86,7 @@ public class AcademicoDAO implements DAO{
     public boolean actualizar(Academico academico) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE academico SET nombre = ?, correo = ?, rol = ? WHERE idAcademico = ?;";
+        String consulta = "UPDATE academico SET nombre = ?, correo = ?, rol = ? WHERE numeroPersonal = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -116,7 +116,7 @@ public class AcademicoDAO implements DAO{
     public boolean eliminar(String numeroPersonal) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "DELETE FROM academico WHERE idAcademico = ?;";
+        String consulta = "DELETE FROM academico WHERE numeroPersonal = ?;";
         try{            
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, numeroPersonal);
