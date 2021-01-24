@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Administrador.MenuController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Administrador.MenuController">
    <children>
       <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Usuarios" textAlignment="CENTER" textOverrun="CLIP">
          <font>
@@ -15,8 +15,8 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
          <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarUsuario" text="Registrar" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarUsuario" text="Consultar" />
+            <Button fx:id="btnConsultar" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirConsultarUsuarios" text="Consultar" />
+            <Button fx:id="btnAgregar" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirAgregarUsuarios" text="Consultar" />
          </children>
       </HBox>
       <Label />
@@ -27,13 +27,7 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
          <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarCatalogo" text="Registrar catálogo" />
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarDetallesCatalogo" text="Detalles del catálogo" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-         <children>
-            <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarCatalogo" text="Consultar catálogo" />
+            <Button fx:id="btnCatalogo" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirCatalogo" text="Consultar" />
          </children>
       </HBox>
    </children>

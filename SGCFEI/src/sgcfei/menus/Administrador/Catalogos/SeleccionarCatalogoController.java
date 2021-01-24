@@ -23,7 +23,7 @@ public class SeleccionarCatalogoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        elementos.addAll("Academia", "Academico", "Experiencia Educativa", "LGCA", "Usuario");
+        elementos.addAll("Academia", "Academico", "Experiencia Educativa", "LGCA");
         cbox.setItems(elementos);
         cbox.getSelectionModel().select(0);
     }    
@@ -46,12 +46,8 @@ public class SeleccionarCatalogoController implements Initializable {
                     "Consultar Experiencia Educativa", stageActual);
         }
         if(seleccion.equals("LGCA")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/LGCA/Registro.fxml",
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/LGCA/Registros.fxml",
                     "Consultar LGCA", stageActual);
-        }
-        if(seleccion.equals("Usuario")){
-            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Usuario/Registro.fxml",
-                    "Consultar usuario", stageActual);
         }
     }
 
@@ -59,7 +55,7 @@ public class SeleccionarCatalogoController implements Initializable {
     private void cancelar(MouseEvent event) {
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
         //Regresar a la ventana anterior
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/ConsultarRegistro.fxml",
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Menu.fxml",
                     "Consultar registro", stageActual);
     }
     
