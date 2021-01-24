@@ -30,6 +30,13 @@ public class sgcfei extends Application{
         
         programaEducativoDAO.eliminar(3);
         
+        /*List<ProgramaEducativo> programasEducativos = programaEducativoDAO.obtenerTodosProgramas();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(programasEducativos.get(i).getNombre());
+        }*/
+        
+        
+        
     }
     
     
