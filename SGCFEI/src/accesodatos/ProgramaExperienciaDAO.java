@@ -86,17 +86,16 @@ public class ProgramaExperienciaDAO implements DAO{
             consultaPreparada.setString(13, programaExperiencia.getAcademicos());
             consultaPreparada.setString(14, programaExperiencia.getPerfil());
             consultaPreparada.setString(15, programaExperiencia.getEspacio());
-            consultaPreparada.setString(15, programaExperiencia.getRelacionDisciplinaria());
-            consultaPreparada.setString(16, programaExperiencia.getDescripcion());
-            consultaPreparada.setString(17, programaExperiencia.getJustificacion());
-            consultaPreparada.setString(18, programaExperiencia.getUnidadCompetencia());
-            consultaPreparada.setString(19, programaExperiencia.getArticulacion());
-            consultaPreparada.setString(20, programaExperiencia.getSaberTeorico());
-            consultaPreparada.setString(21, programaExperiencia.getHeuristico());
-            consultaPreparada.setString(22, programaExperiencia.getAxiologicos());
-            consultaPreparada.setString(23, programaExperiencia.getEstrategiasAprendizaje());
-            consultaPreparada.setString(24, programaExperiencia.getEstrategiasEnsenanza());
-            consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
+            consultaPreparada.setString(16, programaExperiencia.getRelacionDisciplinaria());
+            consultaPreparada.setString(17, programaExperiencia.getDescripcion());
+            consultaPreparada.setString(18, programaExperiencia.getJustificacion());
+            consultaPreparada.setString(19, programaExperiencia.getUnidadCompetencia());
+            consultaPreparada.setString(20, programaExperiencia.getArticulacion());
+            consultaPreparada.setString(21, programaExperiencia.getSaberTeorico());
+            consultaPreparada.setString(22, programaExperiencia.getHeuristico());
+            consultaPreparada.setString(23, programaExperiencia.getAxiologicos());
+            consultaPreparada.setString(24, programaExperiencia.getEstrategiasAprendizaje());
+            consultaPreparada.setString(25, programaExperiencia.getEstrategiasEnsenanza());
             consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
             consultaPreparada.setString(28, programaExperiencia.getEvaluacion());
@@ -219,17 +218,16 @@ public class ProgramaExperienciaDAO implements DAO{
             consultaPreparada.setString(13, programaExperiencia.getAcademicos());
             consultaPreparada.setString(14, programaExperiencia.getPerfil());
             consultaPreparada.setString(15, programaExperiencia.getEspacio());
-            consultaPreparada.setString(15, programaExperiencia.getRelacionDisciplinaria());
-            consultaPreparada.setString(16, programaExperiencia.getDescripcion());
-            consultaPreparada.setString(17, programaExperiencia.getJustificacion());
-            consultaPreparada.setString(18, programaExperiencia.getUnidadCompetencia());
-            consultaPreparada.setString(19, programaExperiencia.getArticulacion());
-            consultaPreparada.setString(20, programaExperiencia.getSaberTeorico());
-            consultaPreparada.setString(21, programaExperiencia.getHeuristico());
-            consultaPreparada.setString(22, programaExperiencia.getAxiologicos());
-            consultaPreparada.setString(23, programaExperiencia.getEstrategiasAprendizaje());
-            consultaPreparada.setString(24, programaExperiencia.getEstrategiasEnsenanza());
-            consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
+            consultaPreparada.setString(16, programaExperiencia.getRelacionDisciplinaria());
+            consultaPreparada.setString(17, programaExperiencia.getDescripcion());
+            consultaPreparada.setString(18, programaExperiencia.getJustificacion());
+            consultaPreparada.setString(19, programaExperiencia.getUnidadCompetencia());
+            consultaPreparada.setString(20, programaExperiencia.getArticulacion());
+            consultaPreparada.setString(21, programaExperiencia.getSaberTeorico());
+            consultaPreparada.setString(22, programaExperiencia.getHeuristico());
+            consultaPreparada.setString(23, programaExperiencia.getAxiologicos());
+            consultaPreparada.setString(24, programaExperiencia.getEstrategiasAprendizaje());
+            consultaPreparada.setString(25, programaExperiencia.getEstrategiasEnsenanza());
             consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
             consultaPreparada.setString(28, programaExperiencia.getEvaluacion());
@@ -342,5 +340,6 @@ public class ProgramaExperienciaDAO implements DAO{
         
         return programasExperiencia;
     }
+    
     
 }

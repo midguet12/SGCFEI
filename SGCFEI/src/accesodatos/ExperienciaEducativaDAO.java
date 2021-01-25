@@ -87,7 +87,7 @@ public class ExperienciaEducativaDAO implements DAO{
                     resultados.getString("oportunidadesEvaluacion"),
                     resultados.getString("requisitos"),
                     resultados.getString("coRequisitos"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -124,9 +124,9 @@ public class ExperienciaEducativaDAO implements DAO{
             consultaPreparada.setString(10, experienciaEducativa.getModalidad());
             consultaPreparada.setString(11, experienciaEducativa.getOportunidadesEvaluacion());
             consultaPreparada.setString(13, experienciaEducativa.getRequisitos());
-            consultaPreparada.setString(13, experienciaEducativa.getCoRequisitos());
-            consultaPreparada.setInt(14, experienciaEducativa.getIdAcademia());
-            consultaPreparada.setInt(15, experienciaEducativa.getNrc());
+            consultaPreparada.setString(14, experienciaEducativa.getCoRequisitos());
+            consultaPreparada.setInt(15, experienciaEducativa.getIdAcademia());
+            consultaPreparada.setInt(16, experienciaEducativa.getNrc());
             
             
             filasModificadas = consultaPreparada.executeUpdate();
@@ -214,4 +214,34 @@ public class ExperienciaEducativaDAO implements DAO{
 
             return experiencias;
         }
+    
+    public List<String> obtenerNombres(){
+        List<String> nombres = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "Select nombre from experienciaEducativa;";
+        
+        try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            resultados = consultaPreparada.executeQuery();
+            while (resultados.next()){
+                nombres.add(resultados.getString("nombre"));
+            }
+            
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        
+        return nombres;
+    }
 }
