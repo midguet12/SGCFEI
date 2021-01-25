@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -68,7 +68,7 @@ public class ProgramaExperienciaDAO implements DAO{
    public boolean insertar(ProgramaExperiencia programaExperiencia){
        int filasModificadas = 0;
        conexion = db.obtenerConexion();
-       String consulta = "INSERT INTO experienciaEducativa(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, evaluacion, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+       String consulta = "INSERT INTO programaExperiencia(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, evaluacion, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
        try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, programaExperiencia.getIdAcademia());

@@ -18,7 +18,7 @@ public class sgcfei extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/sgcfei/menus/Coordinador/RegistrarPrograma/RegistrarPrograma.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sgcfei/menus/Administrador/Catalogos/LGCA/Registros.fxml"));
         
         stage.setTitle("Login");
         stage.setScene(new Scene(root, 1391, 1010));

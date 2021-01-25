@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pojos.LGCA;
+import sgcfei.menus.Coordinador.EditarPrograma.EditarProgramaController;
 import util.ControladorVentanas;
 
 public class RegistrosController implements Initializable {
@@ -68,9 +69,9 @@ public class RegistrosController implements Initializable {
         if(validarSeleccion()){
             LGCA lgca = tabla.getSelectionModel().getSelectedItem();
             Stage stageActual = (Stage) btnAgregar.getScene().getWindow();
-            EditarController controlador = new EditarController(lgca);
-            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Administrador/Catalogos/LGCA/Editar.fxml",
-                    "Editar Experiencia Educativa", controlador, stageActual);
+            EditarProgramaController controlador = new EditarProgramaController(lgca);
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/EditarPrograma/EditarPrograma.fxml",
+                    "Editar Programa Experiencia Educativa", controlador, stageActual);
         }
     }
 
