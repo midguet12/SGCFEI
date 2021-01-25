@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="862.0" prefWidth="1391.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sgcfei.menus.Coordinador.RegistrarPrograma.RegistrarProgramaController">
+  <children>
+    <Label layoutX="349.0" layoutY="21.0" text="Registrar programa de experiencia educativa">
+      <font>
+        <Font size="24.0" />
+      </font>
+    </Label>
+    <ComboBox layoutX="23.0" layoutY="110.0" prefHeight="21.0" prefWidth="219.0" promptText="Area academica">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="23.0" layoutY="81.0" prefHeight="21.0" text="1. Area academica" />
+    <Label layoutX="23.0" layoutY="145.0" text="2. Programa educativo" />
+    <ComboBox layoutX="23.0" layoutY="161.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="23.0" layoutY="195.0" text="3. Campus" />
+    <ComboBox layoutX="23.0" layoutY="214.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="23.0" layoutY="248.0" text="4. Dependencia/Entidad Academica" />
+    <ComboBox layoutX="23.0" layoutY="264.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <TextField layoutX="23.0" layoutY="313.0" prefWidth="56.0" />
+    <ComboBox layoutX="97.0" layoutY="313.0" prefHeight="21.0" prefWidth="203.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="97.0" layoutY="296.0" text="6. Nombre de la experiencia educativa" />
+    <Label layoutX="23.0" layoutY="296.0" text="5. Codigo" />
+    <Label layoutX="23.0" layoutY="343.0" text="7. Area de formacion disciplinar" />
+    <TextField layoutX="23.0" layoutY="376.0" prefWidth="82.0" />
+    <TextField layoutX="111.0" layoutY="376.0" prefWidth="79.0" />
+    <Label layoutX="37.0" layoutY="360.0" text="Principal" />
+    <Label layoutX="121.0" layoutY="360.0" text="Secundaria" />
+    <Label layoutX="23.0" layoutY="409.0" text="8. Valores de la experiencia educativa" />
+    <Label layoutX="34.0" layoutY="433.0" text="Creditos" />
+    <TextField layoutX="97.0" layoutY="430.0" prefWidth="31.0" />
+    <TextField layoutX="74.0" layoutY="456.0" prefWidth="31.0" />
+    <Label layoutX="34.0" layoutY="459.0" text="Teoria" />
+    <Label layoutX="119.0" layoutY="459.0" text="Practica" />
+    <TextField layoutX="169.0" layoutY="456.0" prefWidth="31.0" />
+    <TextField layoutX="278.0" layoutY="456.0" prefWidth="31.0" />
+    <Label layoutX="211.0" layoutY="459.0" text="Total horas" />
+    <TextField layoutX="111.0" layoutY="486.0" prefWidth="200.0" />
+    <Label layoutX="34.0" layoutY="486.0" text="Equivalencias" />
+    <Label layoutX="23.0" layoutY="520.0" text="9. Modalidad" />
+    <TextField layoutX="23.0" layoutY="536.0" prefWidth="70.0" />
+    <Label layoutX="122.0" layoutY="520.0" text="10. Oportunidades de evaluacion" />
+    <TextField layoutX="121.0" layoutY="536.0" prefWidth="200.0" />
+    <Label layoutX="23.0" layoutY="569.0" text="11. Requisitos" />
+    <Label layoutX="23.0" layoutY="593.0" text="Prerequisitos" />
+    <Label layoutX="180.0" layoutY="593.0" text="Co-requisitos" />
+    <TextArea layoutX="23.0" layoutY="616.0" prefHeight="110.0" prefWidth="131.0" wrapText="true" />
+    <TextArea layoutX="178.0" layoutY="616.0" prefHeight="110.0" prefWidth="145.0" wrapText="true" />
+    <Label layoutX="23.0" layoutY="744.0" text="12.-Características del proceso de enseñanza aprendizaje" />
+    <Label layoutX="30.0" layoutY="768.0" text="Individual/Grupal" />
+    <ComboBox layoutX="30.0" layoutY="785.0" prefHeight="21.0" prefWidth="92.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="161.0" layoutY="768.0" text="Maximo" />
+    <Label layoutX="251.0" layoutY="769.0" text="Minimo" />
+    <TextField layoutX="161.0" layoutY="785.0" prefWidth="59.0" />
+    <TextField layoutX="249.0" layoutY="785.0" prefWidth="71.0" />
+    <Label layoutX="349.0" layoutY="87.0" prefHeight="46.0" prefWidth="319.0" text="13.-Agrupación natural de la Experienciaeducativa (áreas de conocimiento, academia,ejes, módulos, departamentos) " wrapText="true" />
+    <TextField layoutX="349.0" layoutY="131.0" prefWidth="200.0" />
+    <Label layoutX="349.0" layoutY="164.0" text="14. Proyecto integrador" />
+    <TextField layoutX="349.0" layoutY="182.0" prefWidth="200.0" />
+    <Label layoutX="349.0" layoutY="217.0" text="16. Academicos" />
+    <TextArea layoutX="349.0" layoutY="233.0" prefHeight="32.0" prefWidth="200.00009999999747" wrapText="true" />
+    <Label layoutX="349.0" layoutY="277.0" text="17. Perfil docente" />
+    <TextArea layoutX="349.0" layoutY="291.0" prefHeight="130.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="349.0" layoutY="430.0" text="18. Espacio" />
+    <Label layoutX="474.0" layoutY="430.0" text="19. Relacion disciplinaria" />
+    <TextField layoutX="349.0" layoutY="453.0" prefWidth="96.0" />
+    <TextField layoutX="474.0" layoutY="453.0" prefWidth="125.0" />
+    <TextArea layoutX="349.0" layoutY="502.0" prefWidth="255.0" wrapText="true" />
+    <Label layoutX="349.0" layoutY="483.0" text="20. Descripcion" />
+    <Label layoutX="349.0" layoutY="682.0" text="21. Justificacion" />
+    <TextArea layoutX="349.0" layoutY="698.0" prefHeight="143.0" prefWidth="250.0" wrapText="true" />
+  </children>
+</AnchorPane>

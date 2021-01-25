@@ -29,10 +29,83 @@ create table Academia (
 
 );
 
-create table ExperienciaEducativa (
-	ncr int not null,
+create table experienciaEducativa (
+	nrc int not null,
+	codigo varchar(20),
 	nombre varchar (50) not null,
+	areaFormacionPrincipal varchar(255),
+	areaFormacionSecundaria varchar(255),
+	creditos int,
+	teoria int,
+	practica int,
+	totalHoras int,
+	equivalencias varchar(255),
+	modalidad varchar(255),
+	oportunidadesEvaluacion varchar(255),
+	requisitos varchar(255),
+	coRequisitos varchar(255),
 	academia int not null,
-	primary key (ncr)
+	primary key (nrc)
 );
 
+create table programaEducativo(
+	idPrograma int auto_increment not null,
+	nombre varchar(200) not null,
+	primary key(idPrograma)
+);
+
+create table campus(
+	idCampus int auto_increment not null,
+	nombre varchar(255) not null,
+	primary key(idCampus)
+);
+
+create table dependencia(
+	idDependencia int auto_increment not null,
+	nombre varchar(255) not null,
+	primary key(idDependencia)
+);
+
+create table ProgramaExperiencia(
+	idProgramaEE int not null auto_increment,
+	idAcademia int not null,
+	idPrograma int not null,
+	idCampus int not null,
+	idDependencia int not null,
+	ncr int not null,
+	individualGrupal varchar(20),
+	maximo int,
+	minimo int,
+	agrupacion varchar(255),
+	proyecto varchar(255),
+	elaboracion date,
+	modificacion date,
+	aprobacion date,
+	academicos varchar(255),
+	perfil varchar(255),
+	espacio varchar(30),
+	relacionDisciplinaria varchar(30),
+	descripcion varchar(255),
+	justificacion varchar(255),
+	unidadCompetencia varchar(255),
+	articulacion varchar(255),
+	saberTeorico varchar(255),
+	heuristico varchar(255),
+	axiologicos varchar(255),
+	estrategiasAprendizaje varchar(255),
+	estrategiasEnsenanza varchar(255),
+	materialesDidacticos varchar(255),
+	recursosDidacticos varchar(255),
+	acreditacion varchar(255),
+	bibliografiaBasica varchar(255),
+	bibliografiaComplementaria varchar(255),
+	primary key(idProgramaEE)
+
+);
+
+
+insert into campus(nombre) values ('Xalapa');
+
+insert into dependencia(nombre) values ('Facultad de estadistica e informatica');
+
+insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');

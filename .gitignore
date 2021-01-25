@@ -29,4 +29,13 @@ hs_err_pid*
 *.conf
 SPP/Prueba.pdf
 SGCFEI/build/classes/sgcfei/sgcfei.class
-/SGCFEI/dist/
+SGCFEI/build/classes/sgcfei/sgcfei.class
+SGCFEI/nbproject/private/private.properties
+*.class
+*.properties
+*.class
+*.properties
+*.properties
+*.class
+SGCFEI/build/classes/sgcfei/sgcfei.class
+SGCFEI/nbproject/private/private.properties
