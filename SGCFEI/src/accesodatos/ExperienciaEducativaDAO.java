@@ -22,7 +22,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean insertar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO experienciaEducativa(nrc, nombre, idAcademia) VALUES(?, ?, ?);";
+        String consulta = "INSERT INTO experienciaEducativa(nrc, nombre, academia) VALUES(?, ?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -63,7 +63,7 @@ public class ExperienciaEducativaDAO implements DAO{
             experienciaEducativa = new ExperienciaEducativa(
                     resultados.getInt("nrc"),
                     resultados.getString("nombre"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -84,7 +84,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean actualizar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE experienciaEducativa SET nombre = ?, idAcademia = ? WHERE nrc = ?;";
+        String consulta = "UPDATE experienciaEducativa SET nombre = ?, academia = ? WHERE nrc = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -146,7 +146,7 @@ public List<ExperienciaEducativa> obtenerTodasExperiencias() {
                 ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa(
                     resultados.getInt("nrc"),
                     resultados.getString("nombre"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
                 
                 experiencias.add(experienciaEducativa);
             }
