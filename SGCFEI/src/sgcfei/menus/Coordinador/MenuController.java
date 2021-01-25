@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+import util.ControladorVentanas;
 
 public class MenuController implements Initializable {
 
@@ -43,5 +44,6 @@ public class MenuController implements Initializable {
 
     @FXML
     private void consultarPlanEstudios(MouseEvent event) {
+        //ControladorVentanas.abrirYEsperar("", "Registrar Programa");
     }
 }

@@ -44,7 +44,7 @@
     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
       <children>
         <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanEstudios" text="Registrar" />
-        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Consultar" />
+        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Editar" />
       </children>
     </HBox>
   </children>

@@ -23,31 +23,12 @@ public class sgcfei extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        /*Parent root = FXMLLoader.load(getClass().getResource("/sgcfei/menus/Login.fxml"));
-        stage.setTitle("Login");
-        stage.setScene(new Scene(root, 300, 300));
-        stage.show();*/
+        Parent root = FXMLLoader.load(getClass().getResource("/sgcfei/menus/Coordinador/RegistrarPrograma/RegistrarPrograma.fxml"));
+        stage.setTitle("pruebas");
+        stage.setScene(new Scene(root, 1280, 720));
+        stage.show();
         
-        Campus campus = new CampusDAO().obtener(2);
-        campus.setNombre("Minatitlan");
-        
-        
-        
-        //System.out.println(campus.getNombre());
-        
-        
-        
-        CampusDAO campusDAO = new CampusDAO();
-        campusDAO.eliminar(1);
-        
-        //campusDAO.insertar(campus);
-        
-        
-        
-        /*List<ProgramaEducativo> programasEducativos = programaEducativoDAO.obtenerTodosProgramas();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(programasEducativos.get(i).getNombre());
-        }*/
+       
         
         
         

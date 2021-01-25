@@ -30,7 +30,7 @@ create table Academia (
 );
 
 create table experienciaEducativa (
-	ncr int not null,
+	nrc int not null,
 	codigo varchar(20),
 	nombre varchar (50) not null,
 	areaFormacionPrincipal varchar(255),
@@ -45,7 +45,7 @@ create table experienciaEducativa (
 	requisitos varchar(255),
 	coRequisitos varchar(255),
 	academia int not null,
-	primary key (ncr)
+	primary key (nrc)
 );
 
 create table programaEducativo(
