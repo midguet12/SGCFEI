@@ -42,7 +42,10 @@ public class ExperienciaEducativa implements POJO{
         this.idAcademia = idAcademia;
     }
     
-    
+    public ExperienciaEducativa(String nombre, int idAcademia) {
+        this.nombre = nombre;
+        this.idAcademia = idAcademia;
+    }
 
     public ExperienciaEducativa(int nrc, String codigo, String nombre, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int practica, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, int idAcademia) {
         this.nrc = nrc;
