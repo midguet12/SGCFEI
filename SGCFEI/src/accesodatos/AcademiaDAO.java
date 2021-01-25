@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import pojos.Academia;
+import pojos.Academico;
 import util.RegistroExcepciones;
 
 public class AcademiaDAO implements DAO{
@@ -201,5 +202,9 @@ public class AcademiaDAO implements DAO{
             db.cerrarConexion();
         }
         return academia;
+    }
+
+    public List<Academico> obtenerAcademicosParticipantes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
