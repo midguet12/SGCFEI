@@ -50,7 +50,7 @@ public class EliminarDAOPruebas {
     @Test
     public void eliminarFacultad(){
         FacultadDAO dao = new FacultadDAO();
-;
+
         assertEquals(true, dao.eliminar(oid.obtenerIDFacultad("PRUEBAPRUEBA")));
     }
     

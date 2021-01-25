@@ -22,7 +22,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean insertar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO experienciaEducativa(ncr, codigo, nombre, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, idAcademia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String consulta = "INSERT INTO experienciaEducativa(nrc, codigo, nombre, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, academia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -87,7 +87,7 @@ public class ExperienciaEducativaDAO implements DAO{
                     resultados.getString("oportunidadesEvaluacion"),
                     resultados.getString("requisitos"),
                     resultados.getString("coRequisitos"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -108,7 +108,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean actualizar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE experienciaEducativa SET codigo = ?, nombre = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, idAcademia = ? where nrc = ?;";
+        String consulta = "UPDATE experienciaEducativa SET codigo = ?, nombre = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, Academia = ? where nrc = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -123,7 +123,7 @@ public class ExperienciaEducativaDAO implements DAO{
             consultaPreparada.setString(9, experienciaEducativa.getEquivalencias());
             consultaPreparada.setString(10, experienciaEducativa.getModalidad());
             consultaPreparada.setString(11, experienciaEducativa.getOportunidadesEvaluacion());
-            consultaPreparada.setString(13, experienciaEducativa.getRequisitos());
+            consultaPreparada.setString(12, experienciaEducativa.getRequisitos());
             consultaPreparada.setString(13, experienciaEducativa.getCoRequisitos());
             consultaPreparada.setInt(14, experienciaEducativa.getIdAcademia());
             consultaPreparada.setInt(15, experienciaEducativa.getNrc());
@@ -195,7 +195,7 @@ public class ExperienciaEducativaDAO implements DAO{
                     resultados.getString("oportunidadesEvaluacion"),
                     resultados.getString("requisitos"),
                     resultados.getString("coRequisitos"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
 
                     experiencias.add(experienciaEducativa);
                 }

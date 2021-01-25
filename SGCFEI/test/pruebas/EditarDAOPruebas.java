@@ -48,7 +48,8 @@ public class EditarDAOPruebas {
     public void actualizarExperienciaEducativa(){
         ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
         ExperienciaEducativa item = new ExperienciaEducativa(oid.obtenerIDExperienciaEducativa("PRUEBAPRUEBA"), "PRUEBAPRUEBA", 4);
-
+        item.setIdAcademia(0);
+        
         assertEquals(true, dao.actualizar(item));
     }
     
