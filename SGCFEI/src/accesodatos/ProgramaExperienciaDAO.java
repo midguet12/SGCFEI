@@ -68,7 +68,7 @@ public class ProgramaExperienciaDAO implements DAO{
    public boolean insertar(ProgramaExperiencia programaExperiencia){
        int filasModificadas = 0;
        conexion = db.obtenerConexion();
-       String consulta = "INSERT INTO experienciaEducativa(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+       String consulta = "INSERT INTO experienciaEducativa(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, evaluacion, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
        try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, programaExperiencia.getIdAcademia());
@@ -99,9 +99,10 @@ public class ProgramaExperienciaDAO implements DAO{
             consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
-            consultaPreparada.setString(28, programaExperiencia.getAcreditacion());
-            consultaPreparada.setString(29, programaExperiencia.getBibliografiaBasica());
-            consultaPreparada.setString(30, programaExperiencia.getBibliografiaComplementaria());
+            consultaPreparada.setString(28, programaExperiencia.getEvaluacion());
+            consultaPreparada.setString(29, programaExperiencia.getAcreditacion());
+            consultaPreparada.setString(30, programaExperiencia.getBibliografiaBasica());
+            consultaPreparada.setString(31, programaExperiencia.getBibliografiaComplementaria());
             
             
             
@@ -170,6 +171,7 @@ public class ProgramaExperienciaDAO implements DAO{
                     resultados.getString("estrategiasEnsenanza"),
                     resultados.getString("materialesDidacticos"),
                     resultados.getString("recursosDidacticos"),
+                    resultados.getString("evaluacion"),
                     resultados.getString("acreditacion"),
                     resultados.getString("bibliografiaBasica"),
                     resultados.getString("bibliografiaComplementaria"));
@@ -230,10 +232,11 @@ public class ProgramaExperienciaDAO implements DAO{
             consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
             consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
-            consultaPreparada.setString(28, programaExperiencia.getAcreditacion());
-            consultaPreparada.setString(29, programaExperiencia.getBibliografiaBasica());
-            consultaPreparada.setString(30, programaExperiencia.getBibliografiaComplementaria());
-            consultaPreparada.setInt(31, programaExperiencia.getIdProgramaEE());
+            consultaPreparada.setString(28, programaExperiencia.getEvaluacion());
+            consultaPreparada.setString(29, programaExperiencia.getAcreditacion());
+            consultaPreparada.setString(30, programaExperiencia.getBibliografiaBasica());
+            consultaPreparada.setString(31, programaExperiencia.getBibliografiaComplementaria());
+            consultaPreparada.setInt(32, programaExperiencia.getIdProgramaEE());
             
             
             filasModificadas = consultaPreparada.executeUpdate();
@@ -317,6 +320,7 @@ public class ProgramaExperienciaDAO implements DAO{
                     resultados.getString("estrategiasEnsenanza"),
                     resultados.getString("materialesDidacticos"),
                     resultados.getString("recursosDidacticos"),
+                    resultados.getString("evaluacion"),
                     resultados.getString("acreditacion"),
                     resultados.getString("bibliografiaBasica"),
                     resultados.getString("bibliografiaComplementaria"));

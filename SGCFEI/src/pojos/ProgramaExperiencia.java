@@ -45,7 +45,7 @@ public class ProgramaExperiencia {
     private String bibliografiaBasica;
     private String bibliografiaComplementaria;
 
-    public ProgramaExperiencia(int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+    public ProgramaExperiencia(int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
         this.idAcademia = idAcademia;
         this.programa = programa;
         this.campus = campus;
@@ -73,12 +73,13 @@ public class ProgramaExperiencia {
         this.estrategiasEnsenanza = estrategiasEnsenanza;
         this.materialesDidacticos = materialesDidacticos;
         this.recursosDidacticos = recursosDidacticos;
+        this.evaluacion = evaluacion;
         this.acreditacion = acreditacion;
         this.bibliografiaBasica = bibliografiaBasica;
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
 
-    public ProgramaExperiencia(int idProgramaEE, int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+    public ProgramaExperiencia(int idProgramaEE, int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
         this.idProgramaEE = idProgramaEE;
         this.idAcademia = idAcademia;
         this.programa = programa;
@@ -107,6 +108,7 @@ public class ProgramaExperiencia {
         this.estrategiasEnsenanza = estrategiasEnsenanza;
         this.materialesDidacticos = materialesDidacticos;
         this.recursosDidacticos = recursosDidacticos;
+        this.evaluacion = evaluacion;
         this.acreditacion = acreditacion;
         this.bibliografiaBasica = bibliografiaBasica;
         this.bibliografiaComplementaria = bibliografiaComplementaria;
@@ -336,6 +338,14 @@ public class ProgramaExperiencia {
         this.recursosDidacticos = recursosDidacticos;
     }
 
+    public String getEvaluacion() {
+        return evaluacion;
+    }
+
+    public void setEvaluacion(String evaluacion) {
+        this.evaluacion = evaluacion;
+    }
+
     public String getAcreditacion() {
         return acreditacion;
     }
@@ -359,4 +369,9 @@ public class ProgramaExperiencia {
     public void setBibliografiaComplementaria(String bibliografiaComplementaria) {
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
+    
+    
+    
+
+    
 }
