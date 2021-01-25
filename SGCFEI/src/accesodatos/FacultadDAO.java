@@ -79,7 +79,7 @@ public class FacultadDAO implements DAO{
     public boolean actualizar(Facultad facultad) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE facultad SET nombre = ?, WHERE idFacultad = ?;";
+        String consulta = "UPDATE facultad SET nombre = ? WHERE idFacultad = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
