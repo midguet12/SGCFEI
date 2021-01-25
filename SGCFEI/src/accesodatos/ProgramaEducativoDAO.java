@@ -170,4 +170,34 @@ public class ProgramaEducativoDAO implements DAO{
         
         return programasEducativos;
     }
+    
+    public List<String> obtenerNombres(){
+        List<String> nombres = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "Select nombre from programaEducativo;";
+        
+        try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            resultados = consultaPreparada.executeQuery();
+            while (resultados.next()){
+                nombres.add(resultados.getString("nombre"));
+            }
+            
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        
+        return nombres;
+    }
 }

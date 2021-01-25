@@ -17,6 +17,7 @@ public class RegistroExcepciones {
             tiempoAhora = LocalDateTime.now();
             
             escribirArchivo.println(nombreArchivo + ": " + tiempoAhora + " - " +  ex.toString());
+            System.out.println(ex.getMessage());
         } 
         catch (IOException exeption) {
              System.out.println(exeption.getMessage());

@@ -85,13 +85,13 @@
     <Label layoutX="34.0" layoutY="457.0" text="Equivalencias" />
     <Label layoutX="23.0" layoutY="491.0" text="9. Modalidad" />
     <TextField fx:id="modalidad" layoutX="23.0" layoutY="507.0" onAction="#modalidad" prefWidth="70.0" />
-    <Label fx:id="oportunidadesEvaluacion" layoutX="122.0" layoutY="491.0" text="10. Oportunidades de evaluacion" />
+    <Label id="oportunidadesEvaluacion" layoutX="122.0" layoutY="491.0" text="10. Oportunidades de evaluacion" />
     <TextField fx:id="oportunidadesEvaluacion" layoutX="121.0" layoutY="507.0" onAction="#oportunidadesEvaluacion" prefWidth="200.0" />
     <Label layoutX="23.0" layoutY="540.0" text="11. Requisitos" />
     <Label layoutX="23.0" layoutY="564.0" text="Prerequisitos" />
     <Label layoutX="180.0" layoutY="564.0" text="Co-requisitos" />
     <TextArea fx:id="prerequisitos" layoutX="23.0" layoutY="587.0" prefHeight="110.0" prefWidth="131.0" wrapText="true" />
-    <TextArea fx:id="prerequisitos" layoutX="178.0" layoutY="587.0" prefHeight="110.0" prefWidth="145.0" wrapText="true" />
+    <TextArea id="prerequisitos" fx:id="corequisitos" layoutX="178.0" layoutY="587.0" prefHeight="110.0" prefWidth="145.0" wrapText="true" />
     <Label layoutX="23.0" layoutY="715.0" text="12.-Características del proceso de enseñanza aprendizaje" />
     <Label layoutX="30.0" layoutY="739.0" text="Individual/Grupal" />
     <ComboBox id="individualGupal" fx:id="individualGrupal" layoutX="30.0" layoutY="756.0" onAction="#individualGrupal" prefHeight="21.0" prefWidth="92.0">
@@ -149,9 +149,9 @@
     <TextArea fx:id="acreditacion" layoutX="971.0" layoutY="470.0" prefHeight="119.0" prefWidth="387.0" wrapText="true" />
     <Label layoutX="971.0" layoutY="451.0" text="28. Acreditacion" />
     <Label layoutX="971.0" layoutY="608.0" text="29. Fuentes de informacion" />
-    <TextArea layoutX="971.0" layoutY="646.0" prefHeight="301.0" prefWidth="200.0" wrapText="true" />
-    <TextArea layoutX="1177.0" layoutY="646.0" prefHeight="301.0" prefWidth="200.0" wrapText="true" />
-    <Button layoutX="977.0" layoutY="964.0" mnemonicParsing="false" text="Guardar" />
+    <TextArea fx:id="bibliografiaBasica" layoutX="971.0" layoutY="646.0" prefHeight="301.0" prefWidth="200.0" wrapText="true" />
+    <TextArea fx:id="bibliografiaComplementaria" layoutX="1177.0" layoutY="646.0" prefHeight="301.0" prefWidth="200.0" wrapText="true" />
+    <Button fx:id="guardar" layoutX="977.0" layoutY="964.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
     <Label layoutX="977.0" layoutY="627.0" text="Bibliografia basica" />
     <Label layoutX="1191.0" layoutY="627.0" text="Bibliografia complementaria" />
   </children>

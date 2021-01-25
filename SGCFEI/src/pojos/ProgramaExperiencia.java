@@ -13,10 +13,10 @@ import java.sql.Date;
  */
 public class ProgramaExperiencia {
     private int idProgramaEE;
-    private int idAcademia;
-    private int programa;
-    private int campus;
-    private int idDependencia;
+    private String idAcademia;
+    private String programa;
+    private String campus;
+    private String idDependencia;
     private int ncr;
     private String individualGrupal;
     private int maximo;
@@ -45,7 +45,38 @@ public class ProgramaExperiencia {
     private String bibliografiaBasica;
     private String bibliografiaComplementaria;
 
-    public ProgramaExperiencia(int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+    public ProgramaExperiencia(String idAcademia, String programa, String campus, String idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+        this.idAcademia = idAcademia;
+        this.programa = programa;
+        this.campus = campus;
+        this.idDependencia = idDependencia;
+        this.ncr = ncr;
+        this.individualGrupal = individualGrupal;
+        this.maximo = maximo;
+        this.minimo = minimo;
+        this.proyecto = proyecto;
+        this.academicos = academicos;
+        this.perfil = perfil;
+        this.espacio = espacio;
+        this.relacionDisciplinaria = relacionDisciplinaria;
+        this.descripcion = descripcion;
+        this.justificacion = justificacion;
+        this.unidadCompetencia = unidadCompetencia;
+        this.articulacion = articulacion;
+        this.saberTeorico = saberTeorico;
+        this.heuristico = heuristico;
+        this.axiologicos = axiologicos;
+        this.estrategiasAprendizaje = estrategiasAprendizaje;
+        this.estrategiasEnsenanza = estrategiasEnsenanza;
+        this.materialesDidacticos = materialesDidacticos;
+        this.recursosDidacticos = recursosDidacticos;
+        this.evaluacion = evaluacion;
+        this.acreditacion = acreditacion;
+        this.bibliografiaBasica = bibliografiaBasica;
+        this.bibliografiaComplementaria = bibliografiaComplementaria;
+    }
+
+    public ProgramaExperiencia(String idAcademia, String programa, String campus, String idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
         this.idAcademia = idAcademia;
         this.programa = programa;
         this.campus = campus;
@@ -79,7 +110,7 @@ public class ProgramaExperiencia {
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
 
-    public ProgramaExperiencia(int idProgramaEE, int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+    public ProgramaExperiencia(int idProgramaEE, String idAcademia, String programa, String campus, String idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String evaluacion, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
         this.idProgramaEE = idProgramaEE;
         this.idAcademia = idAcademia;
         this.programa = programa;
@@ -113,6 +144,9 @@ public class ProgramaExperiencia {
         this.bibliografiaBasica = bibliografiaBasica;
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
+    
+    
+    
 
     public int getIdProgramaEE() {
         return idProgramaEE;
@@ -122,35 +156,35 @@ public class ProgramaExperiencia {
         this.idProgramaEE = idProgramaEE;
     }
 
-    public int getIdAcademia() {
+    public String getIdAcademia() {
         return idAcademia;
     }
 
-    public void setIdAcademia(int idAcademia) {
+    public void setIdAcademia(String idAcademia) {
         this.idAcademia = idAcademia;
     }
 
-    public int getPrograma() {
+    public String getPrograma() {
         return programa;
     }
 
-    public void setPrograma(int programa) {
+    public void setPrograma(String programa) {
         this.programa = programa;
     }
 
-    public int getCampus() {
+    public String getCampus() {
         return campus;
     }
 
-    public void setCampus(int campus) {
+    public void setCampus(String campus) {
         this.campus = campus;
     }
 
-    public int getIdDependencia() {
+    public String getIdDependencia() {
         return idDependencia;
     }
 
-    public void setIdDependencia(int idDependencia) {
+    public void setIdDependencia(String idDependencia) {
         this.idDependencia = idDependencia;
     }
 
@@ -369,7 +403,14 @@ public class ProgramaExperiencia {
     public void setBibliografiaComplementaria(String bibliografiaComplementaria) {
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
+
+
     
+    
+
+    
+  
+
     
     
 

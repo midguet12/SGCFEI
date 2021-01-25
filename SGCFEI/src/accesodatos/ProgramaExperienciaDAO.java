@@ -71,10 +71,10 @@ public class ProgramaExperienciaDAO implements DAO{
        String consulta = "INSERT INTO experienciaEducativa(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, evaluacion, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
        try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, programaExperiencia.getIdAcademia());
-            consultaPreparada.setInt(2, programaExperiencia.getPrograma());
-            consultaPreparada.setInt(3, programaExperiencia.getCampus());
-            consultaPreparada.setInt(4, programaExperiencia.getIdDependencia());
+            consultaPreparada.setString(1, programaExperiencia.getIdAcademia());
+            consultaPreparada.setString(2, programaExperiencia.getPrograma());
+            consultaPreparada.setString(3, programaExperiencia.getCampus());
+            consultaPreparada.setString(4, programaExperiencia.getIdDependencia());
             consultaPreparada.setInt(5, programaExperiencia.getNcr());
             consultaPreparada.setString(6, programaExperiencia.getIndividualGrupal());
             consultaPreparada.setInt(7, programaExperiencia.getMaximo());
@@ -143,10 +143,10 @@ public class ProgramaExperienciaDAO implements DAO{
             
             programaExperiencia = new ProgramaExperiencia(
                     resultados.getInt("idProgramaEE"),
-                    resultados.getInt("idAcademia"),
-                    resultados.getInt("idPrograma"),
-                    resultados.getInt("idCampus"),
-                    resultados.getInt("idDependencia"),
+                    resultados.getString("idAcademia"),
+                    resultados.getString("idPrograma"),
+                    resultados.getString("idCampus"),
+                    resultados.getString("idDependencia"),
                     resultados.getInt("ncr"),
                     resultados.getString("individualGrupal"),
                     resultados.getInt("maximo"),
@@ -203,10 +203,10 @@ public class ProgramaExperienciaDAO implements DAO{
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, programaExperiencia.getIdAcademia());
-            consultaPreparada.setInt(2, programaExperiencia.getPrograma());
-            consultaPreparada.setInt(3, programaExperiencia.getCampus());
-            consultaPreparada.setInt(4, programaExperiencia.getIdDependencia());
+            consultaPreparada.setString(1, programaExperiencia.getIdAcademia());
+            consultaPreparada.setString(2, programaExperiencia.getPrograma());
+            consultaPreparada.setString(3, programaExperiencia.getCampus());
+            consultaPreparada.setString(4, programaExperiencia.getIdDependencia());
             consultaPreparada.setInt(5, programaExperiencia.getNcr());
             consultaPreparada.setString(6, programaExperiencia.getIndividualGrupal());
             consultaPreparada.setInt(7, programaExperiencia.getMaximo());
@@ -291,10 +291,10 @@ public class ProgramaExperienciaDAO implements DAO{
             while (resultados.next()) {
                 ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
                     resultados.getInt("idProgramaEE"),
-                    resultados.getInt("idAcademia"),
-                    resultados.getInt("idPrograma"),
-                    resultados.getInt("idCampus"),
-                    resultados.getInt("idDependencia"),
+                    resultados.getString("idAcademia"),
+                    resultados.getString("idPrograma"),
+                    resultados.getString("idCampus"),
+                    resultados.getString("idDependencia"),
                     resultados.getInt("ncr"),
                     resultados.getString("individualGrupal"),
                     resultados.getInt("maximo"),
