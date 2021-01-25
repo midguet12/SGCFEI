@@ -16,6 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pojos.Academico;
 import pojos.Usuario;
+import sgcfei.menus.Coordinador.MenuController;
 import util.Encriptacion;
 
 
@@ -63,9 +64,14 @@ public class LoginController implements Initializable {
                 if(user.getPassword().equals(password)){
                     AcademicoDAO daoAcad = new AcademicoDAO();
                     Academico academico = daoAcad.obtener(user.getIdAcademico());
-                    
-                    ControladorVentanas.abrirYCerrar("/sgcfei/menus/" + academico.getRol()
+                    if (academico.getRol().equals("Coordinador")) {
+                        MenuController menuController = new MenuController(academico);
+                        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/" + academico.getRol()
+                            +"/Menu.fxml", "Menu principal",menuController, stageActual);
+                    }else{
+                        ControladorVentanas.abrirYCerrar("/sgcfei/menus/" + academico.getRol()
                             +"/Menu.fxml", "Menu principal", stageActual);
+                    }
                 }
                 else{
                     Alert alerta = ControladorVentanas.crearAlerta("Correo o contraseña incorrectos",

@@ -173,7 +173,7 @@ public class AcademicoDAO implements DAO{
     public List<Academico> obtenerAcademicosPorRol(String rol) {
         List<Academico> academicos = new ArrayList<>();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico where rol = ?;";    
+        String consulta = "SELECT numeroPersonal, nombre, correo, rol FROM academico WHERE rol = ?;";    
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -206,7 +206,7 @@ public class AcademicoDAO implements DAO{
     public boolean esNumeroPersonalRegistrado(String numeroPersonal) {
         conexion = db.obtenerConexion();
         boolean esRegistrado = true;
-        String consulta = "SELECT * FROM academico where numeroPersonal = ?";
+        String consulta = "SELECT * FROM academico WHERE numeroPersonal = ?";
         try {
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, numeroPersonal);
@@ -264,5 +264,32 @@ public class AcademicoDAO implements DAO{
         
         return academicos;
     }
+    
+    public boolean insertarParticipacion(String idAcademico, int idMinuta) {
+        int filasModificadas = 0;
+        conexion = db.obtenerConexion();
+        String consulta = "INSERT INTO academicoMinuta(idAcademico, idMinuta)"
+                     + " VALUES(?, ?);";
         
+        try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, idAcademico);
+            consultaPreparada.setInt(2, idMinuta);
+            filasModificadas = consultaPreparada.executeUpdate();
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return filasModificadas > 0;
+    }
 }

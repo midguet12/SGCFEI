@@ -28,6 +28,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pojos.Academico;
+import pojos.AspectoMinuta;
 import sgcfei.menus.Administrador.ConsultarUsuario.EditarUsuario.EditarUsuarioController;
 import util.ControladorVentanas;
 
@@ -53,7 +54,7 @@ public class ConsultarUsuarioController implements Initializable {
     private ObservableList<Academico> listaAcademicos;
     private Alert alerta;
     private Stage stageActual;
-
+    
     /**
      * Initializes the controller class.
      */
