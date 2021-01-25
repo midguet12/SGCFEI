@@ -40,6 +40,7 @@ public class ProgramaExperiencia {
     private String estrategiasEnsenanza;
     private String materialesDidacticos;
     private String recursosDidacticos;
+    private String evaluacion;
     private String acreditacion;
     private String bibliografiaBasica;
     private String bibliografiaComplementaria;
