@@ -15,8 +15,8 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
          <children>
+            <Button fx:id="btnAgregar" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirAgregarUsuarios" text="Registrar" />
             <Button fx:id="btnConsultar" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirConsultarUsuarios" text="Consultar" />
-            <Button fx:id="btnAgregar" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirAgregarUsuarios" text="Consultar" />
          </children>
       </HBox>
       <Label />

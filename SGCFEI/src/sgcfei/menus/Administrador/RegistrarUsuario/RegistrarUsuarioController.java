@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import pojos.Academico;
 import pojos.Usuario;
 import util.ControladorVentanas;
@@ -150,6 +151,8 @@ public class RegistrarUsuarioController implements Initializable {
             boolean seInsertoUsuario = new UsuarioDAO().insertar(usuario);
             if (seInsertoUsuario) {
                 Portapapeles.CopiarAlPortapapeles(tfCorreo.getText(), password);
+                Stage stageActual = (Stage) btnRegistrar.getScene().getWindow();
+                ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Menu.fxml","Menu principal Administrador",stageActual);
                 alerta = ControladorVentanas.crearAlerta("Usuario registrado", "El usuario se ha registrado en el sistama, su contraseña se ha copiado al portapapeles", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
             }

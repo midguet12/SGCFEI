@@ -128,7 +128,7 @@ public class ConsultarUsuarioController implements Initializable {
     @FXML
     private void clicBotonCerrar(ActionEvent event) {
         stageActual = (Stage) tfBuscar.getScene().getWindow();
-        stageActual.close();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Menu.fxml","Menu principal Administrador",stageActual);
     }
 
     private void agregarListener() {
