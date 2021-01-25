@@ -4,14 +4,27 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import pojos.Academico;
+import sgcfei.menus.Coordinador.Minuta.RegistrarMinuta.RegistrarMinutaController;
 import util.ControladorVentanas;
 
 public class MenuController implements Initializable {
+    private Academico academicoLogeado;
+    @FXML
+    private Font x1;
+    @FXML
+    private Button btnRegistrarMinuta;
 
+    public MenuController(Academico academicoLogeado) {
+        this.academicoLogeado = academicoLogeado;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
@@ -32,6 +45,9 @@ public class MenuController implements Initializable {
 
     @FXML
     private void registrarMinuta(MouseEvent event) {
+        RegistrarMinutaController registrarMinutaController = new RegistrarMinutaController(academicoLogeado);
+        Stage stageActual = (Stage) btnRegistrarMinuta.getScene().getWindow();
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/RegistrarMinuta/RegistrarMinuta.fxml", "Menu principal",registrarMinutaController, stageActual);
     }
 
     @FXML
@@ -44,6 +60,5 @@ public class MenuController implements Initializable {
 
     @FXML
     private void consultarPlanEstudios(MouseEvent event) {
-        //ControladorVentanas.abrirYEsperar("", "Registrar Programa");
     }
 }

@@ -22,7 +22,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean insertar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO experienciaEducativa(ncr, codigo, nombre, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, academia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String consulta = "INSERT INTO experienciaEducativa(nrc, codigo, nombre, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, academia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -108,7 +108,7 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean actualizar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE experienciaEducativa SET codigo = ?, nombre = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, academia = ? where nrc = ?;";
+        String consulta = "UPDATE experienciaEducativa SET codigo = ?, nombre = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, Academia = ? where nrc = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -123,10 +123,10 @@ public class ExperienciaEducativaDAO implements DAO{
             consultaPreparada.setString(9, experienciaEducativa.getEquivalencias());
             consultaPreparada.setString(10, experienciaEducativa.getModalidad());
             consultaPreparada.setString(11, experienciaEducativa.getOportunidadesEvaluacion());
-            consultaPreparada.setString(13, experienciaEducativa.getRequisitos());
-            consultaPreparada.setString(14, experienciaEducativa.getCoRequisitos());
-            consultaPreparada.setInt(15, experienciaEducativa.getIdAcademia());
-            consultaPreparada.setInt(16, experienciaEducativa.getNrc());
+            consultaPreparada.setString(12, experienciaEducativa.getRequisitos());
+            consultaPreparada.setString(13, experienciaEducativa.getCoRequisitos());
+            consultaPreparada.setInt(14, experienciaEducativa.getIdAcademia());
+            consultaPreparada.setInt(15, experienciaEducativa.getNrc());
             
             
             filasModificadas = consultaPreparada.executeUpdate();
@@ -195,7 +195,7 @@ public class ExperienciaEducativaDAO implements DAO{
                     resultados.getString("oportunidadesEvaluacion"),
                     resultados.getString("requisitos"),
                     resultados.getString("coRequisitos"),
-                    resultados.getInt("idAcademia"));
+                    resultados.getInt("academia"));
 
                     experiencias.add(experienciaEducativa);
                 }
@@ -214,34 +214,4 @@ public class ExperienciaEducativaDAO implements DAO{
 
             return experiencias;
         }
-    
-    public List<String> obtenerNombres(){
-        List<String> nombres = new ArrayList<>();
-        conexion = db.obtenerConexion();
-        String consulta = "Select nombre from experienciaEducativa;";
-        
-        try{
-            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            resultados = consultaPreparada.executeQuery();
-            while (resultados.next()){
-                nombres.add(resultados.getString("nombre"));
-            }
-            
-        }
-        catch (SQLException ex){    
-            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
-        } 
-        catch (NullPointerException ex){
-            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
-        }
-        catch (Exception ex){
-            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
-        }
-        finally{
-            db.cerrarConexion();
-        }
-        
-        
-        return nombres;
-    }
 }

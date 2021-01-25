@@ -45,6 +45,6 @@ public class Carrera implements POJO{
 
     @Override
     public String toString() {
-        return "Carrera{" + "idCarrera=" + idCarrera + ", nombre=" + nombre + ", idFacultad=" + idFacultad + '}';
+        return nombre;
     }
 }

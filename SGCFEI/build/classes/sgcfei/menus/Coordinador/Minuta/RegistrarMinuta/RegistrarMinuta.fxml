@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="817.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="336.0" layoutY="7.0" text="Registrar Minuta">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="66.0" text="Carrera" />
+      <Label layoutX="14.0" layoutY="104.0" text="Academia" />
+      <Label layoutX="14.0" layoutY="142.0" text="Coordinador" />
+      <Label layoutX="424.0" layoutY="66.0" text="Periodo" />
+      <Label layoutX="424.0" layoutY="104.0" text="Fecha" />
+      <Label layoutX="426.0" layoutY="142.0" text="Lugar" />
+      <TextField fx:id="tfCoordinador" editable="false" layoutX="102.0" layoutY="138.0" prefHeight="25.0" prefWidth="268.0" />
+      <TextField fx:id="tfAcademia" editable="false" layoutX="102.0" layoutY="100.0" prefHeight="25.0" prefWidth="268.0" />
+      <TextField fx:id="tfPeriodo" layoutX="512.0" layoutY="62.0" prefHeight="25.0" prefWidth="268.0" />
+      <TextField fx:id="tfLugar" layoutX="512.0" layoutY="138.0" prefHeight="25.0" prefWidth="268.0" />
+      <ComboBox fx:id="cbCarrera" layoutX="102.0" layoutY="62.0" prefHeight="25.0" prefWidth="268.0" />
+      <TextArea fx:id="taObjetivo" layoutX="78.0" layoutY="203.0" prefHeight="46.0" prefWidth="691.0" />
+      <Label layoutX="374.0" layoutY="186.0" text="Objetivo de la junta" />
+      <Label layoutX="386.0" layoutY="263.0" text="Temas a tratar" />
+      <TableView fx:id="tbAspectoAdicional" layoutX="78.0" layoutY="361.0" prefHeight="85.0" prefWidth="691.0">
+        <columns>
+          <TableColumn fx:id="cNombreParticipante" prefWidth="201.0" text="Participante" />
+          <TableColumn fx:id="cAsunto" prefWidth="489.0" text="Asunto" />
+        </columns>
+      </TableView>
+      <Label layoutX="369.0" layoutY="337.0" text="Aspectos adicionales" />
+      <Label layoutX="79.0" layoutY="462.0" text="Participante " />
+      <Label layoutX="408.0" layoutY="462.0" text="Asunto" />
+      <Button fx:id="btnAgregarAspecto" layoutX="709.0" layoutY="458.0" mnemonicParsing="false" onAction="#clicBotonAgregarAspecto" text="Agregar" />
+      <ComboBox fx:id="cbAcademicoAspecto" layoutX="159.0" layoutY="458.0" prefHeight="25.0" prefWidth="233.0" />
+      <TextField fx:id="tfAsunto" layoutX="462.0" layoutY="458.0" prefHeight="25.0" prefWidth="233.0" />
+      <Label layoutX="389.0" layoutY="498.0" text="Conclusiones" />
+      <TextArea fx:id="taTemas" layoutX="78.0" layoutY="280.0" prefHeight="46.0" prefWidth="691.0" />
+      <TextArea fx:id="taConclusion" layoutX="78.0" layoutY="515.0" prefHeight="46.0" prefWidth="691.0" />
+      <TableView fx:id="tbParticipantes" layoutX="81.0" layoutY="585.0" prefHeight="85.0" prefWidth="691.0">
+         <columns>
+            <TableColumn fx:id="cNombre" prefWidth="201.0" text="Nombre" />
+            <TableColumn prefWidth="489.0" text="Firma" />
+         </columns>
+      </TableView>
+      <Label layoutX="394.0" layoutY="568.0" text="Participantes" />
+      <Label layoutX="78.0" layoutY="683.0" text="Participante " />
+      <ComboBox fx:id="cbAcademicoParticipante" layoutX="158.0" layoutY="679.0" prefHeight="25.0" prefWidth="233.0" />
+      <Button layoutX="397.0" layoutY="679.0" mnemonicParsing="false" onAction="#clicBotonAgregarParticipante" text="Agregar" />
+      <Button layoutX="399.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonRegistrar" text="Registrar" />
+      <Label layoutX="353.0" layoutY="751.0" text="Nombre y firma del Coordinador" />
+      <Label fx:id="lbNombreCoordinador" layoutX="315.0" layoutY="734.0" prefHeight="17.0" prefWidth="233.0" textAlignment="CENTER" />
+      <DatePicker fx:id="dpFecha" layoutX="512.0" layoutY="100.0" prefHeight="25.0" prefWidth="268.0" />
+   </children>
+</AnchorPane>
