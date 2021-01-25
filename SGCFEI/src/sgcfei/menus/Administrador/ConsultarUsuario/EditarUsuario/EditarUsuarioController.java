@@ -20,12 +20,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import pojos.Academia;
+import javafx.stage.Stage;
 import pojos.Academico;
 import pojos.Usuario;
 import util.ControladorVentanas;
-import util.Encriptacion;
-import util.Portapapeles;
 import util.Validador;
 
 /**
@@ -61,6 +59,7 @@ public class EditarUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         recuperarAcademico();
+        cargarRoles();
         tfNumeroPersonal.setEditable(false);
     }    
     
@@ -131,6 +130,9 @@ public class EditarUsuarioController implements Initializable {
             usuario.setUsername(tfCorreo.getText());
             boolean esUsuarioActualizado = new UsuarioDAO().actualizarCorreoUsuario(usuario);
             if (esUsuarioActualizado) {
+                Stage stageActual = (Stage) btnModificar.getScene().getWindow();
+                ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/ConsultarUsuario/ConsultarUsuario.fxml",
+                    "Consultar usuarios", stageActual);
                 alerta = ControladorVentanas.crearAlerta("Usuario modificado", "La informacion del usuario se ha actualizado en el sistema", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
             }
