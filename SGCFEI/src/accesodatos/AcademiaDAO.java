@@ -169,4 +169,37 @@ public class AcademiaDAO implements DAO{
         
         return academias;
     }
+    
+    public Academia obtenerAcademiaPorCoordinador(String idCoordinador) {
+        Academia academia = null;
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT * FROM academia WHERE idCoordinador = ?;";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, idCoordinador);
+
+            resultados = consultaPreparada.executeQuery(); 
+            resultados.next();
+            
+            academia = new Academia(
+                    resultados.getInt("idAcademia"),
+                    resultados.getString("nombre"),
+                    resultados.getString("descripcion"),
+                    resultados.getString("idCoordinador"));
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return academia;
+    }
 }

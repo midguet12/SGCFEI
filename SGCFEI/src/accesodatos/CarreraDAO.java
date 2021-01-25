@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pojos.Carrera;
 import util.RegistroExcepciones;
 
@@ -129,5 +131,36 @@ public class CarreraDAO implements DAO{
         }
         
         return filasModificadas > 0;
+    }
+    
+    public List<Carrera> obtenerTodasCarreras(){
+        List<Carrera> carreras = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT * FROM carrera;";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            resultados = consultaPreparada.executeQuery();            
+            while (resultados.next()) {
+                Carrera carrera = new Carrera(
+                    resultados.getInt("idCarrera"),
+                    resultados.getString("nombre"),
+                    resultados.getInt("idFacultad"));
+                carreras.add(carrera);
+            }
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return carreras;
     }
 }

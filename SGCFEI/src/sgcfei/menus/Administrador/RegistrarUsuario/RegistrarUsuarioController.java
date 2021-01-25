@@ -45,8 +45,7 @@ public class RegistrarUsuarioController implements Initializable {
     private ComboBox<String> cbTipoUsuario;
     @FXML
     private Button btnRegistrar;
-    
-    private ObservableList<String> roles = FXCollections.observableArrayList();
+    private ObservableList<String> roles;
     private boolean datosValidos = false;
     Alert alerta;
 
@@ -114,7 +113,7 @@ public class RegistrarUsuarioController implements Initializable {
     }
 
     private void comprobarDatos() {
-        if(datosValidos && cbTipoUsuario.getSelectionModel().getSelectedItem() != null){
+        if(datosValidos && cbTipoUsuario.getSelectionModel().getSelectedItem() != null && !camposVacios()){
             validarNumeroPersonal();
         }else{
             alerta = ControladorVentanas.crearAlerta("Informacion invalida", "Favor de verificar su informacion", Alert.AlertType.ERROR);
@@ -162,5 +161,21 @@ public class RegistrarUsuarioController implements Initializable {
     @FXML
     private void clicBotonRegistrar(ActionEvent event) {
         comprobarDatos();
+    }
+
+    private boolean camposVacios() {
+        boolean esVacio = false;
+        if (tfNumeroPersonal.getText().isEmpty()) {
+            esVacio = true;
+        }
+        
+        if (tfNombre.getText().isEmpty()) {
+            esVacio = true;
+        }
+        
+        if (tfCorreo.getText().isEmpty()) {
+            esVacio = true;
+        }
+        return esVacio;
     }
 }
