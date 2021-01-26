@@ -73,7 +73,7 @@ public class ConsultarMinutaController implements Initializable {
         if (tbMinuta.getSelectionModel().getSelectedItem() != null) {
             EditarMinutaController editarMinutaController = new EditarMinutaController(academicoLogeado, tbMinuta.getSelectionModel().getSelectedItem());
             Stage stageActual = (Stage) tbMinuta.getScene().getWindow();
-            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/RegistrarMinuta/RegistrarMinuta.fxml", "Menu principal",editarMinutaController, stageActual);
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/ConsultarMinuta/EditarMinuta/EditarMinuta.fxml", "Editar minuta",editarMinutaController, stageActual);
         }
     }
     

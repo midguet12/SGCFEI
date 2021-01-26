@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Docente.MenuController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Docente.MenuController">
    <children>
       <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Avance programático" textAlignment="CENTER" textOverrun="CLIP">
          <font>
@@ -47,10 +47,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <HBox alignment="CENTER" prefHeight="77.0" prefWidth="400.0" spacing="15.0">
          <children>
             <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanTrabajo" text="Consultar" />
          </children>
       </HBox>
+      <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicBotonCerrarSesion" text="Cerrar sesion" />
    </children>
 </VBox>

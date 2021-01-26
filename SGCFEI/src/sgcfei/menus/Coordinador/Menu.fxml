@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="542.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de trabajo de academia" textAlignment="CENTER" textOverrun="CLIP">
       <font>
@@ -37,11 +37,12 @@
     </HBox>
     <Label />
     <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Registrar programa Experiencia educativa" textAlignment="CENTER" textOverrun="CLIP" />
-    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+    <HBox alignment="CENTER" prefHeight="68.0" prefWidth="400.0" spacing="15.0">
       <children>
         <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanEstudios" text="Registrar" />
         <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Editar" />
       </children>
     </HBox>
+      <Button mnemonicParsing="false" onAction="#clicBotonCerrarSesion" text="Cerrar sesion" />
   </children>
 </VBox>
