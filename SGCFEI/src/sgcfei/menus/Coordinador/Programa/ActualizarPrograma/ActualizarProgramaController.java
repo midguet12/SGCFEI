@@ -1,9 +1,15 @@
 package sgcfei.menus.Coordinador.Programa.ActualizarPrograma;
 
+import accesodatos.AcademiaDAO;
+import accesodatos.CampusDAO;
+import accesodatos.DependenciaDAO;
+import accesodatos.ExperienciaEducativaDAO;
+import accesodatos.ProgramaEducativoDAO;
 import accesodatos.ProgramaExperienciaDAO;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -135,8 +141,29 @@ public class ActualizarProgramaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-//        ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-//        programaExperiencia = programaExperienciaDAO.obtener(2);
+
+
+        AcademiaDAO academiaDAO = new AcademiaDAO();
+        areasAcademicas = FXCollections.observableArrayList(academiaDAO.obtenerNombres());
+        areaAcademica.setItems(areasAcademicas);
+        
+        ProgramaEducativoDAO programaEducativoDAO = new ProgramaEducativoDAO();
+        programasEducativos = FXCollections.observableArrayList(programaEducativoDAO.obtenerNombres());
+        programaEducativo.setItems(programasEducativos);
+        
+        CampusDAO campusDAO = new CampusDAO();
+        campuses = FXCollections.observableArrayList(campusDAO.obtenerNombres());
+        campus.setItems(campuses);
+        
+        DependenciaDAO dependenciaDAO = new DependenciaDAO();
+        dependencias = FXCollections.observableArrayList(dependenciaDAO.obtenerNombres());
+        dependencia.setItems(dependencias);
+        
+        
+        
+        ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+        experienciasEducativas = FXCollections.observableArrayList(experienciaEducativaDAO.obtenerNombres());
+        experienciaEducativa.setItems(experienciasEducativas);
         idProgramaExperiencia = programaExperiencia.getIdProgramaEE();
         areaAcademica.getSelectionModel().select(programaExperiencia.getAcademia());
         programaEducativo.getSelectionModel().select(programaExperiencia.getPrograma());
@@ -358,6 +385,8 @@ public class ActualizarProgramaController implements Initializable {
                 Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                         "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
+                
+                cerrar();
                 
                 
                 
