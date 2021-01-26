@@ -227,58 +227,68 @@ public class RegistrarProgramaController implements Initializable {
         }
         
         if (academiaEntrada.isEmpty() || programaEntrada.isEmpty() || campusEntrada.isEmpty() || dependenciaEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (codigoEntrada.isEmpty() || nombreExperienciaEntrada.isEmpty() || areaFormacionPrincipalEntrada.isEmpty() || areaFormacionSecundariaEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (creditosEntrada.isEmpty() || teoriaEntrada.isEmpty() || practicaEntrada.isEmpty() || totalHorasEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (equivalenciasEntrada.isEmpty() || modalidadEntrada.isEmpty() || oportunidadesEvaluacionEntrada.isEmpty() || requisitosEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (coRequisitosEntrada.isEmpty() || individualGrupalEntrada.isEmpty() || maximoEntrada.isEmpty() || minimoEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (agrupacionEntrada.isEmpty() || proyectoEntrada.isEmpty() || academicosEntrada.isEmpty() || perfilEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if ( espacioEntrada.isEmpty() || relacionEntrada.isEmpty() || descripcionEntrada.isEmpty() || justificacionEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         
         if (unidadCompetenciaEntrada.isEmpty() || articulacionEntrada.isEmpty() || teoricoEntrada.isEmpty() || heuristicoEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         if (axiologicosEntrada.isEmpty() || estrategiasAprendizajeEntrada.isEmpty() || estrategiasEnsenanzaEntrada.isEmpty() || materialesDidacticosEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
         if (recursosDidacticosEntrada.isEmpty() || acreditacionEntrada.isEmpty() || bibliografiaBasicaEntrada.isEmpty() || bibliografiaComplementariaEntrada.isEmpty()) {
+            datosCorrectos = false;
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
