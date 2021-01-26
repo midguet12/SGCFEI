@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sgcfei.menus.Coordinador.Programa.ConsultarProgramaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sgcfei.menus.Coordinador.Programa.ConsultarProgramaController">
   <children>
     <TableView fx:id="tabla" layoutX="56.0" layoutY="69.0" prefHeight="200.0" prefWidth="465.0">
       <columns>
-        <TableColumn fx:id="cExperiencia" maxWidth="5000.0" minWidth="10.0" prefWidth="302.0" text="Experiencia Educativa" />
-        <TableColumn fx:id="cCodigo" maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" text="Codigo" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="302.0" text="Experiencia Educativa" fx:id="cExperiencia" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="155.0" text="Codigo" fx:id="cCodigo" />
       </columns>
     </TableView>
     <Button fx:id="agregar" layoutX="56.0" layoutY="329.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />
     <Button fx:id="consultar" layoutX="190.0" layoutY="330.0" mnemonicParsing="false" onAction="#consultar" text="Consultar" />
     <Button fx:id="actualizar" layoutX="337.0" layoutY="330.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
     <Button fx:id="eliminar" layoutX="480.0" layoutY="330.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-    <Label layoutX="170.0" layoutY="23.0" prefWidth="261.0" text="Catalogo programa ">
+    <Label layoutX="170.0" layoutY="23.0" prefWidth="261.0" text="Consultar programa ">
       <font>
         <Font size="24.0" />
       </font>
