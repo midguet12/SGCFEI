@@ -59,10 +59,6 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void registrarPlanEstudios(MouseEvent event) {
-    }
-
-    @FXML
     private void consultarPlanEstudios(MouseEvent event) {
         ConsultarProgramaController consultarProgramaController = new ConsultarProgramaController();
         Stage stageActual = (Stage)  consultarProgramaExperiencia.getScene().getWindow();

@@ -328,73 +328,71 @@ public class ActualizarProgramaController implements Initializable {
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
-        }else{
-            if (datosCorrectos) {
-                
-                ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
-                        idProgramaExperiencia,
-                        academiaEntrada,
-                        programaEntrada,
-                        campusEntrada,
-                        dependenciaEntrada,
-                        codigoEntrada,
-                        nombreExperienciaEntrada,
-                        areaFormacionPrincipalEntrada,
-                        areaFormacionSecundariaEntrada,
+        }
+        if (datosCorrectos) {
 
-                        Integer.parseInt(creditosEntrada),
-                        Integer.parseInt(teoriaEntrada),
-                        Integer.parseInt(practicaEntrada),  //Validar que sean enteros
-                        Integer.parseInt(totalHorasEntrada),
+            ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                    idProgramaExperiencia,
+                    academiaEntrada,
+                    programaEntrada,
+                    campusEntrada,
+                    dependenciaEntrada,
+                    codigoEntrada,
+                    nombreExperienciaEntrada,
+                    areaFormacionPrincipalEntrada,
+                    areaFormacionSecundariaEntrada,
 
-                        equivalenciasEntrada,
-                        modalidadEntrada,
-                        oportunidadesEvaluacionEntrada,
-                        requisitosEntrada,
-                        coRequisitosEntrada,
-                        individualGrupalEntrada,
+                    Integer.parseInt(creditosEntrada),
+                    Integer.parseInt(teoriaEntrada),
+                    Integer.parseInt(practicaEntrada),  //Validar que sean enteros
+                    Integer.parseInt(totalHorasEntrada),
 
-                        Integer.parseInt(maximoEntrada),
-                        Integer.parseInt(minimoEntrada), //Validar que sean enteros
+                    equivalenciasEntrada,
+                    modalidadEntrada,
+                    oportunidadesEvaluacionEntrada,
+                    requisitosEntrada,
+                    coRequisitosEntrada,
+                    individualGrupalEntrada,
 
-                        agrupacionEntrada,
-                        proyectoEntrada,
-                        academicosEntrada,
-                        perfilEntrada,
-                        espacioEntrada,
-                        relacionEntrada,
-                        descripcionEntrada,
-                        justificacionEntrada,
+                    Integer.parseInt(maximoEntrada),
+                    Integer.parseInt(minimoEntrada), //Validar que sean enteros
 
-                        unidadCompetenciaEntrada,
-                        articulacionEntrada,
-                        teoricoEntrada,
-                        heuristicoEntrada,
-                        axiologicosEntrada,
-                        estrategiasAprendizajeEntrada,
-                        estrategiasEnsenanzaEntrada,
-                        materialesDidacticosEntrada,
-                        recursosDidacticosEntrada,
-                        acreditacionEntrada,
-                        bibliografiaBasicaEntrada,
-                        bibliografiaComplementariaEntrada);
-                
-                ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-                programaExperienciaDAO.actualizar(programaExperiencia);
-                
-                Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
-                alerta.showAndWait();
-                
-                cerrar();
-                
-                
-                
-            } else {
-                Alert alerta = ControladorVentanas.crearAlerta("Datos incorrectos",
-                        "Los datos ingresados no son del tipo adecuado, por favor verificar", Alert.AlertType.ERROR);
-                alerta.showAndWait();
-            }
+                    agrupacionEntrada,
+                    proyectoEntrada,
+                    academicosEntrada,
+                    perfilEntrada,
+                    espacioEntrada,
+                    relacionEntrada,
+                    descripcionEntrada,
+                    justificacionEntrada,
+
+                    unidadCompetenciaEntrada,
+                    articulacionEntrada,
+                    teoricoEntrada,
+                    heuristicoEntrada,
+                    axiologicosEntrada,
+                    estrategiasAprendizajeEntrada,
+                    estrategiasEnsenanzaEntrada,
+                    materialesDidacticosEntrada,
+                    recursosDidacticosEntrada,
+                    acreditacionEntrada,
+                    bibliografiaBasicaEntrada,
+                    bibliografiaComplementariaEntrada);
+
+            ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
+            programaExperienciaDAO.actualizar(programaExperiencia);
+
+            Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                    "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+            alerta.showAndWait();
+
+            cerrar();
+
+        }
+        else {
+            Alert alerta = ControladorVentanas.crearAlerta("Datos incorrectos",
+                    "Los datos ingresados no son del tipo adecuado, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
         }
     }
 

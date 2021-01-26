@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sgcfei.menus.Coordinador.Programa.RegistrarPrograma;
 
 import accesodatos.AcademiaDAO;
@@ -33,11 +28,6 @@ import pojos.ProgramaExperiencia;
 import util.ControladorVentanas;
 import util.Validador;
 
-/**
- * FXML Controller class
- *
- * @author midgu
- */
 public class RegistrarProgramaController implements Initializable {
     
     
@@ -173,10 +163,6 @@ public class RegistrarProgramaController implements Initializable {
         experienciaEducativa.setItems(experienciasEducativas);
         
         individualGrupal.setItems(FXCollections.observableArrayList("Individual", "Grupal"));
-        
-        
-        
-        
     }    
 
   
@@ -230,8 +216,6 @@ public class RegistrarProgramaController implements Initializable {
         String bibliografiaComplementariaEntrada = bibliografiaComplementaria.getText();
         
         boolean datosCorrectos = true;
-        
-        
         
         if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
             datosCorrectos = false;
@@ -298,72 +282,69 @@ public class RegistrarProgramaController implements Initializable {
             Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
-        }else{
-            if (datosCorrectos) {
-                
-                ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
-                        academiaEntrada,
-                        programaEntrada,
-                        campusEntrada,
-                        dependenciaEntrada,
-                        codigoEntrada,
-                        nombreExperienciaEntrada,
-                        areaFormacionPrincipalEntrada,
-                        areaFormacionSecundariaEntrada,
+        }
+        if (datosCorrectos) {
 
-                        Integer.parseInt(creditosEntrada),
-                        Integer.parseInt(teoriaEntrada),
-                        Integer.parseInt(practicaEntrada),  //Validar que sean enteros
-                        Integer.parseInt(totalHorasEntrada),
+            ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                    academiaEntrada,
+                    programaEntrada,
+                    campusEntrada,
+                    dependenciaEntrada,
+                    codigoEntrada,
+                    nombreExperienciaEntrada,
+                    areaFormacionPrincipalEntrada,
+                    areaFormacionSecundariaEntrada,
 
-                        equivalenciasEntrada,
-                        modalidadEntrada,
-                        oportunidadesEvaluacionEntrada,
-                        requisitosEntrada,
-                        coRequisitosEntrada,
-                        individualGrupalEntrada,
+                    Integer.parseInt(creditosEntrada),
+                    Integer.parseInt(teoriaEntrada),
+                    Integer.parseInt(practicaEntrada),  //Validar que sean enteros
+                    Integer.parseInt(totalHorasEntrada),
 
-                        Integer.parseInt(maximoEntrada),
-                        Integer.parseInt(minimoEntrada), //Validar que sean enteros
+                    equivalenciasEntrada,
+                    modalidadEntrada,
+                    oportunidadesEvaluacionEntrada,
+                    requisitosEntrada,
+                    coRequisitosEntrada,
+                    individualGrupalEntrada,
 
-                        agrupacionEntrada,
-                        proyectoEntrada,
-                        academicosEntrada,
-                        perfilEntrada,
-                        espacioEntrada,
-                        relacionEntrada,
-                        descripcionEntrada,
-                        justificacionEntrada,
+                    Integer.parseInt(maximoEntrada),
+                    Integer.parseInt(minimoEntrada), //Validar que sean enteros
 
-                        unidadCompetenciaEntrada,
-                        articulacionEntrada,
-                        teoricoEntrada,
-                        heuristicoEntrada,
-                        axiologicosEntrada,
-                        estrategiasAprendizajeEntrada,
-                        estrategiasEnsenanzaEntrada,
-                        materialesDidacticosEntrada,
-                        recursosDidacticosEntrada,
-                        acreditacionEntrada,
-                        bibliografiaBasicaEntrada,
-                        bibliografiaComplementariaEntrada);
-                
-                ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-                programaExperienciaDAO.insertar(programaExperiencia);
-                
-                Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
-                alerta.showAndWait();
-                
-                cerrar();
-                
-                
-                
-            } else {
-                Alert alerta = ControladorVentanas.crearAlerta("Datos incorrectos",
-                        "Los datos ingresados no son del tipo adecuado, por favor verificar", Alert.AlertType.ERROR);
-                alerta.showAndWait();
-            }
+                    agrupacionEntrada,
+                    proyectoEntrada,
+                    academicosEntrada,
+                    perfilEntrada,
+                    espacioEntrada,
+                    relacionEntrada,
+                    descripcionEntrada,
+                    justificacionEntrada,
+
+                    unidadCompetenciaEntrada,
+                    articulacionEntrada,
+                    teoricoEntrada,
+                    heuristicoEntrada,
+                    axiologicosEntrada,
+                    estrategiasAprendizajeEntrada,
+                    estrategiasEnsenanzaEntrada,
+                    materialesDidacticosEntrada,
+                    recursosDidacticosEntrada,
+                    acreditacionEntrada,
+                    bibliografiaBasicaEntrada,
+                    bibliografiaComplementariaEntrada);
+
+            ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
+            programaExperienciaDAO.insertar(programaExperiencia);
+
+            Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                    "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+            alerta.showAndWait();
+
+            cerrar();
+        }
+        else {
+            Alert alerta = ControladorVentanas.crearAlerta("Datos incorrectos",
+                    "Los datos ingresados no son del tipo adecuado, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
         }
     }
     
