@@ -130,3 +130,9 @@ insert into programaExperiencia values("1", "2", "3", "4", "5", "6", "7", "8", "
 insert into programaExperiencia values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 update programaExperiencia set academia = ?, programa = ?, campus = ?, dependencia = ?, codigo = ?, nombreExperiencia = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, individualGrupal = ?, maximo = ?, minimo = ?, agrupacion = ?, proyecto = ?, academicos = ?, perfil = ?, espacio = ?, relacionDisciplinaria = ?, descripcion = ?, justificacion = ?, unidadCompetencia = ?, articulacion = ?, teorico = ?, heuristico = ?, axiologicos = ?, estrategiasAprendizaje = ?, estrategiasEnsenanza = ?, materialesDidacticos = ?, recursosDidacticos = ?, acreditacion = ?, bibliografiaBasica = ?, bibliografiaComplementaria = ? where idProgramaEE = ?;
+
+
+admin@gmail.com : 83f397d8182d673a592971579c52ccd9 <- ADMIN
+luis@gmail.com - 117b3b0be29d8f40fd282711710bba50 <- DIRECTOR
+midguet@gmail.com - 53c0322b589bf54da7d035fa952ef7c6 <- COORDINADOR
+seth@gmail.com - 14a69fb91e7bedf52af383fbdba95474 <- DOCENTE

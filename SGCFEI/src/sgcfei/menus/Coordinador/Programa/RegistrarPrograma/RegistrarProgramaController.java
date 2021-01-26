@@ -350,10 +350,7 @@ public class RegistrarProgramaController implements Initializable {
     
     
 
-    @FXML
-    private void agregarEvaluacion(ActionEvent event) {
-        
-    }
+    
     
     @FXML
     private void cancelar(ActionEvent event){

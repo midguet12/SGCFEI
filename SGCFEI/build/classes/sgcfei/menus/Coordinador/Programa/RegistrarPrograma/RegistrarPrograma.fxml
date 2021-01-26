@@ -144,7 +144,6 @@
     <TextArea fx:id="recursosDidacticos" layoutX="794.0" layoutY="569.0" prefHeight="98.0" prefWidth="157.0" wrapText="true" />
     <Label layoutX="625.0" layoutY="551.0" text="Materiales didacticos" />
     <Label layoutX="798.0" layoutY="551.0" text="Recursos didacticos" />
-    <Label layoutX="625.0" layoutY="682.0" text="27. Evaluacion de desempeño" />
     <TextArea fx:id="acreditacion" layoutX="968.0" layoutY="386.0" prefHeight="119.0" prefWidth="387.0" wrapText="true" />
     <Label layoutX="968.0" layoutY="367.0" text="28. Acreditacion" />
     <Label layoutX="968.0" layoutY="524.0" text="29. Fuentes de informacion" />
@@ -157,15 +156,6 @@
     </Button>
     <Label layoutX="968.0" layoutY="543.0" text="Bibliografia basica" />
     <Label layoutX="1175.0" layoutY="542.0" text="Bibliogarfia complementaria" />
-    <TableView layoutX="618.0" layoutY="718.0" prefHeight="200.0" prefWidth="250.0">
-      <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="102.0" text="Criterio" fx:id="evidencia" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="148.0" text="Porcentaje" fx:id="criterio" />
-      </columns>
-    </TableView>
-    <TextArea fx:id="evidenciaEntrada" layoutX="623.0" layoutY="927.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
-    <TextArea fx:id="criterioEntrada" layoutX="744.0" layoutY="927.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
-    <Button fx:id="agregarEvaluacion" layoutX="679.0" layoutY="972.0" mnemonicParsing="false" onAction="#agregarEvaluacion" text="Agregar evaluacion" />
     <Button fx:id="cancelar" layoutX="998.0" layoutY="972.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
   </children>
 </AnchorPane>

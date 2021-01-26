@@ -397,10 +397,7 @@ public class ActualizarProgramaController implements Initializable {
         }
     }
 
-    @FXML
-    private void agregarEvaluacion(ActionEvent event) {
-    }
-
+   
     @FXML
     private void cancelar(ActionEvent event) {
         Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
