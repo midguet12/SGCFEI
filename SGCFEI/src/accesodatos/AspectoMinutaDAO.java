@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pojos.AspectoMinuta;
 import util.RegistroExcepciones;
 
@@ -134,6 +136,38 @@ public class AspectoMinutaDAO implements DAO{
         }
         
         return filasModificadas > 0;
+    }
+    
+    public List<AspectoMinuta> obtenerAspectosPorMinuta(int idMinuta){
+        List<AspectoMinuta> aspectosMinuta = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT AM.asunto, AC.nombre FROM aspectoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ?;";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setInt(1, idMinuta);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                AspectoMinuta aspectoMinuta = new AspectoMinuta();
+                aspectoMinuta.setAsunto(resultados.getString("AM.asunto"));
+                aspectoMinuta.setNombreParticipante(resultados.getString("AC.nombre"));
+                aspectosMinuta.add(aspectoMinuta);
+            }
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return aspectosMinuta;
     }
         
 }
