@@ -23,7 +23,7 @@ public class SeleccionarCatalogoController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        elementos.addAll("Academia", "Academico", "Experiencia Educativa", "LGCA");
+        elementos.addAll("Academia", "Academico", "Carrera", "Experiencia Educativa", "LGCA");
         cbox.setItems(elementos);
         cbox.getSelectionModel().select(0);
     }    
@@ -40,6 +40,10 @@ public class SeleccionarCatalogoController implements Initializable {
         if(seleccion.equals("Academico")){
             ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Academico/Registros.fxml",
                     "Consultar Academico", stageActual);
+        }
+        if(seleccion.equals("Carrera")){
+            ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/Carrera/Registros.fxml",
+                    "Consultar Carrera", stageActual);
         }
         if(seleccion.equals("Experiencia Educativa")){
             ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Registros.fxml",

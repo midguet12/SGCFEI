@@ -86,11 +86,12 @@ public class RegistrosController implements Initializable {
 
                 LGCADAO dao = new LGCADAO();
                 dao.eliminar(idLGCA);
+                
+                cargarTabla();
 
                 alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                             "Se ha eliminado la LGCA correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
-                cargarTabla();
             }
         }
     }

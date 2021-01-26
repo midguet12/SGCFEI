@@ -86,11 +86,11 @@ public class RegistrosController implements Initializable {
 
                 ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
                 dao.eliminar(nrc);
+                cargarTabla();
 
                 alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                             "Se ha eliminado la Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
-                cargarTabla();
             }
         }
     }
