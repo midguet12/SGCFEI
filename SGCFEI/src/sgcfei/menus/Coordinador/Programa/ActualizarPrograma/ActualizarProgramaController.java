@@ -391,5 +391,5 @@ public class ActualizarProgramaController implements Initializable {
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/ConsultarPrograma.fxml",
                     "Consultar programa", stageActual);
     }
-    
+    //
 }
