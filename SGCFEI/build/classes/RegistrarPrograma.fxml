@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="1036.0" prefWidth="1391.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sgcfei.menus.Coordinador.Programa.RegistrarPrograma.RegistrarProgramaController">
+<AnchorPane id="AnchorPane" prefHeight="1036.0" prefWidth="1391.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sgcfei.menus.Coordinador.RegistrarPrograma.RegistrarProgramaController">
   <children>
     <Label layoutX="349.0" layoutY="14.0" text="Registrar programa de experiencia educativa">
       <font>

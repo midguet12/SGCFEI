@@ -104,8 +104,16 @@ create table ProgramaExperiencia(
 );
 
 
-insert into campus(nombre) values ('Xalapa');
+create table evaluacion(
+	idProgramaEE int not null,
+	evidencia varchar(255),
+	criterio varchar(255),
+	ambito varchar(255),
+	porcentaje int
+);
 
+
+insert into campus(nombre) values ('Xalapa');
 insert into dependencia(nombre) values ('Facultad de estadistica e informatica');
 
 insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');

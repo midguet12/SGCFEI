@@ -11,6 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import sgcfei.menus.Coordinador.Programa.RegistrarPrograma.RegistrarProgramaController;
+import util.ControladorVentanas;
 
 /**
  * FXML Controller class
@@ -18,7 +22,11 @@ import javafx.scene.control.Button;
  * @author midgu
  */
 public class ConsultarProgramaController implements Initializable {
-
+    
+    public ConsultarProgramaController(){
+        
+    }
+    
     @FXML
     private Button agregar;
     @FXML
@@ -38,8 +46,14 @@ public class ConsultarProgramaController implements Initializable {
 
     @FXML
     private void agregar(ActionEvent event) {
+        RegistrarProgramaController registrarProgramaController = new RegistrarProgramaController();
+        Stage stageActual = (Stage) agregar.getScene().getWindow();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/RegistrarPrograma/RegistrarPrograma.fxml", "Registrar Programa", stageActual);
+        
         
     }
+
+    
 
     @FXML
     private void consultar(ActionEvent event) {
