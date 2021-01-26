@@ -115,7 +115,7 @@ public class UsuarioDAO implements DAO{
     public boolean actualizar(Usuario usuario) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE usuario SET username = ?, password = ?, idAcademico = ? WHERE idUsuario = ?;";
+        String consulta = "UPDATE usuario SET username = ?, password = ?, idAcademico = ? WHERE idAcademico = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -125,6 +125,34 @@ public class UsuarioDAO implements DAO{
             consultaPreparada.setInt(4, usuario.getIdUsuario());
             
             
+            filasModificadas = consultaPreparada.executeUpdate();
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+         
+        return filasModificadas > 0;
+    }
+    
+    public boolean actualizarUsuarioContraseña(Usuario usuario){
+        int filasModificadas = 0;
+        conexion = db.obtenerConexion();
+        String consulta = "UPDATE usuario SET username = ?, password = ? WHERE idAcademico = ?;";
+        
+         try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setString(1, usuario.getUsername());
+            consultaPreparada.setString(2, usuario.getPassword());
+            consultaPreparada.setString(3, usuario.getIdAcademico());
             filasModificadas = consultaPreparada.executeUpdate();
         }
         catch (SQLException ex){    

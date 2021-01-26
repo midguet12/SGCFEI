@@ -9,10 +9,7 @@ import accesodatos.AcademiaDAO;
 import accesodatos.AcademicoDAO;
 import accesodatos.AspectoMinutaDAO;
 import accesodatos.CarreraDAO;
-import accesodatos.MinutaDAO;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -39,6 +36,7 @@ import pojos.AspectoMinuta;
 import pojos.Carrera;
 import pojos.Minuta;
 import sgcfei.menus.Coordinador.MenuController;
+import sgcfei.menus.Coordinador.Minuta.ConsultarMinuta.ConsultarMinutaController;
 import util.ControladorVentanas;
 
 /**
@@ -69,7 +67,7 @@ public class EditarMinutaController implements Initializable {
     @FXML
     private Button btnAgregarAspecto;
     @FXML
-    private ComboBox<?> cbAcademicoAspecto;
+    private ComboBox<AspectoMinuta> cbAcademicoAspecto;
     @FXML
     private TextField tfAsunto;
     @FXML
@@ -81,7 +79,7 @@ public class EditarMinutaController implements Initializable {
     @FXML
     private TableColumn<Academico, String> cNombre;
     @FXML
-    private ComboBox<?> cbAcademicoParticipante;
+    private ComboBox<Academico> cbAcademicoParticipante;
     @FXML
     private Label lbNombreCoordinador;
     @FXML
@@ -259,6 +257,13 @@ public class EditarMinutaController implements Initializable {
     private void cargarCarreras(List<Carrera> carreras) {
         listaCarreras.addAll(carreras);
         cbCarrera.setItems(listaCarreras);
+    }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) btnAgregarAspecto.getScene().getWindow();
+        ConsultarMinutaController consultarMinutaController = new ConsultarMinutaController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/ConsultarMinuta/ConsultarMinuta.fxml", "Consultar minuta",consultarMinutaController, stageActual);
     }
 
     

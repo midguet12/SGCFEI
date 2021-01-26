@@ -142,7 +142,7 @@ public class AspectoMinutaDAO implements DAO{
         List<AspectoMinuta> aspectosMinuta = new ArrayList<>();
         conexion = db.obtenerConexion();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT AM.asunto, AC.nombre FROM aspectoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ?;";
+        String consulta = "SELECT AM.asunto, AC.nombre FROM aspectoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ? AND AM.idAcademico = AC.numeroPersonal;";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);

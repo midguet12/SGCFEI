@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="398.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="492.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="126.0" layoutY="14.0" text="Editar Usuario">
          <font>
@@ -20,8 +20,16 @@
       <TextField fx:id="tfNumeroPersonal" layoutX="14.0" layoutY="107.0" prefHeight="25.0" prefWidth="364.0" />
       <TextField fx:id="tfNombre" layoutX="14.0" layoutY="172.0" prefHeight="25.0" prefWidth="364.0" />
       <TextField fx:id="tfCorreo" layoutX="14.0" layoutY="240.0" prefHeight="25.0" prefWidth="364.0" />
-      <Label layoutX="14.0" layoutY="285.0" text="Tipo de Usuario" />
-      <ComboBox fx:id="cbTipoUsuario" layoutX="14.0" layoutY="311.0" prefHeight="25.0" prefWidth="364.0" />
-      <Button fx:id="btnModificar" layoutX="164.0" layoutY="359.0" mnemonicParsing="false" onAction="#clicModificar" text="Modificar" />
+      <Label layoutX="17.0" layoutY="377.0" text="Tipo de Usuario" />
+      <ComboBox fx:id="cbTipoUsuario" layoutX="19.0" layoutY="405.0" prefHeight="25.0" prefWidth="364.0" />
+      <Button fx:id="btnModificar" layoutX="242.0" layoutY="453.0" mnemonicParsing="false" onAction="#clicModificar" text="Modificar" />
+      <Label layoutX="18.0" layoutY="276.0" text="Contraseña (solo ingresar en caso de necesitar cambio)" />
+      <TextField fx:id="pfContraseña" layoutX="19.0" layoutY="304.0" prefHeight="25.0" prefWidth="364.0" />
+      <Label layoutX="22.0" layoutY="329.0" prefHeight="35.0" prefWidth="373.0" text="NOTA: de 8 a 15 digitos, Minimo 1 Mayus, 1 Minus y 1 Caracter especial ($@$!%*?&amp;)" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Button layoutX="93.0" layoutY="453.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="67.0" text="Cerrar" />
    </children>
 </AnchorPane>

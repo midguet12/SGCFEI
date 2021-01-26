@@ -42,6 +42,7 @@ import pojos.Carrera;
 import pojos.Minuta;
 import sgcfei.menus.Coordinador.MenuController;
 import util.ControladorVentanas;
+import util.Validador;
 
 /**
  * FXML Controller class
@@ -243,7 +244,7 @@ public class RegistrarMinutaController implements Initializable {
         tfPeriodo.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.isEmpty()){
+                if(newValue.isEmpty() && Validador.validarPeriodo(newValue)){
                     tfPeriodo.setStyle("-fx-background-color: red;");
                     esInformacionValida = false;
                 }else{
@@ -350,5 +351,12 @@ public class RegistrarMinutaController implements Initializable {
     private void cargarParticipantes(){
         listaParticipantes.removeAll(academiscosParticipantes);
         listaParticipantes.addAll(academiscosParticipantes);
+    }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) btnAgregarAspecto.getScene().getWindow();
+        MenuController menuController = new MenuController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Menu.fxml", "Menu principal",menuController, stageActual);
     }
 }
