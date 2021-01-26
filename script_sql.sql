@@ -31,20 +31,8 @@ create table Academia (
 
 create table experienciaEducativa (
 	nrc int not null,
-	codigo varchar(20),
 	nombre varchar (50) not null,
-	areaFormacionPrincipal varchar(255),
-	areaFormacionSecundaria varchar(255),
-	creditos int,
-	teoria int,
-	practica int,
-	totalHoras int,
-	equivalencias varchar(255),
-	modalidad varchar(255),
-	oportunidadesEvaluacion varchar(255),
-	requisitos varchar(255),
-	coRequisitos varchar(255),
-	academia int not null,
+	idAcademia int not null,
 	primary key (nrc)
 );
 
@@ -72,7 +60,18 @@ create table ProgramaExperiencia(
 	idPrograma int not null,
 	idCampus int not null,
 	idDependencia int not null,
-	ncr int not null,
+	codigo int not null,
+	areaFormacionPrincipal varchar(255),
+	areaFormacionSecundaria varchar(255),
+	creditos int,
+	teoria int,
+	practica int,
+	totalHoras int,
+	equivalencias varchar(255),
+	modalidad varchar(255),
+	oportunidadesEvaluacion varchar(255),
+	requisitos varchar(255),
+	coRequisitos varchar(255),
 	individualGrupal varchar(20),
 	maximo int,
 	minimo int,
@@ -117,3 +116,4 @@ insert into campus(nombre) values ('Xalapa');
 insert into dependencia(nombre) values ('Facultad de estadistica e informatica');
 
 insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');
+insert into experienciaEducativa(nrc, nombre, idAcademia) values (18015,"Principios de diseño",9);

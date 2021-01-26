@@ -5,7 +5,11 @@
  */
 package sgcfei.menus.Coordinador.Programa.RegistrarPrograma;
 
+import accesodatos.AcademiaDAO;
+import accesodatos.CampusDAO;
+import accesodatos.DependenciaDAO;
 import accesodatos.ExperienciaEducativaDAO;
+import accesodatos.ProgramaEducativoDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -28,18 +32,22 @@ import pojos.ExperienciaEducativa;
 public class RegistrarProgramaController implements Initializable {
 
     @FXML
-    private ComboBox<?> areaAcademica;
+    private ComboBox<String> areaAcademica;
+    private ObservableList<String> areasAcademicas;
     @FXML
-    private ComboBox<?> programaEducativo;
+    private ComboBox<String> programaEducativo;
+    private ObservableList<String> programasEducativos;
     @FXML
-    private ComboBox<?> campus;
+    private ComboBox<String> campus;
+    private ObservableList<String> campuses;
     @FXML
-    private ComboBox<?> dependencia;
+    private ComboBox<String> dependencia;
+    private ObservableList<String> dependencias;
     @FXML
     private TextField nrc;
     @FXML
     private ComboBox<String> experienciaEducativa;
-    private ObservableList<ExperienciaEducativa> experienciasEducativas;
+    private ObservableList<String> experienciasEducativas;
     
     @FXML
     private TextField principal;
@@ -136,12 +144,33 @@ public class RegistrarProgramaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        AcademiaDAO academiaDAO = new AcademiaDAO();
+        areasAcademicas = FXCollections.observableArrayList(academiaDAO.obtenerNombres());
+        areaAcademica.setItems(areasAcademicas);
+        
+        ProgramaEducativoDAO programaEducativoDAO = new ProgramaEducativoDAO();
+        programasEducativos = FXCollections.observableArrayList(programaEducativoDAO.obtenerNombres());
+        programaEducativo.setItems(programasEducativos);
+        
+        CampusDAO campusDAO = new CampusDAO();
+        campuses = FXCollections.observableArrayList(campusDAO.obtenerNombres());
+        campus.setItems(campuses);
+        
+        DependenciaDAO dependenciaDAO = new DependenciaDAO();
+        dependencias = FXCollections.observableArrayList(dependenciaDAO.obtenerNombres());
+        dependencia.setItems(dependencias);
+        
+        
+        
+        ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
+        experienciasEducativas = FXCollections.observableArrayList(experienciaEducativaDAO.obtenerNombres());
+        experienciaEducativa.setItems(experienciasEducativas);
+        
     }    
 
     @FXML
     private void experienciaEducativa(ActionEvent event) {
-        /*ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
-        experienciasEducativas = FXCollections.observableArrayList()*/
     }
     
 

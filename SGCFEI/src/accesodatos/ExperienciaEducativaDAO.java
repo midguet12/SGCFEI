@@ -22,25 +22,14 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean insertar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "INSERT INTO experienciaEducativa(nrc, codigo, nombre, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, academia) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String consulta = "INSERT INTO experienciaEducativa(nrc, nombre, idAcademia) VALUES(?, ?, ?);";
         
         try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, experienciaEducativa.getNrc());
-            consultaPreparada.setString(2, experienciaEducativa.getCodigo());
-            consultaPreparada.setString(3, experienciaEducativa.getNombre());
-            consultaPreparada.setString(4, experienciaEducativa.getAreaFormacionPrincipal());
-            consultaPreparada.setString(5, experienciaEducativa.getAreaFormacionSecundaria());
-            consultaPreparada.setInt(6, experienciaEducativa.getCreditos());
-            consultaPreparada.setInt(7, experienciaEducativa.getTeoria());
-            consultaPreparada.setInt(8, experienciaEducativa.getPractica());
-            consultaPreparada.setInt(9, experienciaEducativa.getTotalHoras());
-            consultaPreparada.setString(10, experienciaEducativa.getEquivalencias());
-            consultaPreparada.setString(11, experienciaEducativa.getModalidad());
-            consultaPreparada.setString(12, experienciaEducativa.getOportunidadesEvaluacion());
-            consultaPreparada.setString(13, experienciaEducativa.getRequisitos());
-            consultaPreparada.setString(14, experienciaEducativa.getCoRequisitos());
-            consultaPreparada.setInt(15, experienciaEducativa.getIdAcademia());
+            consultaPreparada.setString(2, experienciaEducativa.getNombre());
+            consultaPreparada.setInt(3, experienciaEducativa.getIdAcademia());
+            
             
             filasModificadas = consultaPreparada.executeUpdate();
         }
@@ -74,20 +63,8 @@ public class ExperienciaEducativaDAO implements DAO{
             
             experienciaEducativa = new ExperienciaEducativa(
                     resultados.getInt("nrc"),
-                    resultados.getString("codigo"),
                     resultados.getString("nombre"),
-                    resultados.getString("areaFormacionPrincipal"),
-                    resultados.getString("areaFormacionSecundaria"),
-                    resultados.getInt("creditos"),
-                    resultados.getInt("teoria"),
-                    resultados.getInt("practica"),
-                    resultados.getInt("totalHoras"),
-                    resultados.getString("equivalencias"),
-                    resultados.getString("modalidad"),
-                    resultados.getString("oportunidadesEvaluacion"),
-                    resultados.getString("requisitos"),
-                    resultados.getString("coRequisitos"),
-                    resultados.getInt("academia"));
+                    resultados.getInt("idAcademia"));
         }
         catch (SQLException ex){    
             RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
@@ -108,25 +85,13 @@ public class ExperienciaEducativaDAO implements DAO{
     public boolean actualizar(ExperienciaEducativa experienciaEducativa) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE experienciaEducativa SET codigo = ?, nombre = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, Academia = ? where nrc = ?;";
+        String consulta = "UPDATE experienciaEducativa SET nombre = ?, idAcademia = ? where nrc = ?;";
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setString(1, experienciaEducativa.getCodigo());
-            consultaPreparada.setString(2, experienciaEducativa.getNombre());
-            consultaPreparada.setString(3, experienciaEducativa.getAreaFormacionPrincipal());
-            consultaPreparada.setString(4, experienciaEducativa.getAreaFormacionSecundaria());
-            consultaPreparada.setInt(5, experienciaEducativa.getCreditos());
-            consultaPreparada.setInt(6, experienciaEducativa.getTeoria());
-            consultaPreparada.setInt(7, experienciaEducativa.getPractica());
-            consultaPreparada.setInt(8, experienciaEducativa.getTotalHoras());
-            consultaPreparada.setString(9, experienciaEducativa.getEquivalencias());
-            consultaPreparada.setString(10, experienciaEducativa.getModalidad());
-            consultaPreparada.setString(11, experienciaEducativa.getOportunidadesEvaluacion());
-            consultaPreparada.setString(12, experienciaEducativa.getRequisitos());
-            consultaPreparada.setString(13, experienciaEducativa.getCoRequisitos());
-            consultaPreparada.setInt(14, experienciaEducativa.getIdAcademia());
-            consultaPreparada.setInt(15, experienciaEducativa.getNrc());
+            consultaPreparada.setString(1, experienciaEducativa.getNombre());
+            consultaPreparada.setInt(2, experienciaEducativa.getIdAcademia());
+            consultaPreparada.setInt(3, experienciaEducativa.getNrc());
             
             
             filasModificadas = consultaPreparada.executeUpdate();
@@ -182,20 +147,8 @@ public class ExperienciaEducativaDAO implements DAO{
                 while (resultados.next()) {
                     ExperienciaEducativa experienciaEducativa = new ExperienciaEducativa(
                     resultados.getInt("nrc"),
-                    resultados.getString("codigo"),
                     resultados.getString("nombre"),
-                    resultados.getString("areaFormacionPrincipal"),
-                    resultados.getString("areaFormacionSecundaria"),
-                    resultados.getInt("creditos"),
-                    resultados.getInt("teoria"),
-                    resultados.getInt("practica"),
-                    resultados.getInt("totalHoras"),
-                    resultados.getString("equivalencias"),
-                    resultados.getString("modalidad"),
-                    resultados.getString("oportunidadesEvaluacion"),
-                    resultados.getString("requisitos"),
-                    resultados.getString("coRequisitos"),
-                    resultados.getInt("academia"));
+                    resultados.getInt("idAcademia"));
 
                     experiencias.add(experienciaEducativa);
                 }
@@ -213,6 +166,36 @@ public class ExperienciaEducativaDAO implements DAO{
             }
 
             return experiencias;
+        }
+    
+        public List<String> obtenerNombres(){
+            List<String> nombres = new ArrayList<>();
+            conexion = db.obtenerConexion();
+            String consulta = "Select nombre from experienciaEducativa;";
+
+            try{
+                PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+                resultados = consultaPreparada.executeQuery();
+                while (resultados.next()){
+                    nombres.add(resultados.getString("nombre"));
+                }
+
+            }
+            catch (SQLException ex){    
+                RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+            } 
+            catch (NullPointerException ex){
+                RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+            }
+            catch (Exception ex){
+                RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+            }
+            finally{
+                db.cerrarConexion();
+            }
+
+
+            return nombres;
         }
     
 }
