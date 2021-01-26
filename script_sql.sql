@@ -56,11 +56,12 @@ create table dependencia(
 
 create table ProgramaExperiencia(
 	idProgramaEE int not null auto_increment,
-	idAcademia int not null,
-	idPrograma int not null,
-	idCampus int not null,
-	idDependencia int not null,
-	codigo int not null,
+	academia varchar(255) not null,
+	programa varchar(255) not null,
+	campus varchar(255) not null,
+	dependencia varchar(255) not null,
+	codigo varchar(255) not null,
+	nombreExperiencia varchar(255) not null,
 	areaFormacionPrincipal varchar(255),
 	areaFormacionSecundaria varchar(255),
 	creditos int,
