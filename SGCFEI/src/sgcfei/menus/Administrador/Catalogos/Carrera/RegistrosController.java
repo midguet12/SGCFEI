@@ -1,7 +1,6 @@
 package sgcfei.menus.Administrador.Catalogos.Carrera;
 
 import accesodatos.CarreraDAO;
-import accesodatos.LGCADAO;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
@@ -56,12 +54,12 @@ public class RegistrosController implements Initializable {
             if(respuesta.get().length() < 255){
                 CarreraDAO dao = new CarreraDAO();
                 dao.insertar(new Carrera(respuesta.get(), 1));
+            
+                cargarTabla();
                 
                 Alert alerta = ControladorVentanas.crearAlerta("Carrera agregada",
                             "La carrera se ha agregado correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
-                
-                cargarTabla();
             }
             else{
                 Alert alerta = ControladorVentanas.crearAlerta("Error",
