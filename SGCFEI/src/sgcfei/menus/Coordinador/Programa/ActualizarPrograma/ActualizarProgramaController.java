@@ -378,58 +378,7 @@ public class ActualizarProgramaController implements Initializable {
             programaExperiencia.setAcreditacion(acreditacionEntrada);
             programaExperiencia.setBibliografiaBasica(bibliografiaBasicaEntrada);
             programaExperiencia.setBibliografiaComplementaria(bibliografiaComplementariaEntrada);
-            
-
-         
-            
-            
-            /*ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
-                    idProgramaExperiencia,
-                    academiaEntrada,
-                    programaEntrada,
-                    campusEntrada,
-                    dependenciaEntrada,
-                    codigoEntrada,
-                    nombreExperienciaEntrada,
-                    areaFormacionPrincipalEntrada,
-                    areaFormacionSecundariaEntrada,
-
-                    Integer.parseInt(creditosEntrada),
-                    Integer.parseInt(teoriaEntrada),
-                    Integer.parseInt(practicaEntrada),  //Validar que sean enteros
-                    Integer.parseInt(totalHorasEntrada),
-
-                    equivalenciasEntrada,
-                    modalidadEntrada,
-                    oportunidadesEvaluacionEntrada,
-                    requisitosEntrada,
-                    coRequisitosEntrada,
-                    individualGrupalEntrada,
-
-                    Integer.parseInt(maximoEntrada),
-                    Integer.parseInt(minimoEntrada), //Validar que sean enteros
-
-                    agrupacionEntrada,
-                    proyectoEntrada,
-                    academicosEntrada,
-                    perfilEntrada,
-                    espacioEntrada,
-                    relacionEntrada,
-                    descripcionEntrada,
-                    justificacionEntrada,
-
-                    unidadCompetenciaEntrada,
-                    articulacionEntrada,
-                    teoricoEntrada,
-                    heuristicoEntrada,
-                    axiologicosEntrada,
-                    estrategiasAprendizajeEntrada,
-                    estrategiasEnsenanzaEntrada,
-                    materialesDidacticosEntrada,
-                    recursosDidacticosEntrada,
-                    acreditacionEntrada,
-                    bibliografiaBasicaEntrada,
-                    bibliografiaComplementariaEntrada);*/
+    
 
             ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
             programaExperienciaDAO.actualizar(programaExperiencia);
