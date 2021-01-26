@@ -13,7 +13,7 @@
       <columns>
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="101.0" text="ID" />
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="210.0" text="Experiencia Educativa" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="153.0" text="NRC" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="153.0" text="Codigo" />
       </columns>
     </TableView>
     <Button fx:id="agregar" layoutX="56.0" layoutY="329.0" mnemonicParsing="false" onAction="#agregar" text="Agregar" />

@@ -26,6 +26,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pojos.ExperienciaEducativa;
 import pojos.ProgramaExperiencia;
@@ -134,17 +135,9 @@ public class RegistrarProgramaController implements Initializable {
     @FXML
     private TableColumn<?, ?> criterio;
     @FXML
-    private TableColumn<?, ?> ambito;
-    @FXML
-    private TableColumn<?, ?> porcentaje;
-    @FXML
     private TextArea evidenciaEntrada;
     @FXML
     private TextArea criterioEntrada;
-    @FXML
-    private TextArea ambitoEntrada;
-    @FXML
-    private TextArea porcentajeEntrada;
     @FXML
     private Button agregarEvaluacion;
     @FXML
@@ -370,10 +363,6 @@ public class RegistrarProgramaController implements Initializable {
                 alerta.showAndWait();
             }
         }
-        
-        
-         
-        
     }
     
     
@@ -397,7 +386,7 @@ public class RegistrarProgramaController implements Initializable {
     
     private void cerrar(){
         Stage stageActual = (Stage) cancelar.getScene().getWindow();
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Catalogos/ExperienciaEducativa/Registros.fxml",
-                    "Catálogo de Experiencia Educativa", stageActual);
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/ConsultarPrograma.fxml",
+                    "Consultar programa", stageActual);
     }
 }
