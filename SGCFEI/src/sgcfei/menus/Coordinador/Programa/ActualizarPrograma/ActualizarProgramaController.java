@@ -123,6 +123,7 @@ public class ActualizarProgramaController implements Initializable {
     @FXML
     private TextArea porcentajeEntrada;
     ProgramaExperiencia programaExperiencia;
+    int idProgramaExperiencia;
 
     public ActualizarProgramaController(ProgramaExperiencia programaExperiencia) {
         this.programaExperiencia = programaExperiencia;
@@ -136,7 +137,7 @@ public class ActualizarProgramaController implements Initializable {
         
 //        ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
 //        programaExperiencia = programaExperienciaDAO.obtener(2);
-        
+        idProgramaExperiencia = programaExperiencia.getIdProgramaEE();
         principal.setText(programaExperiencia.getAreaFormacionPrincipal());
         secundaria.setText(programaExperiencia.getAreaFormacionSecundaria());
         creditos.setText(String.valueOf(programaExperiencia.getCreditos()));
@@ -170,6 +171,7 @@ public class ActualizarProgramaController implements Initializable {
         acreditacion.setText(programaExperiencia.getAcreditacion());
         bibliografiaBasica.setText(programaExperiencia.getBibliografiaBasica());
         bibliografiaComplementaria.setText(programaExperiencia.getBibliografiaComplementaria());
+        
     }    
 
     @FXML
@@ -294,6 +296,7 @@ public class ActualizarProgramaController implements Initializable {
             if (datosCorrectos) {
                 
                 ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                        idProgramaExperiencia,
                         academiaEntrada,
                         programaEntrada,
                         campusEntrada,
