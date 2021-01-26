@@ -138,6 +138,12 @@ public class ActualizarProgramaController implements Initializable {
 //        ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
 //        programaExperiencia = programaExperienciaDAO.obtener(2);
         idProgramaExperiencia = programaExperiencia.getIdProgramaEE();
+        areaAcademica.getSelectionModel().select(programaExperiencia.getAcademia());
+        programaEducativo.getSelectionModel().select(programaExperiencia.getPrograma());
+        campus.getSelectionModel().select(programaExperiencia.getCampus());
+        dependencia.getSelectionModel().select(programaExperiencia.getDependencia());
+        experienciaEducativa.getSelectionModel().select(programaExperiencia.getNombreExperiencia());
+        codigo.setText(programaExperiencia.getCodigo());
         principal.setText(programaExperiencia.getAreaFormacionPrincipal());
         secundaria.setText(programaExperiencia.getAreaFormacionSecundaria());
         creditos.setText(String.valueOf(programaExperiencia.getCreditos()));
@@ -149,6 +155,9 @@ public class ActualizarProgramaController implements Initializable {
         oportunidadesEvaluacion.setText(programaExperiencia.getOportunidadesEvaluacion());
         prerequisitos.setText(programaExperiencia.getRequisitos());
         corequisitos.setText(programaExperiencia.getCoRequisitos());
+        
+        individualGrupal.getSelectionModel().select(programaExperiencia.getIndividualGrupal());
+        
         maximo.setText(String.valueOf(programaExperiencia.getMaximo()));
         minimo.setText(String.valueOf(programaExperiencia.getMinimo()));
         agrupacion.setText(programaExperiencia.getAgrupacion());
