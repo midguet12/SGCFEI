@@ -263,7 +263,7 @@ public class ActualizarProgramaController implements Initializable {
         
         
         
-        if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
+        /*if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
             datosCorrectos = false;
             
         }
@@ -329,6 +329,7 @@ public class ActualizarProgramaController implements Initializable {
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
+        */
         if (datosCorrectos) {
             
             programaExperiencia.setIdProgramaEE(idProgramaExperiencia);
@@ -434,7 +435,7 @@ public class ActualizarProgramaController implements Initializable {
             programaExperienciaDAO.actualizar(programaExperiencia);
 
             Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                    "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+                    "Se ha guardado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
             alerta.showAndWait();
 
             cerrar();
