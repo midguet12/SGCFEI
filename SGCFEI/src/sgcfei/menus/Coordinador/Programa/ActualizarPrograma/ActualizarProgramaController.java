@@ -344,7 +344,7 @@ public class ActualizarProgramaController implements Initializable {
                         bibliografiaComplementariaEntrada);
                 
                 ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-                programaExperienciaDAO.insertar(programaExperiencia);
+                programaExperienciaDAO.actualizar(programaExperiencia);
                 
                 Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                         "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
