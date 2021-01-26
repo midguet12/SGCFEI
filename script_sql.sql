@@ -89,7 +89,7 @@ create table ProgramaExperiencia(
 	justificacion varchar(255),
 	unidadCompetencia varchar(255),
 	articulacion varchar(255),
-	saberTeorico varchar(255),
+	teorico varchar(255),
 	heuristico varchar(255),
 	axiologicos varchar(255),
 	estrategiasAprendizaje varchar(255),
