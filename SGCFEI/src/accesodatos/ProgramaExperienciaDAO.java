@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package accesodatos;
 
 import database.ConexionDB;
@@ -16,10 +11,6 @@ import java.util.List;
 import pojos.ProgramaExperiencia;
 import util.RegistroExcepciones;
 
-/**
- *
- * @author midgu
- */
 public class ProgramaExperienciaDAO implements DAO{
    private ConexionDB db;
    private Connection conexion;

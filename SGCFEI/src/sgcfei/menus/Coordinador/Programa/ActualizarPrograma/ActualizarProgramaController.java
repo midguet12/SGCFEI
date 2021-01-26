@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sgcfei.menus.Coordinador.Programa.ActualizarPrograma;
 
 import accesodatos.ProgramaExperienciaDAO;
@@ -25,11 +20,6 @@ import pojos.ProgramaExperiencia;
 import util.ControladorVentanas;
 import util.Validador;
 
-/**
- * FXML Controller class
- *
- * @author midgu
- */
 public class ActualizarProgramaController implements Initializable {
 
     @FXML
@@ -132,15 +122,20 @@ public class ActualizarProgramaController implements Initializable {
     private TextArea criterioEntrada;
     @FXML
     private TextArea porcentajeEntrada;
+    ProgramaExperiencia programaExperiencia;
 
-    /**
-     * Initializes the controller class.
-     */
+    public ActualizarProgramaController(ProgramaExperiencia programaExperiencia) {
+        this.programaExperiencia = programaExperiencia;
+    }
+
+    public ActualizarProgramaController() {
+    }
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-        ProgramaExperiencia programaExperiencia = programaExperienciaDAO.obtener(2);
+//        ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
+//        programaExperiencia = programaExperienciaDAO.obtener(2);
         
         principal.setText(programaExperiencia.getAreaFormacionPrincipal());
         secundaria.setText(programaExperiencia.getAreaFormacionSecundaria());
@@ -175,15 +170,6 @@ public class ActualizarProgramaController implements Initializable {
         acreditacion.setText(programaExperiencia.getAcreditacion());
         bibliografiaBasica.setText(programaExperiencia.getBibliografiaBasica());
         bibliografiaComplementaria.setText(programaExperiencia.getBibliografiaComplementaria());
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }    
 
     @FXML

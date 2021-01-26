@@ -1,32 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sgcfei.menus.Coordinador.Programa;
 
+import accesodatos.ProgramaExperienciaDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sgcfei.menus.Coordinador.Programa.RegistrarPrograma.RegistrarProgramaController;
+import pojos.ProgramaExperiencia;
+import sgcfei.menus.Coordinador.Programa.ActualizarPrograma.ActualizarProgramaController;
 import util.ControladorVentanas;
 
-/**
- * FXML Controller class
- *
- * @author midgu
- */
 public class ConsultarProgramaController implements Initializable {
-    
-    public ConsultarProgramaController(){
-        
-    }
-    
+
+    @FXML
+    private TableView<ProgramaExperiencia> tabla;
+    @FXML
+    private TableColumn<ProgramaExperiencia, String> cExperiencia;
+    @FXML
+    private TableColumn<ProgramaExperiencia, String> cCodigo;
     @FXML
     private Button agregar;
     @FXML
@@ -35,25 +34,23 @@ public class ConsultarProgramaController implements Initializable {
     private Button actualizar;
     @FXML
     private Button eliminar;
+    private ObservableList<ProgramaExperiencia> listaExperiencias;
+        
+    public ConsultarProgramaController(){
+       
+    }
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cargarTabla();
     }    
 
     @FXML
     private void agregar(ActionEvent event) {
-        RegistrarProgramaController registrarProgramaController = new RegistrarProgramaController();
         Stage stageActual = (Stage) agregar.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/RegistrarPrograma/RegistrarPrograma.fxml", "Registrar Programa", stageActual);
-        
-        
-    }
 
-    
+    }
 
     @FXML
     private void consultar(ActionEvent event) {
@@ -61,10 +58,36 @@ public class ConsultarProgramaController implements Initializable {
 
     @FXML
     private void actualizar(ActionEvent event) {
+        if(validarSeleccion()){
+            ProgramaExperiencia pExp = tabla.getSelectionModel().getSelectedItem();
+            Stage stageActual = (Stage) agregar.getScene().getWindow();
+            ActualizarProgramaController controlador = new ActualizarProgramaController(pExp);
+            ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Programa/ActualizarPrograma/ActualizarPrograma.fxml",
+                    "Editar Academia", controlador, stageActual);
+        }
     }
 
     @FXML
     private void eliminar(ActionEvent event) {
     }
+
+    private void cargarTabla() {
+        ProgramaExperienciaDAO dao = new ProgramaExperienciaDAO();
+        listaExperiencias = FXCollections.observableArrayList();
+        
+        cExperiencia.setCellValueFactory(new PropertyValueFactory<>("nombreExperiencia"));
+        cCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        listaExperiencias.addAll(dao.obtenerTodosProgramasEE());
+        tabla.setItems(listaExperiencias);
+    }
     
+    private boolean validarSeleccion(){
+        if(tabla.getSelectionModel().isEmpty()){
+            Alert alerta = ControladorVentanas.crearAlerta("Elemento no seleccionado",
+                       "Debe seleccionar un elemento de la tabla", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+            return false;
+        }
+        return true;
+    }
 }
