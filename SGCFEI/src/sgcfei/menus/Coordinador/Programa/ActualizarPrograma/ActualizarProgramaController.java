@@ -263,7 +263,7 @@ public class ActualizarProgramaController implements Initializable {
         
         
         
-        if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
+        /*if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
             datosCorrectos = false;
             
         }
@@ -339,61 +339,62 @@ public class ActualizarProgramaController implements Initializable {
                     "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
         }
+        */
         if (datosCorrectos) {
-
-            ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
-                    idProgramaExperiencia,
-                    academiaEntrada,
-                    programaEntrada,
-                    campusEntrada,
-                    dependenciaEntrada,
-                    codigoEntrada,
-                    nombreExperienciaEntrada,
-                    areaFormacionPrincipalEntrada,
-                    areaFormacionSecundariaEntrada,
-
-                    Integer.parseInt(creditosEntrada),
-                    Integer.parseInt(teoriaEntrada),
-                    Integer.parseInt(practicaEntrada),  //Validar que sean enteros
-                    Integer.parseInt(totalHorasEntrada),
-
-                    equivalenciasEntrada,
-                    modalidadEntrada,
-                    oportunidadesEvaluacionEntrada,
-                    requisitosEntrada,
-                    coRequisitosEntrada,
-                    individualGrupalEntrada,
-
-                    Integer.parseInt(maximoEntrada),
-                    Integer.parseInt(minimoEntrada), //Validar que sean enteros
-
-                    agrupacionEntrada,
-                    proyectoEntrada,
-                    academicosEntrada,
-                    perfilEntrada,
-                    espacioEntrada,
-                    relacionEntrada,
-                    descripcionEntrada,
-                    justificacionEntrada,
-
-                    unidadCompetenciaEntrada,
-                    articulacionEntrada,
-                    teoricoEntrada,
-                    heuristicoEntrada,
-                    axiologicosEntrada,
-                    estrategiasAprendizajeEntrada,
-                    estrategiasEnsenanzaEntrada,
-                    materialesDidacticosEntrada,
-                    recursosDidacticosEntrada,
-                    acreditacionEntrada,
-                    bibliografiaBasicaEntrada,
-                    bibliografiaComplementariaEntrada);
+            
+            programaExperiencia.setIdProgramaEE(idProgramaExperiencia);
+            programaExperiencia.setAcademia(academiaEntrada);
+            programaExperiencia.setPrograma(programaEntrada);
+            programaExperiencia.setCampus(campusEntrada);
+            programaExperiencia.setDependencia(dependenciaEntrada);
+            programaExperiencia.setCodigo(codigoEntrada);
+            programaExperiencia.setNombreExperiencia(nombreExperienciaEntrada);
+            programaExperiencia.setAreaFormacionPrincipal(areaFormacionPrincipalEntrada);
+            programaExperiencia.setAreaFormacionSecundaria(areaFormacionSecundariaEntrada);
+            
+            programaExperiencia.setCreditos(Integer.parseInt(creditosEntrada));
+            programaExperiencia.setTeoria(Integer.parseInt(teoriaEntrada));
+            programaExperiencia.setPractica(Integer.parseInt(practicaEntrada));
+            programaExperiencia.setTotalHoras(Integer.parseInt(totalHorasEntrada));
+            
+            programaExperiencia.setEquivalencias(equivalenciasEntrada);
+            programaExperiencia.setModalidad(modalidadEntrada);
+            programaExperiencia.setOportunidadesEvaluacion(oportunidadesEvaluacionEntrada);
+            programaExperiencia.setRequisitos(requisitosEntrada);
+            programaExperiencia.setCoRequisitos(coRequisitosEntrada);
+            programaExperiencia.setIndividualGrupal(individualGrupalEntrada);
+            
+            programaExperiencia.setMaximo(Integer.parseInt(maximoEntrada));
+            programaExperiencia.setMinimo(Integer.parseInt(minimoEntrada));
+            
+            programaExperiencia.setAgrupacion(agrupacionEntrada);
+            programaExperiencia.setProyecto(proyectoEntrada);
+            programaExperiencia.setAcademicos(academicosEntrada);
+            programaExperiencia.setPerfil(perfilEntrada);
+            programaExperiencia.setEspacio(espacioEntrada);
+            programaExperiencia.setRelacionDisciplinaria(relacionEntrada);
+            programaExperiencia.setDescripcion(descripcionEntrada);
+            programaExperiencia.setJustificacion(justificacionEntrada);
+            
+            programaExperiencia.setUnidadCompetencia(unidadCompetenciaEntrada);
+            programaExperiencia.setArticulacion(articulacionEntrada);
+            programaExperiencia.setTeorico(teoricoEntrada);
+            programaExperiencia.setHeuristico(heuristicoEntrada);
+            programaExperiencia.setAxiologicos(axiologicosEntrada);
+            programaExperiencia.setEstrategiasAprendizaje(estrategiasAprendizajeEntrada);
+            programaExperiencia.setEstrategiasEnsenanza(estrategiasEnsenanzaEntrada);
+            programaExperiencia.setMaterialesDidacticos(materialesDidacticosEntrada);
+            programaExperiencia.setRecursosDidacticos(recursosDidacticosEntrada);
+            programaExperiencia.setAcreditacion(acreditacionEntrada);
+            programaExperiencia.setBibliografiaBasica(bibliografiaBasicaEntrada);
+            programaExperiencia.setBibliografiaComplementaria(bibliografiaComplementariaEntrada);
+    
 
             ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
             programaExperienciaDAO.actualizar(programaExperiencia);
 
             Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                    "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+                    "Se ha guardado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
             alerta.showAndWait();
 
             cerrar();
