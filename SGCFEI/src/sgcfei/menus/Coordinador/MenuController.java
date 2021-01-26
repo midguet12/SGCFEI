@@ -2,6 +2,7 @@ package sgcfei.menus.Coordinador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -68,5 +69,11 @@ public class MenuController implements Initializable {
         Stage stageActual = (Stage)  consultarProgramaExperiencia.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/ConsultarPrograma.fxml", "Consultar programa", stageActual);
         
+    }
+
+    @FXML
+    private void clicBotonCerrarSesion(ActionEvent event) {
+        Stage stageActual = (Stage)  consultarProgramaExperiencia.getScene().getWindow();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Login.fxml", "Login", stageActual);
     }
 }

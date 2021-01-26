@@ -42,5 +42,6 @@
         <Button fx:id="consultarProgramaExperiencia" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanEstudios" text="Consultar" />
       </children>
     </HBox>
+      <Button mnemonicParsing="false" onAction="#clicBotonCerrarSesion" text="Cerrar sesion" />
   </children>
 </VBox>
