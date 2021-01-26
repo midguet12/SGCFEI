@@ -355,6 +355,8 @@ public class RegistrarProgramaController implements Initializable {
                         "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
                 
+                cerrar();
+                
                 
                 
             } else {
