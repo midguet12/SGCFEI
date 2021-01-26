@@ -24,41 +24,7 @@ public class ProgramaExperienciaDAO implements DAO{
    private ConexionDB db;
    private Connection conexion;
    private ResultSet resultados;
-   /*
-        idProgramaEE int not null auto_increment,
-	idAcademia int not null,
-	idPrograma int not null,
-	idCampus int not null,
-	idDependencia int not null,
-	ncr int not null,
-	individualGrupal varchar(20),
-	maximo int,
-	minimo int,
-	agrupacion varchar(255),
-	proyecto varchar(255),
-	elaboracion date,
-	modificacion date,
-	aprobacion date,
-	academicos varchar(255),
-	perfil varchar(255),
-	espacio varchar(30),
-	relacionDisciplinaria varchar(30),
-	descripcion varchar(255),
-	justificacion varchar(255),
-	unidadCompetencia varchar(255),
-	articulacion varchar(255),
-	saberTeorico varchar(255),
-	heuristico varchar(255),
-	axiologicos varchar(255),
-	estrategiasAprendizaje varchar(255),
-	estrategiasEnsenanza varchar(255),
-	materialesDidacticos varchar(255),
-	recursosDidacticos varchar(255),
-	acreditacion varchar(255),
-	bibliografiaBasica varchar(255),
-	bibliografiaComplementaria varchar(255),
-	primary key(idProgramaEE)
-   */
+   
    
    public ProgramaExperienciaDAO(){
        db = new ConexionDB();
@@ -68,41 +34,49 @@ public class ProgramaExperienciaDAO implements DAO{
    public boolean insertar(ProgramaExperiencia programaExperiencia){
        int filasModificadas = 0;
        conexion = db.obtenerConexion();
-       String consulta = "INSERT INTO experienciaEducativa(idAcademia, idPrograma, idCampus, idDependencia, ncr, individualGrupal, maximo, minimo, proyecto, elaboracion, modificacion, aprobacion, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, saberTeorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+       String consulta = "insert into programaExperiencia values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
        try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, programaExperiencia.getIdAcademia());
-            consultaPreparada.setInt(2, programaExperiencia.getPrograma());
-            consultaPreparada.setInt(3, programaExperiencia.getCampus());
-            consultaPreparada.setInt(4, programaExperiencia.getIdDependencia());
-            consultaPreparada.setInt(5, programaExperiencia.getNcr());
-            consultaPreparada.setString(6, programaExperiencia.getIndividualGrupal());
-            consultaPreparada.setInt(7, programaExperiencia.getMaximo());
-            consultaPreparada.setInt(8, programaExperiencia.getMinimo());
-            consultaPreparada.setString(9, programaExperiencia.getProyecto());
-            consultaPreparada.setDate(10, programaExperiencia.getElaboracion());
-            consultaPreparada.setDate(11, programaExperiencia.getModificacion());
-            consultaPreparada.setDate(12, programaExperiencia.getAprobacion());
-            consultaPreparada.setString(13, programaExperiencia.getAcademicos());
-            consultaPreparada.setString(14, programaExperiencia.getPerfil());
-            consultaPreparada.setString(15, programaExperiencia.getEspacio());
-            consultaPreparada.setString(15, programaExperiencia.getRelacionDisciplinaria());
-            consultaPreparada.setString(16, programaExperiencia.getDescripcion());
-            consultaPreparada.setString(17, programaExperiencia.getJustificacion());
-            consultaPreparada.setString(18, programaExperiencia.getUnidadCompetencia());
-            consultaPreparada.setString(19, programaExperiencia.getArticulacion());
-            consultaPreparada.setString(20, programaExperiencia.getSaberTeorico());
-            consultaPreparada.setString(21, programaExperiencia.getHeuristico());
-            consultaPreparada.setString(22, programaExperiencia.getAxiologicos());
-            consultaPreparada.setString(23, programaExperiencia.getEstrategiasAprendizaje());
-            consultaPreparada.setString(24, programaExperiencia.getEstrategiasEnsenanza());
-            consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
-            consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
-            consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
-            consultaPreparada.setString(28, programaExperiencia.getAcreditacion());
-            consultaPreparada.setString(29, programaExperiencia.getBibliografiaBasica());
-            consultaPreparada.setString(30, programaExperiencia.getBibliografiaComplementaria());
-            
+            consultaPreparada.setString(1, programaExperiencia.getAcademia());
+            consultaPreparada.setString(2, programaExperiencia.getPrograma());
+            consultaPreparada.setString(3, programaExperiencia.getCampus());
+            consultaPreparada.setString(4, programaExperiencia.getDependencia());
+            consultaPreparada.setString(5, programaExperiencia.getCodigo());
+            consultaPreparada.setString(6, programaExperiencia.getNombreExperiencia());
+            consultaPreparada.setString(7, programaExperiencia.getAreaFormacionPrincipal());
+            consultaPreparada.setString(8, programaExperiencia.getAreaFormacionSecundaria());
+            consultaPreparada.setInt(9, programaExperiencia.getCreditos());
+            consultaPreparada.setInt(10, programaExperiencia.getTeoria());
+            consultaPreparada.setInt(11, programaExperiencia.getPractica());
+            consultaPreparada.setInt(12, programaExperiencia.getTotalHoras());
+            consultaPreparada.setString(13, programaExperiencia.getEquivalencias());
+            consultaPreparada.setString(14, programaExperiencia.getModalidad());
+            consultaPreparada.setString(15, programaExperiencia.getOportunidadesEvaluacion());
+            consultaPreparada.setString(16, programaExperiencia.getRequisitos());
+            consultaPreparada.setString(17, programaExperiencia.getCoRequisitos());
+            consultaPreparada.setString(18, programaExperiencia.getIndividualGrupal());
+            consultaPreparada.setInt(19, programaExperiencia.getMaximo());
+            consultaPreparada.setInt(20, programaExperiencia.getMinimo());
+            consultaPreparada.setString(21, programaExperiencia.getAgrupacion());
+            consultaPreparada.setString(22, programaExperiencia.getProyecto());
+            consultaPreparada.setString(23, programaExperiencia.getAcademicos());
+            consultaPreparada.setString(24, programaExperiencia.getPerfil());
+            consultaPreparada.setString(25, programaExperiencia.getEspacio());
+            consultaPreparada.setString(26, programaExperiencia.getRelacionDisciplinaria());
+            consultaPreparada.setString(27, programaExperiencia.getDescripcion());
+            consultaPreparada.setString(28, programaExperiencia.getJustificacion());
+            consultaPreparada.setString(29, programaExperiencia.getUnidadCompetencia());
+            consultaPreparada.setString(30, programaExperiencia.getArticulacion());
+            consultaPreparada.setString(31, programaExperiencia.getTeorico());
+            consultaPreparada.setString(32, programaExperiencia.getHeuristico());
+            consultaPreparada.setString(33, programaExperiencia.getAxiologicos());
+            consultaPreparada.setString(34, programaExperiencia.getEstrategiasAprendizaje());
+            consultaPreparada.setString(35, programaExperiencia.getEstrategiasEnsenanza());
+            consultaPreparada.setString(36, programaExperiencia.getMaterialesDidacticos());
+            consultaPreparada.setString(37, programaExperiencia.getRecursosDidacticos());
+            consultaPreparada.setString(38, programaExperiencia.getAcreditacion());
+            consultaPreparada.setString(39, programaExperiencia.getBibliografiaBasica());
+            consultaPreparada.setString(40, programaExperiencia.getBibliografiaComplementaria());
             
             
             
@@ -142,19 +116,28 @@ public class ProgramaExperienciaDAO implements DAO{
             resultados.next();
             
             programaExperiencia = new ProgramaExperiencia(
-                    resultados.getInt("idProgramaEE"),
-                    resultados.getInt("idAcademia"),
-                    resultados.getInt("idPrograma"),
-                    resultados.getInt("idCampus"),
-                    resultados.getInt("idDependencia"),
-                    resultados.getInt("ncr"),
+                    resultados.getString("academia"),
+                    resultados.getString("programa"),
+                    resultados.getString("campus"),
+                    resultados.getString("dependencia"),
+                    resultados.getString("codigo"),
+                    resultados.getString("nombreExperiencia"),
+                    resultados.getString("areaFormacionPrincipal"),
+                    resultados.getString("areaFormacionSecundaria"),
+                    resultados.getInt("creditos"),
+                    resultados.getInt("teoria"),
+                    resultados.getInt("practica"),
+                    resultados.getInt("totalHoras"),
+                    resultados.getString("equivalencias"),
+                    resultados.getString("modalidad"),
+                    resultados.getString("oportunidadesEvaluacion"),
+                    resultados.getString("requisitos"),
+                    resultados.getString("coRequisitos"),
                     resultados.getString("individualGrupal"),
                     resultados.getInt("maximo"),
                     resultados.getInt("minimo"),
+                    resultados.getString("agrupacion"),
                     resultados.getString("proyecto"),
-                    resultados.getDate("elaboracion"),
-                    resultados.getDate("modificacion"),
-                    resultados.getDate("aprobacion"),
                     resultados.getString("academicos"),
                     resultados.getString("perfil"),
                     resultados.getString("espacio"),
@@ -163,7 +146,7 @@ public class ProgramaExperienciaDAO implements DAO{
                     resultados.getString("justificacion"),
                     resultados.getString("unidadCompetencia"),
                     resultados.getString("articulacion"),
-                    resultados.getString("saberTeorico"),
+                    resultados.getString("teorico"),
                     resultados.getString("heuristico"),
                     resultados.getString("axiologicos"),
                     resultados.getString("estrategiasAprendizaje"),
@@ -173,8 +156,6 @@ public class ProgramaExperienciaDAO implements DAO{
                     resultados.getString("acreditacion"),
                     resultados.getString("bibliografiaBasica"),
                     resultados.getString("bibliografiaComplementaria"));
-                    
-                    
                     
                     
         }
@@ -197,43 +178,53 @@ public class ProgramaExperienciaDAO implements DAO{
     public boolean actualizar(ProgramaExperiencia programaExperiencia) {
         int filasModificadas = 0;
         conexion = db.obtenerConexion();
-        String consulta = "UPDATE programaExperiencia SET idAcademia = ?, idPrograma = ?, idCampus = ?, idDependencia = ?, ncr = ?, individualGrupal = ?, maximo = ?, minimo = ?, proyecto = ?, elaboracion = ?, modificacion = ?, aprobacion = ?, academicos = ?, perfil = ?, espacio = ?, relacionDisciplinaria = ?, descripcion = ?, justificacion = ?, unidadCompetencia = ?, articulacion = ?, saberTeorico = ?, heuristico = ?, axiologicos = ?, estrategiasAprendizaje = ?, estrategiasEnsenanza = ?, materialesDidacticos = ?, recursosDidacticos = ?, acreditacion = ?, bibliografiaBasica = ?, bibliografiaComplementaria = ? where idProgramaEE = ?;";
+        String consulta = "update programaExperiencia set academia = ?, programa = ?, campus = ?, dependencia = ?, codigo = ?, nombreExperiencia = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, individualGrupal = ?, maximo = ?, minimo = ?, agrupacion = ?, proyecto = ?, academicos = ?, perfil = ?, espacio = ?, relacionDisciplinaria = ?, descripcion = ?, justificacion = ?, unidadCompetencia = ?, articulacion = ?, teorico = ?, heuristico = ?, axiologicos = ?, estrategiasAprendizaje = ?, estrategiasEnsenanza = ?, materialesDidacticos = ?, recursosDidacticos = ?, acreditacion = ?, bibliografiaBasica = ?, bibliografiaComplementaria = ? where idProgramaEE = ?;";
+        
         
         
          try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
-            consultaPreparada.setInt(1, programaExperiencia.getIdAcademia());
-            consultaPreparada.setInt(2, programaExperiencia.getPrograma());
-            consultaPreparada.setInt(3, programaExperiencia.getCampus());
-            consultaPreparada.setInt(4, programaExperiencia.getIdDependencia());
-            consultaPreparada.setInt(5, programaExperiencia.getNcr());
-            consultaPreparada.setString(6, programaExperiencia.getIndividualGrupal());
-            consultaPreparada.setInt(7, programaExperiencia.getMaximo());
-            consultaPreparada.setInt(8, programaExperiencia.getMinimo());
-            consultaPreparada.setString(9, programaExperiencia.getProyecto());
-            consultaPreparada.setDate(10, programaExperiencia.getElaboracion());
-            consultaPreparada.setDate(11, programaExperiencia.getModificacion());
-            consultaPreparada.setDate(12, programaExperiencia.getAprobacion());
-            consultaPreparada.setString(13, programaExperiencia.getAcademicos());
-            consultaPreparada.setString(14, programaExperiencia.getPerfil());
-            consultaPreparada.setString(15, programaExperiencia.getEspacio());
-            consultaPreparada.setString(15, programaExperiencia.getRelacionDisciplinaria());
-            consultaPreparada.setString(16, programaExperiencia.getDescripcion());
-            consultaPreparada.setString(17, programaExperiencia.getJustificacion());
-            consultaPreparada.setString(18, programaExperiencia.getUnidadCompetencia());
-            consultaPreparada.setString(19, programaExperiencia.getArticulacion());
-            consultaPreparada.setString(20, programaExperiencia.getSaberTeorico());
-            consultaPreparada.setString(21, programaExperiencia.getHeuristico());
-            consultaPreparada.setString(22, programaExperiencia.getAxiologicos());
-            consultaPreparada.setString(23, programaExperiencia.getEstrategiasAprendizaje());
-            consultaPreparada.setString(24, programaExperiencia.getEstrategiasEnsenanza());
-            consultaPreparada.setString(25, programaExperiencia.getMaterialesDidacticos());
-            consultaPreparada.setString(26, programaExperiencia.getMaterialesDidacticos());
-            consultaPreparada.setString(27, programaExperiencia.getRecursosDidacticos());
-            consultaPreparada.setString(28, programaExperiencia.getAcreditacion());
-            consultaPreparada.setString(29, programaExperiencia.getBibliografiaBasica());
-            consultaPreparada.setString(30, programaExperiencia.getBibliografiaComplementaria());
-            consultaPreparada.setInt(31, programaExperiencia.getIdProgramaEE());
+            consultaPreparada.setString(1, programaExperiencia.getAcademia());
+            consultaPreparada.setString(2, programaExperiencia.getPrograma());
+            consultaPreparada.setString(3, programaExperiencia.getCampus());
+            consultaPreparada.setString(4, programaExperiencia.getDependencia());
+            consultaPreparada.setString(5, programaExperiencia.getCodigo());
+            consultaPreparada.setString(6, programaExperiencia.getNombreExperiencia());
+            consultaPreparada.setString(7, programaExperiencia.getAreaFormacionPrincipal());
+            consultaPreparada.setString(8, programaExperiencia.getAreaFormacionSecundaria());
+            consultaPreparada.setInt(9, programaExperiencia.getCreditos());
+            consultaPreparada.setInt(10, programaExperiencia.getTeoria());
+            consultaPreparada.setInt(11, programaExperiencia.getPractica());
+            consultaPreparada.setInt(12, programaExperiencia.getTotalHoras());
+            consultaPreparada.setString(13, programaExperiencia.getEquivalencias());
+            consultaPreparada.setString(14, programaExperiencia.getModalidad());
+            consultaPreparada.setString(15, programaExperiencia.getOportunidadesEvaluacion());
+            consultaPreparada.setString(16, programaExperiencia.getRequisitos());
+            consultaPreparada.setString(17, programaExperiencia.getCoRequisitos());
+            consultaPreparada.setString(18, programaExperiencia.getIndividualGrupal());
+            consultaPreparada.setInt(19, programaExperiencia.getMaximo());
+            consultaPreparada.setInt(20, programaExperiencia.getMinimo());
+            consultaPreparada.setString(21, programaExperiencia.getAgrupacion());
+            consultaPreparada.setString(22, programaExperiencia.getProyecto());
+            consultaPreparada.setString(23, programaExperiencia.getAcademicos());
+            consultaPreparada.setString(24, programaExperiencia.getPerfil());
+            consultaPreparada.setString(25, programaExperiencia.getEspacio());
+            consultaPreparada.setString(26, programaExperiencia.getRelacionDisciplinaria());
+            consultaPreparada.setString(27, programaExperiencia.getDescripcion());
+            consultaPreparada.setString(28, programaExperiencia.getJustificacion());
+            consultaPreparada.setString(29, programaExperiencia.getUnidadCompetencia());
+            consultaPreparada.setString(30, programaExperiencia.getArticulacion());
+            consultaPreparada.setString(31, programaExperiencia.getTeorico());
+            consultaPreparada.setString(32, programaExperiencia.getHeuristico());
+            consultaPreparada.setString(33, programaExperiencia.getAxiologicos());
+            consultaPreparada.setString(34, programaExperiencia.getEstrategiasAprendizaje());
+            consultaPreparada.setString(35, programaExperiencia.getEstrategiasEnsenanza());
+            consultaPreparada.setString(36, programaExperiencia.getMaterialesDidacticos());
+            consultaPreparada.setString(37, programaExperiencia.getRecursosDidacticos());
+            consultaPreparada.setString(38, programaExperiencia.getAcreditacion());
+            consultaPreparada.setString(39, programaExperiencia.getBibliografiaBasica());
+            consultaPreparada.setString(40, programaExperiencia.getBibliografiaComplementaria());
+            consultaPreparada.setInt(41, programaExperiencia.getIdProgramaEE());
             
             
             filasModificadas = consultaPreparada.executeUpdate();
@@ -289,19 +280,28 @@ public class ProgramaExperienciaDAO implements DAO{
             resultados = consultaPreparada.executeQuery(); 
             while (resultados.next()) {
                 ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
-                    resultados.getInt("idProgramaEE"),
-                    resultados.getInt("idAcademia"),
-                    resultados.getInt("idPrograma"),
-                    resultados.getInt("idCampus"),
-                    resultados.getInt("idDependencia"),
-                    resultados.getInt("ncr"),
+                    resultados.getString("academia"),
+                    resultados.getString("programa"),
+                    resultados.getString("campus"),
+                    resultados.getString("dependencia"),
+                    resultados.getString("codigo"),
+                    resultados.getString("nombreExperiencia"),
+                    resultados.getString("areaFormacionPrincipal"),
+                    resultados.getString("areaFormacionSecundaria"),
+                    resultados.getInt("creditos"),
+                    resultados.getInt("teoria"),
+                    resultados.getInt("practica"),
+                    resultados.getInt("totalHoras"),
+                    resultados.getString("equivalencias"),
+                    resultados.getString("modalidad"),
+                    resultados.getString("oportunidadesEvaluacion"),
+                    resultados.getString("requisitos"),
+                    resultados.getString("coRequisitos"),
                     resultados.getString("individualGrupal"),
                     resultados.getInt("maximo"),
                     resultados.getInt("minimo"),
+                    resultados.getString("agrupacion"),
                     resultados.getString("proyecto"),
-                    resultados.getDate("elaboracion"),
-                    resultados.getDate("modificacion"),
-                    resultados.getDate("aprobacion"),
                     resultados.getString("academicos"),
                     resultados.getString("perfil"),
                     resultados.getString("espacio"),
@@ -310,7 +310,7 @@ public class ProgramaExperienciaDAO implements DAO{
                     resultados.getString("justificacion"),
                     resultados.getString("unidadCompetencia"),
                     resultados.getString("articulacion"),
-                    resultados.getString("saberTeorico"),
+                    resultados.getString("teorico"),
                     resultados.getString("heuristico"),
                     resultados.getString("axiologicos"),
                     resultados.getString("estrategiasAprendizaje"),

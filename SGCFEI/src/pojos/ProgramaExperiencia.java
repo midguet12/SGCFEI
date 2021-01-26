@@ -13,27 +13,40 @@ import java.sql.Date;
  */
 public class ProgramaExperiencia {
     private int idProgramaEE;
-    private int idAcademia;
-    private int programa;
-    private int campus;
-    private int idDependencia;
-    private int ncr;
+    private String academia;
+    private String programa;
+    private String campus;
+    private String dependencia;
+    private String codigo;
+    private String nombreExperiencia;
+    private String areaFormacionPrincipal;
+    private String areaFormacionSecundaria;
+    private int creditos;
+    private int teoria;
+    private int practica;
+    private int totalHoras;
+    private String equivalencias;
+    private String modalidad;
+    private String oportunidadesEvaluacion;
+    private String requisitos;
+    private String coRequisitos;
     private String individualGrupal;
+    
     private int maximo;
     private int minimo;
+    
+    private String agrupacion;
     private String proyecto;
-    private Date elaboracion;
-    private Date modificacion;
-    private Date aprobacion;
     private String academicos;
     private String perfil;
     private String espacio;
     private String relacionDisciplinaria;
     private String descripcion;
     private String justificacion;
+    
     private String unidadCompetencia;
     private String articulacion;
-    private String saberTeorico;
+    private String teorico;
     private String heuristico;
     private String axiologicos;
     private String estrategiasAprendizaje;
@@ -44,19 +57,29 @@ public class ProgramaExperiencia {
     private String bibliografiaBasica;
     private String bibliografiaComplementaria;
 
-    public ProgramaExperiencia(int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
-        this.idAcademia = idAcademia;
+    public ProgramaExperiencia(String academia, String programa, String campus, String dependencia, String codigo, String nombreExperiencia, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int practica, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, String individualGrupal, int maximo, int minimo, String agrupacion, String proyecto, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String teorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+        this.academia = academia;
         this.programa = programa;
         this.campus = campus;
-        this.idDependencia = idDependencia;
-        this.ncr = ncr;
+        this.dependencia = dependencia;
+        this.codigo = codigo;
+        this.nombreExperiencia = nombreExperiencia;
+        this.areaFormacionPrincipal = areaFormacionPrincipal;
+        this.areaFormacionSecundaria = areaFormacionSecundaria;
+        this.creditos = creditos;
+        this.teoria = teoria;
+        this.practica = practica;
+        this.totalHoras = totalHoras;
+        this.equivalencias = equivalencias;
+        this.modalidad = modalidad;
+        this.oportunidadesEvaluacion = oportunidadesEvaluacion;
+        this.requisitos = requisitos;
+        this.coRequisitos = coRequisitos;
         this.individualGrupal = individualGrupal;
         this.maximo = maximo;
         this.minimo = minimo;
+        this.agrupacion = agrupacion;
         this.proyecto = proyecto;
-        this.elaboracion = elaboracion;
-        this.modificacion = modificacion;
-        this.aprobacion = aprobacion;
         this.academicos = academicos;
         this.perfil = perfil;
         this.espacio = espacio;
@@ -65,7 +88,7 @@ public class ProgramaExperiencia {
         this.justificacion = justificacion;
         this.unidadCompetencia = unidadCompetencia;
         this.articulacion = articulacion;
-        this.saberTeorico = saberTeorico;
+        this.teorico = teorico;
         this.heuristico = heuristico;
         this.axiologicos = axiologicos;
         this.estrategiasAprendizaje = estrategiasAprendizaje;
@@ -77,20 +100,30 @@ public class ProgramaExperiencia {
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
 
-    public ProgramaExperiencia(int idProgramaEE, int idAcademia, int programa, int campus, int idDependencia, int ncr, String individualGrupal, int maximo, int minimo, String proyecto, Date elaboracion, Date modificacion, Date aprobacion, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String saberTeorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
+    public ProgramaExperiencia(int idProgramaEE, String academia, String programa, String campus, String dependencia, String codigo, String nombreExperiencia, String areaFormacionPrincipal, String areaFormacionSecundaria, int creditos, int teoria, int practica, int totalHoras, String equivalencias, String modalidad, String oportunidadesEvaluacion, String requisitos, String coRequisitos, String individualGrupal, int maximo, int minimo, String agrupacion, String proyecto, String academicos, String perfil, String espacio, String relacionDisciplinaria, String descripcion, String justificacion, String unidadCompetencia, String articulacion, String teorico, String heuristico, String axiologicos, String estrategiasAprendizaje, String estrategiasEnsenanza, String materialesDidacticos, String recursosDidacticos, String acreditacion, String bibliografiaBasica, String bibliografiaComplementaria) {
         this.idProgramaEE = idProgramaEE;
-        this.idAcademia = idAcademia;
+        this.academia = academia;
         this.programa = programa;
         this.campus = campus;
-        this.idDependencia = idDependencia;
-        this.ncr = ncr;
+        this.dependencia = dependencia;
+        this.codigo = codigo;
+        this.nombreExperiencia = nombreExperiencia;
+        this.areaFormacionPrincipal = areaFormacionPrincipal;
+        this.areaFormacionSecundaria = areaFormacionSecundaria;
+        this.creditos = creditos;
+        this.teoria = teoria;
+        this.practica = practica;
+        this.totalHoras = totalHoras;
+        this.equivalencias = equivalencias;
+        this.modalidad = modalidad;
+        this.oportunidadesEvaluacion = oportunidadesEvaluacion;
+        this.requisitos = requisitos;
+        this.coRequisitos = coRequisitos;
         this.individualGrupal = individualGrupal;
         this.maximo = maximo;
         this.minimo = minimo;
+        this.agrupacion = agrupacion;
         this.proyecto = proyecto;
-        this.elaboracion = elaboracion;
-        this.modificacion = modificacion;
-        this.aprobacion = aprobacion;
         this.academicos = academicos;
         this.perfil = perfil;
         this.espacio = espacio;
@@ -99,7 +132,7 @@ public class ProgramaExperiencia {
         this.justificacion = justificacion;
         this.unidadCompetencia = unidadCompetencia;
         this.articulacion = articulacion;
-        this.saberTeorico = saberTeorico;
+        this.teorico = teorico;
         this.heuristico = heuristico;
         this.axiologicos = axiologicos;
         this.estrategiasAprendizaje = estrategiasAprendizaje;
@@ -119,44 +152,140 @@ public class ProgramaExperiencia {
         this.idProgramaEE = idProgramaEE;
     }
 
-    public int getIdAcademia() {
-        return idAcademia;
+    public String getAcademia() {
+        return academia;
     }
 
-    public void setIdAcademia(int idAcademia) {
-        this.idAcademia = idAcademia;
+    public void setAcademia(String academia) {
+        this.academia = academia;
     }
 
-    public int getPrograma() {
+    public String getPrograma() {
         return programa;
     }
 
-    public void setPrograma(int programa) {
+    public void setPrograma(String programa) {
         this.programa = programa;
     }
 
-    public int getCampus() {
+    public String getCampus() {
         return campus;
     }
 
-    public void setCampus(int campus) {
+    public void setCampus(String campus) {
         this.campus = campus;
     }
 
-    public int getIdDependencia() {
-        return idDependencia;
+    public String getDependencia() {
+        return dependencia;
     }
 
-    public void setIdDependencia(int idDependencia) {
-        this.idDependencia = idDependencia;
+    public void setDependencia(String dependencia) {
+        this.dependencia = dependencia;
     }
 
-    public int getNcr() {
-        return ncr;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setNcr(int ncr) {
-        this.ncr = ncr;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNombreExperiencia() {
+        return nombreExperiencia;
+    }
+
+    public void setNombreExperiencia(String nombreExperiencia) {
+        this.nombreExperiencia = nombreExperiencia;
+    }
+
+    public String getAreaFormacionPrincipal() {
+        return areaFormacionPrincipal;
+    }
+
+    public void setAreaFormacionPrincipal(String areaFormacionPrincipal) {
+        this.areaFormacionPrincipal = areaFormacionPrincipal;
+    }
+
+    public String getAreaFormacionSecundaria() {
+        return areaFormacionSecundaria;
+    }
+
+    public void setAreaFormacionSecundaria(String areaFormacionSecundaria) {
+        this.areaFormacionSecundaria = areaFormacionSecundaria;
+    }
+
+    public int getCreditos() {
+        return creditos;
+    }
+
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
+    }
+
+    public int getTeoria() {
+        return teoria;
+    }
+
+    public void setTeoria(int teoria) {
+        this.teoria = teoria;
+    }
+
+    public int getPractica() {
+        return practica;
+    }
+
+    public void setPractica(int practica) {
+        this.practica = practica;
+    }
+
+    public int getTotalHoras() {
+        return totalHoras;
+    }
+
+    public void setTotalHoras(int totalHoras) {
+        this.totalHoras = totalHoras;
+    }
+
+    public String getEquivalencias() {
+        return equivalencias;
+    }
+
+    public void setEquivalencias(String equivalencias) {
+        this.equivalencias = equivalencias;
+    }
+
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+    }
+
+    public String getOportunidadesEvaluacion() {
+        return oportunidadesEvaluacion;
+    }
+
+    public void setOportunidadesEvaluacion(String oportunidadesEvaluacion) {
+        this.oportunidadesEvaluacion = oportunidadesEvaluacion;
+    }
+
+    public String getRequisitos() {
+        return requisitos;
+    }
+
+    public void setRequisitos(String requisitos) {
+        this.requisitos = requisitos;
+    }
+
+    public String getCoRequisitos() {
+        return coRequisitos;
+    }
+
+    public void setCoRequisitos(String coRequisitos) {
+        this.coRequisitos = coRequisitos;
     }
 
     public String getIndividualGrupal() {
@@ -183,36 +312,20 @@ public class ProgramaExperiencia {
         this.minimo = minimo;
     }
 
+    public String getAgrupacion() {
+        return agrupacion;
+    }
+
+    public void setAgrupacion(String agrupacion) {
+        this.agrupacion = agrupacion;
+    }
+
     public String getProyecto() {
         return proyecto;
     }
 
     public void setProyecto(String proyecto) {
         this.proyecto = proyecto;
-    }
-
-    public Date getElaboracion() {
-        return elaboracion;
-    }
-
-    public void setElaboracion(Date elaboracion) {
-        this.elaboracion = elaboracion;
-    }
-
-    public Date getModificacion() {
-        return modificacion;
-    }
-
-    public void setModificacion(Date modificacion) {
-        this.modificacion = modificacion;
-    }
-
-    public Date getAprobacion() {
-        return aprobacion;
-    }
-
-    public void setAprobacion(Date aprobacion) {
-        this.aprobacion = aprobacion;
     }
 
     public String getAcademicos() {
@@ -279,12 +392,12 @@ public class ProgramaExperiencia {
         this.articulacion = articulacion;
     }
 
-    public String getSaberTeorico() {
-        return saberTeorico;
+    public String getTeorico() {
+        return teorico;
     }
 
-    public void setSaberTeorico(String saberTeorico) {
-        this.saberTeorico = saberTeorico;
+    public void setTeorico(String teorico) {
+        this.teorico = teorico;
     }
 
     public String getHeuristico() {
@@ -358,4 +471,6 @@ public class ProgramaExperiencia {
     public void setBibliografiaComplementaria(String bibliografiaComplementaria) {
         this.bibliografiaComplementaria = bibliografiaComplementaria;
     }
+
+    
 }

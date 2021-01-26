@@ -78,9 +78,6 @@ create table programaExperiencia(
 	minimo int,
 	agrupacion varchar(255),
 	proyecto varchar(255),
-	elaboracion date,
-	modificacion date,
-	aprobacion date,
 	academicos varchar(255),
 	perfil varchar(255),
 	espacio varchar(30),
@@ -118,3 +115,17 @@ insert into dependencia(nombre) values ('Facultad de estadistica e informatica')
 
 insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');
 insert into experienciaEducativa(nrc, nombre, idAcademia) values (18015,"Principios de diseño",9);
+
+insert into programaExperiencia(academia, programa, campus, dependencia, codigo, nombreExperiencia, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, individualGrupal, maximo, minimo, agrupacion, proyecto, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, teorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria) 
+	values("1", "2", "3", "4", "5", "6", "7", "8", "9", 
+		1, 2, 3, 4, "1", "2", "3", "4", "5", "6", 1, 2, 
+		"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
+		"11", "12", "13", "14", "15", "16", "17", "18", "19", "20");
+
+
+
+insert into programaExperiencia values("1", "2", "3", "4", "5", "6", "7", "8", "9", 1, 2, 3, 4, "1", "2", "3", "4", "5", "6", 1, 2, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20");
+
+insert into programaExperiencia values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+update programaExperiencia set academia = ?, programa = ?, campus = ?, dependencia = ?, codigo = ?, nombreExperiencia = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, individualGrupal = ?, maximo = ?, minimo = ?, agrupacion = ?, proyecto = ?, academicos = ?, perfil = ?, espacio = ?, relacionDisciplinaria = ?, descripcion = ?, justificacion = ?, unidadCompetencia = ?, articulacion, teorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria where idProgramaEE = ?;
