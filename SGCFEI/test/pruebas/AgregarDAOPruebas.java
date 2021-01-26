@@ -44,7 +44,7 @@ public class AgregarDAOPruebas {
     @Test
     public void insertarExperienciaEducativa(){
         ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
-        ExperienciaEducativa item = new ExperienciaEducativa("PRUEBAPRUEBA", 4);
+        ExperienciaEducativa item = new ExperienciaEducativa(99899, "PRUEBAPRUEBA", 4);
         
         assertEquals(true, dao.insertar(item));
     }
