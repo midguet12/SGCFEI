@@ -7,7 +7,7 @@ public class Minuta implements POJO{
     private int idMinuta;
     private int idAcademia;
     private int idCarrera;
-    private Date fecha;
+    private String fecha;
     private Time hora;
     private String periodo;
     private String lugar;
@@ -30,7 +30,7 @@ public class Minuta implements POJO{
         return idCarrera;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -70,7 +70,7 @@ public class Minuta implements POJO{
         this.idCarrera = idCarrera;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

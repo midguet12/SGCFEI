@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import pojos.Academico;
+import sgcfei.menus.Coordinador.Minuta.ConsultarMinuta.ConsultarMinutaController;
 import sgcfei.menus.Coordinador.Minuta.RegistrarMinuta.RegistrarMinutaController;
 import sgcfei.menus.Coordinador.Programa.ConsultarProgramaController;
 import util.ControladorVentanas;
@@ -56,6 +57,9 @@ public class MenuController implements Initializable {
 
     @FXML
     private void consultarMinuta(MouseEvent event) {
+        Stage stageActual = (Stage) btnRegistrarMinuta.getScene().getWindow();
+        ConsultarMinutaController consultarMinutaController = new ConsultarMinutaController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/ConsultarMinuta/ConsultarMinuta.fxml", "Consultar minuta",consultarMinutaController, stageActual);
     }
 
     @FXML

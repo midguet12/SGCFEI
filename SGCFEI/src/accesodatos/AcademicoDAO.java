@@ -297,7 +297,7 @@ public class AcademicoDAO implements DAO{
     public List<Academico> obtenerAcademicosParticipantes(int idMinuta) {
         List<Academico> academicos = new ArrayList<>();
         conexion = db.obtenerConexion();
-        String consulta = "SELECT AC.nombre FROM academicoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ?";
+        String consulta = "SELECT AC.numeroPersonal, AC.nombre FROM academicoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ? AND AM.idAcademico = AC.numeroPersonal";
         
         try { 
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
@@ -305,6 +305,7 @@ public class AcademicoDAO implements DAO{
             resultados = consultaPreparada.executeQuery(); 
             while (resultados.next()) {
                 Academico academico = new Academico();
+                academico.setNumeroPersonal(resultados.getString("numeroPersonal"));
                 academico.setNombre(resultados.getString("nombre"));
                 academicos.add(academico);
             }

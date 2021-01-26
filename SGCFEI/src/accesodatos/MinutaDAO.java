@@ -37,7 +37,7 @@ public class MinutaDAO implements DAO{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setInt(1, minuta.getIdAcademia());
             consultaPreparada.setInt(2, minuta.getIdCarrera());
-            consultaPreparada.setDate(3, minuta.getFecha());
+            consultaPreparada.setString(3, minuta.getFecha());
             consultaPreparada.setString(4, minuta.getPeriodo());
             consultaPreparada.setString(5, minuta.getLugar());
             consultaPreparada.setString(6, minuta.getObjetivo());
@@ -80,6 +80,7 @@ public class MinutaDAO implements DAO{
                 minuta.setIdAcademia(resultados.getInt("idAcademia"));
                 minuta.setIdCarrera(resultados.getInt("idCarrera"));
                 minuta.setPeriodo(resultados.getString("periodo"));
+                minuta.setFecha(resultados.getString("fecha"));
                 minuta.setLugar(resultados.getString("lugar"));
                 minuta.setObjetivo(resultados.getString("objetivo"));
                 minuta.setTemas(resultados.getString("temas"));
@@ -100,5 +101,63 @@ public class MinutaDAO implements DAO{
         }
         
         return minutas;
+    }
+
+    public boolean actualizar(Minuta minuta) {
+        int filasModificadas = 0;
+        conexion = db.obtenerConexion();
+        String consulta = "UPDATE minuta SET idCarrera = ?, periodo = ?, lugar = ?, objetivo = ?, temas = ?, conclusiones = ?, fecha = ? WHERE idMinuta = ?;";
+        
+         try{
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setInt(1, minuta.getIdCarrera());
+            consultaPreparada.setString(2, minuta.getPeriodo());
+            consultaPreparada.setString(3, minuta.getLugar());
+            consultaPreparada.setString(4, minuta.getObjetivo());
+            consultaPreparada.setString(5, minuta.getTemas());
+            consultaPreparada.setString(6, minuta.getConclusiones());
+            consultaPreparada.setString(7, minuta.getFecha());
+            consultaPreparada.setInt(8, minuta.getIdMinuta());
+            filasModificadas = consultaPreparada.executeUpdate();
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+         
+        return filasModificadas > 0;
+    }
+
+    public boolean eliminar(int idMinuta) {
+        int filasModificadas = 0;
+        conexion = db.obtenerConexion();
+        String consulta = "DELETE FROM minuta WHERE idMinuta = ?;";
+        try{            
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setInt(1, idMinuta);
+            filasModificadas = consultaPreparada.executeUpdate();
+        }
+        catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return filasModificadas > 0;
     }
 }

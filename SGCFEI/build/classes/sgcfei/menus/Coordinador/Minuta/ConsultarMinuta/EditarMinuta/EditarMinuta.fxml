@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="817.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="788.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="360.0" layoutY="7.0" text="Editar Minuta">
          <font>
@@ -39,28 +39,20 @@
         </columns>
       </TableView>
       <Label layoutX="369.0" layoutY="337.0" text="Aspectos adicionales" />
-      <Label layoutX="79.0" layoutY="462.0" text="Participante " />
-      <Label layoutX="408.0" layoutY="462.0" text="Asunto" />
-      <Button fx:id="btnAgregarAspecto" layoutX="709.0" layoutY="458.0" mnemonicParsing="false" text="Agregar" />
-      <ComboBox fx:id="cbAcademicoAspecto" editable="true" layoutX="159.0" layoutY="458.0" prefHeight="25.0" prefWidth="233.0" />
-      <TextField fx:id="tfAsunto" editable="false" layoutX="462.0" layoutY="458.0" prefHeight="25.0" prefWidth="233.0" />
-      <Label layoutX="389.0" layoutY="498.0" text="Conclusiones" />
+      <Label layoutX="390.0" layoutY="468.0" text="Conclusiones" />
       <TextArea fx:id="taTemas" layoutX="78.0" layoutY="280.0" prefHeight="46.0" prefWidth="691.0" />
-      <TextArea fx:id="taConclusion" layoutX="78.0" layoutY="515.0" prefHeight="46.0" prefWidth="691.0" />
-      <TableView fx:id="tbParticipantes" layoutX="81.0" layoutY="585.0" prefHeight="85.0" prefWidth="691.0">
+      <TextArea fx:id="taConclusion" layoutX="78.0" layoutY="491.0" prefHeight="46.0" prefWidth="691.0" />
+      <TableView fx:id="tbParticipantes" layoutX="81.0" layoutY="583.0" prefHeight="85.0" prefWidth="691.0">
          <columns>
             <TableColumn fx:id="cNombre" prefWidth="201.0" text="Nombre" />
             <TableColumn prefWidth="489.0" text="Firma" />
          </columns>
       </TableView>
-      <Label layoutX="394.0" layoutY="568.0" text="Participantes" />
-      <Label layoutX="78.0" layoutY="683.0" text="Participante " />
-      <ComboBox fx:id="cbAcademicoParticipante" editable="true" layoutX="158.0" layoutY="679.0" prefHeight="25.0" prefWidth="233.0" />
-      <Button layoutX="397.0" layoutY="679.0" mnemonicParsing="false" text="Agregar" />
-      <Button layoutX="479.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonModificar" text="Modificar" />
-      <Label layoutX="353.0" layoutY="751.0" text="Nombre y firma del Coordinador" />
+      <Label layoutX="393.0" layoutY="556.0" prefHeight="35.0" prefWidth="68.0" text="Participantes" />
+      <Button layoutX="482.0" layoutY="743.0" mnemonicParsing="false" onAction="#clicBotonModificar" text="Modificar" />
+      <Label layoutX="355.0" layoutY="701.0" text="Nombre y firma del Coordinador" />
       <Label fx:id="lbNombreCoordinador" layoutX="315.0" layoutY="734.0" prefHeight="17.0" prefWidth="233.0" textAlignment="CENTER" />
       <DatePicker fx:id="dpFecha" editable="false" layoutX="512.0" layoutY="100.0" prefHeight="25.0" prefWidth="268.0" />
-      <Button layoutX="327.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="67.0" text="Cerrar" />
+      <Button layoutX="330.0" layoutY="743.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="67.0" text="Cerrar" />
    </children>
 </AnchorPane>
