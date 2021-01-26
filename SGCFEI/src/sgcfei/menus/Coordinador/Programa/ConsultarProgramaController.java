@@ -62,6 +62,7 @@ public class ConsultarProgramaController implements Initializable {
             ProgramaExperiencia pExp = tabla.getSelectionModel().getSelectedItem();
             Stage stageActual = (Stage) agregar.getScene().getWindow();
             ActualizarProgramaController controlador = new ActualizarProgramaController(pExp);
+            System.out.println(pExp.getIdProgramaEE());
             ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Programa/ActualizarPrograma/ActualizarPrograma.fxml",
                     "Editar Academia", controlador, stageActual);
         }

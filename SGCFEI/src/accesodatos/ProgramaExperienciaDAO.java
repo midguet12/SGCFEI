@@ -269,6 +269,7 @@ public class ProgramaExperienciaDAO implements DAO{
             resultados = consultaPreparada.executeQuery(); 
             while (resultados.next()) {
                 ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                    resultados.getInt("idProgramaEE"),
                     resultados.getString("academia"),
                     resultados.getString("programa"),
                     resultados.getString("campus"),
