@@ -330,8 +330,59 @@ public class ActualizarProgramaController implements Initializable {
             alerta.showAndWait();
         }
         if (datosCorrectos) {
+            
+            programaExperiencia.setIdProgramaEE(idProgramaExperiencia);
+            programaExperiencia.setAcademia(academiaEntrada);
+            programaExperiencia.setPrograma(programaEntrada);
+            programaExperiencia.setCampus(campusEntrada);
+            programaExperiencia.setDependencia(dependenciaEntrada);
+            programaExperiencia.setCodigo(codigoEntrada);
+            programaExperiencia.setNombreExperiencia(nombreExperienciaEntrada);
+            programaExperiencia.setAreaFormacionPrincipal(areaFormacionPrincipalEntrada);
+            programaExperiencia.setAreaFormacionSecundaria(areaFormacionSecundariaEntrada);
+            
+            programaExperiencia.setCreditos(Integer.parseInt(creditosEntrada));
+            programaExperiencia.setTeoria(Integer.parseInt(teoriaEntrada));
+            programaExperiencia.setPractica(Integer.parseInt(practicaEntrada));
+            programaExperiencia.setTotalHoras(Integer.parseInt(totalHorasEntrada));
+            
+            programaExperiencia.setEquivalencias(equivalenciasEntrada);
+            programaExperiencia.setModalidad(modalidadEntrada);
+            programaExperiencia.setOportunidadesEvaluacion(oportunidadesEvaluacionEntrada);
+            programaExperiencia.setRequisitos(requisitosEntrada);
+            programaExperiencia.setCoRequisitos(coRequisitosEntrada);
+            programaExperiencia.setIndividualGrupal(individualGrupalEntrada);
+            
+            programaExperiencia.setMaximo(Integer.parseInt(maximoEntrada));
+            programaExperiencia.setMinimo(Integer.parseInt(minimoEntrada));
+            
+            programaExperiencia.setAgrupacion(agrupacionEntrada);
+            programaExperiencia.setProyecto(proyectoEntrada);
+            programaExperiencia.setAcademicos(academicosEntrada);
+            programaExperiencia.setPerfil(perfilEntrada);
+            programaExperiencia.setEspacio(espacioEntrada);
+            programaExperiencia.setRelacionDisciplinaria(relacionEntrada);
+            programaExperiencia.setDescripcion(descripcionEntrada);
+            programaExperiencia.setJustificacion(justificacionEntrada);
+            
+            programaExperiencia.setUnidadCompetencia(unidadCompetenciaEntrada);
+            programaExperiencia.setArticulacion(articulacionEntrada);
+            programaExperiencia.setTeorico(teoricoEntrada);
+            programaExperiencia.setHeuristico(heuristicoEntrada);
+            programaExperiencia.setAxiologicos(axiologicosEntrada);
+            programaExperiencia.setEstrategiasAprendizaje(estrategiasAprendizajeEntrada);
+            programaExperiencia.setEstrategiasEnsenanza(estrategiasEnsenanzaEntrada);
+            programaExperiencia.setMaterialesDidacticos(materialesDidacticosEntrada);
+            programaExperiencia.setRecursosDidacticos(recursosDidacticosEntrada);
+            programaExperiencia.setAcreditacion(acreditacionEntrada);
+            programaExperiencia.setBibliografiaBasica(bibliografiaBasicaEntrada);
+            programaExperiencia.setBibliografiaComplementaria(bibliografiaComplementariaEntrada);
+            
 
-            ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+         
+            
+            
+            /*ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
                     idProgramaExperiencia,
                     academiaEntrada,
                     programaEntrada,
@@ -377,7 +428,7 @@ public class ActualizarProgramaController implements Initializable {
                     recursosDidacticosEntrada,
                     acreditacionEntrada,
                     bibliografiaBasicaEntrada,
-                    bibliografiaComplementariaEntrada);
+                    bibliografiaComplementariaEntrada);*/
 
             ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
             programaExperienciaDAO.actualizar(programaExperiencia);
