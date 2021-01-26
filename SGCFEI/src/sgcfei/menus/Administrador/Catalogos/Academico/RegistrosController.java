@@ -86,11 +86,12 @@ public class RegistrosController implements Initializable {
 
                 AcademicoDAO dao = new AcademicoDAO();
                 dao.eliminar(idAcademico);
+                
+                cargarTabla();
 
                 alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                             "Se ha eliminado el academico correctamente", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
-                cargarTabla();
             }
         }
     }
