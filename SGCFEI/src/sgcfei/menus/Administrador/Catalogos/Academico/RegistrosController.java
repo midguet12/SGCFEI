@@ -76,20 +76,22 @@ public class RegistrosController implements Initializable {
 
     @FXML
     private void clickEliminar(MouseEvent event) {
-        Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                "¿Está seguro que desea eliminar este academico?", Alert.AlertType.CONFIRMATION);
-        Optional<ButtonType> respuesta = alerta.showAndWait();
-        
-        if(respuesta.get() == ButtonType.OK){
-            String idAcademico = tabla.getSelectionModel().getSelectedItem().getNumeroPersonal();
-            
-            AcademicoDAO dao = new AcademicoDAO();
-            dao.eliminar(idAcademico);
-            
-            alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha eliminado el academico correctamente", Alert.AlertType.INFORMATION);
-            alerta.showAndWait();
-            cargarTabla();
+        if(validarSeleccion()){
+            Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
+                    "¿Está seguro que desea eliminar este academico?", Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> respuesta = alerta.showAndWait();
+
+            if(respuesta.get() == ButtonType.OK){
+                String idAcademico = tabla.getSelectionModel().getSelectedItem().getNumeroPersonal();
+
+                AcademicoDAO dao = new AcademicoDAO();
+                dao.eliminar(idAcademico);
+
+                alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                            "Se ha eliminado el academico correctamente", Alert.AlertType.INFORMATION);
+                alerta.showAndWait();
+                cargarTabla();
+            }
         }
     }
 

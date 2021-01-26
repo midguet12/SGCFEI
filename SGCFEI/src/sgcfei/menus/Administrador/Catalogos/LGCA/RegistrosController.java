@@ -76,20 +76,22 @@ public class RegistrosController implements Initializable {
 
     @FXML
     private void clickEliminar(MouseEvent event) {
-        Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                "¿Está seguro que desea eliminar esta LGCA?", Alert.AlertType.CONFIRMATION);
-        Optional<ButtonType> respuesta = alerta.showAndWait();
-        
-        if(respuesta.get() == ButtonType.OK){
-            int idLGCA = tabla.getSelectionModel().getSelectedItem().getIdLGCA();
-            
-            LGCADAO dao = new LGCADAO();
-            dao.eliminar(idLGCA);
-            
-            alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha eliminado la LGCA correctamente", Alert.AlertType.INFORMATION);
-            alerta.showAndWait();
-            cargarTabla();
+        if(validarSeleccion()){
+            Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
+                    "¿Está seguro que desea eliminar esta LGCA?", Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> respuesta = alerta.showAndWait();
+
+            if(respuesta.get() == ButtonType.OK){
+                int idLGCA = tabla.getSelectionModel().getSelectedItem().getIdLGCA();
+
+                LGCADAO dao = new LGCADAO();
+                dao.eliminar(idLGCA);
+
+                alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                            "Se ha eliminado la LGCA correctamente", Alert.AlertType.INFORMATION);
+                alerta.showAndWait();
+                cargarTabla();
+            }
         }
     }
 

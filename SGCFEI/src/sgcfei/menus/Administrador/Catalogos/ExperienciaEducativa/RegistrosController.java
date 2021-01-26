@@ -76,20 +76,22 @@ public class RegistrosController implements Initializable {
 
     @FXML
     private void clickEliminar(MouseEvent event) {
-        Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
-                "¿Está seguro que desea eliminar esta Experiencia Educativa?", Alert.AlertType.CONFIRMATION);
-        Optional<ButtonType> respuesta = alerta.showAndWait();
-        
-        if(respuesta.get() == ButtonType.OK){
-            int nrc = tabla.getSelectionModel().getSelectedItem().getNrc();
-            
-            ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
-            dao.eliminar(nrc);
-            
-            alerta = ControladorVentanas.crearAlerta("Operación exitosa",
-                        "Se ha eliminado la Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
-            alerta.showAndWait();
-            cargarTabla();
+        if(validarSeleccion()){
+            Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
+                    "¿Está seguro que desea eliminar esta Experiencia Educativa?", Alert.AlertType.CONFIRMATION);
+            Optional<ButtonType> respuesta = alerta.showAndWait();
+
+            if(respuesta.get() == ButtonType.OK){
+                int nrc = tabla.getSelectionModel().getSelectedItem().getNrc();
+
+                ExperienciaEducativaDAO dao = new ExperienciaEducativaDAO();
+                dao.eliminar(nrc);
+
+                alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                            "Se ha eliminado la Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+                alerta.showAndWait();
+                cargarTabla();
+            }
         }
     }
 
