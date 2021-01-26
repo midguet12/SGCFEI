@@ -40,7 +40,7 @@ public class MenuController implements Initializable {
     private void abrirCatalogo(MouseEvent event) {
         Stage stageActual = (Stage) btnCatalogo.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/SeleccionarCatalogo.fxml",
-                    "Catálogo de Academia", stageActual);
+                    "Seleccionar Catalogo", stageActual);
     }
     
 }
