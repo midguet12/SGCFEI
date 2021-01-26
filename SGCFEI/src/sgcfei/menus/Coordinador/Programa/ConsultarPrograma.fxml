@@ -20,7 +20,7 @@
     <Button fx:id="consultar" layoutX="190.0" layoutY="330.0" mnemonicParsing="false" onAction="#consultar" text="Consultar" />
     <Button fx:id="actualizar" layoutX="337.0" layoutY="330.0" mnemonicParsing="false" onAction="#actualizar" text="Actualizar" />
     <Button fx:id="eliminar" layoutX="480.0" layoutY="330.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-    <Label layoutX="170.0" layoutY="23.0" prefWidth="261.0" text="Consultar programa ">
+    <Label layoutX="170.0" layoutY="23.0" prefWidth="261.0" text="Catalogo programa ">
       <font>
         <Font size="24.0" />
       </font>

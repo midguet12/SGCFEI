@@ -10,19 +10,27 @@ import accesodatos.CampusDAO;
 import accesodatos.DependenciaDAO;
 import accesodatos.ExperienciaEducativaDAO;
 import accesodatos.ProgramaEducativoDAO;
+import accesodatos.ProgramaExperienciaDAO;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import pojos.ExperienciaEducativa;
+import pojos.ProgramaExperiencia;
+import util.ControladorVentanas;
+import util.Validador;
 
 /**
  * FXML Controller class
@@ -30,6 +38,8 @@ import pojos.ExperienciaEducativa;
  * @author midgu
  */
 public class RegistrarProgramaController implements Initializable {
+    
+    
 
     @FXML
     private ComboBox<String> areaAcademica;
@@ -44,7 +54,7 @@ public class RegistrarProgramaController implements Initializable {
     private ComboBox<String> dependencia;
     private ObservableList<String> dependencias;
     @FXML
-    private TextField nrc;
+    private TextField codigo;
     @FXML
     private ComboBox<String> experienciaEducativa;
     private ObservableList<String> experienciasEducativas;
@@ -72,7 +82,7 @@ public class RegistrarProgramaController implements Initializable {
     @FXML
     private TextArea corequisitos;
     @FXML
-    private ComboBox<?> individualGrupal;
+    private ComboBox<String> individualGrupal;
     @FXML
     private TextField maximo;
     @FXML
@@ -137,6 +147,8 @@ public class RegistrarProgramaController implements Initializable {
     private TextArea porcentajeEntrada;
     @FXML
     private Button agregarEvaluacion;
+    @FXML
+    private Button cancelar;
 
     /**
      * Initializes the controller class.
@@ -167,19 +179,225 @@ public class RegistrarProgramaController implements Initializable {
         experienciasEducativas = FXCollections.observableArrayList(experienciaEducativaDAO.obtenerNombres());
         experienciaEducativa.setItems(experienciasEducativas);
         
+        individualGrupal.setItems(FXCollections.observableArrayList("Individual", "Grupal"));
+        
+        
+        
+        
     }    
 
-    @FXML
-    private void experienciaEducativa(ActionEvent event) {
-    }
-    
+  
 
     @FXML
     private void guardar(ActionEvent event) {
+        String academiaEntrada = areaAcademica.getValue();
+        String programaEntrada = programaEducativo.getValue();
+        String campusEntrada = campus.getValue();
+        String dependenciaEntrada = dependencia.getValue();
+        String codigoEntrada = codigo.getText();
+        String nombreExperienciaEntrada = experienciaEducativa.getValue();
+        String areaFormacionPrincipalEntrada = principal.getText();
+        String areaFormacionSecundariaEntrada = secundaria.getText();
+        
+        String creditosEntrada = creditos.getText();
+        String teoriaEntrada = teoria.getText();
+        String practicaEntrada = practica.getText();  //Validar que sean enteros
+        String totalHorasEntrada = totalHoras.getText();
+        
+        String equivalenciasEntrada = equivalencias.getText();
+        String modalidadEntrada = modalidad.getText();
+        String oportunidadesEvaluacionEntrada = oportunidadesEvaluacion.getText();
+        String requisitosEntrada = prerequisitos.getText();
+        String coRequisitosEntrada = corequisitos.getText();
+        String individualGrupalEntrada = individualGrupal.getValue();
+
+        String maximoEntrada = maximo.getText();
+        String minimoEntrada = minimo.getText(); //Validar que sean enteros
+
+        String agrupacionEntrada = agrupacion.getText();
+        String proyectoEntrada = proyecto.getText();
+        String academicosEntrada = academicos.getText();
+        String perfilEntrada = perfil.getText();
+        String espacioEntrada = espacio.getText();
+        String relacionEntrada = relacionDisciplinaria.getText();
+        String descripcionEntrada = descripcion.getText();
+        String justificacionEntrada = justificacion.getText();
+
+        String unidadCompetenciaEntrada = unidadCompetencia.getText();
+        String articulacionEntrada = articulacion.getText();
+        String teoricoEntrada = teorico.getText();
+        String heuristicoEntrada = heuristico.getText();
+        String axiologicosEntrada = axiologico.getText();
+        String estrategiasAprendizajeEntrada = estrategiaAprendizaje.getText();
+        String estrategiasEnsenanzaEntrada = estrategiaEnsenanza.getText();
+        String materialesDidacticosEntrada = materialesDidacticos.getText();
+        String recursosDidacticosEntrada = recursosDidacticos.getText();
+        String acreditacionEntrada = acreditacion.getText();
+        String bibliografiaBasicaEntrada = bibliografiaBasica.getText();
+        String bibliografiaComplementariaEntrada = bibliografiaComplementaria.getText();
+        
+        boolean datosCorrectos = true;
+        
+        
+        
+        if (!Validador.numero(creditosEntrada) && !Validador.numero(teoriaEntrada) && !Validador.numero(practicaEntrada) && !Validador.numero(totalHorasEntrada) && !Validador.numero(maximoEntrada) && !Validador.numero(minimoEntrada)) {
+            datosCorrectos = false;
+            
+        }
+        
+        if(espacioEntrada.length() > 30 || relacionEntrada.length() > 30){
+            datosCorrectos = false;
+        }
+        
+        if (academiaEntrada.isEmpty() || programaEntrada.isEmpty() || campusEntrada.isEmpty() || dependenciaEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (codigoEntrada.isEmpty() || nombreExperienciaEntrada.isEmpty() || areaFormacionPrincipalEntrada.isEmpty() || areaFormacionSecundariaEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (creditosEntrada.isEmpty() || teoriaEntrada.isEmpty() || practicaEntrada.isEmpty() || totalHorasEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (equivalenciasEntrada.isEmpty() || modalidadEntrada.isEmpty() || oportunidadesEvaluacionEntrada.isEmpty() || requisitosEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (coRequisitosEntrada.isEmpty() || individualGrupalEntrada.isEmpty() || maximoEntrada.isEmpty() || minimoEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (agrupacionEntrada.isEmpty() || proyectoEntrada.isEmpty() || academicosEntrada.isEmpty() || perfilEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if ( espacioEntrada.isEmpty() || relacionEntrada.isEmpty() || descripcionEntrada.isEmpty() || justificacionEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        
+        if (unidadCompetenciaEntrada.isEmpty() || articulacionEntrada.isEmpty() || teoricoEntrada.isEmpty() || heuristicoEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        if (axiologicosEntrada.isEmpty() || estrategiasAprendizajeEntrada.isEmpty() || estrategiasEnsenanzaEntrada.isEmpty() || materialesDidacticosEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }
+        if (recursosDidacticosEntrada.isEmpty() || acreditacionEntrada.isEmpty() || bibliografiaBasicaEntrada.isEmpty() || bibliografiaComplementariaEntrada.isEmpty()) {
+            Alert alerta = ControladorVentanas.crearAlerta("Campos vacios",
+                    "No se han llenado todos los campos, por favor verificar", Alert.AlertType.ERROR);
+            alerta.showAndWait();
+        }else{
+            if (datosCorrectos) {
+                
+                ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                        academiaEntrada,
+                        programaEntrada,
+                        campusEntrada,
+                        dependenciaEntrada,
+                        codigoEntrada,
+                        nombreExperienciaEntrada,
+                        areaFormacionPrincipalEntrada,
+                        areaFormacionSecundariaEntrada,
+
+                        Integer.parseInt(creditosEntrada),
+                        Integer.parseInt(teoriaEntrada),
+                        Integer.parseInt(practicaEntrada),  //Validar que sean enteros
+                        Integer.parseInt(totalHorasEntrada),
+
+                        equivalenciasEntrada,
+                        modalidadEntrada,
+                        oportunidadesEvaluacionEntrada,
+                        requisitosEntrada,
+                        coRequisitosEntrada,
+                        individualGrupalEntrada,
+
+                        Integer.parseInt(maximoEntrada),
+                        Integer.parseInt(minimoEntrada), //Validar que sean enteros
+
+                        agrupacionEntrada,
+                        proyectoEntrada,
+                        academicosEntrada,
+                        perfilEntrada,
+                        espacioEntrada,
+                        relacionEntrada,
+                        descripcionEntrada,
+                        justificacionEntrada,
+
+                        unidadCompetenciaEntrada,
+                        articulacionEntrada,
+                        teoricoEntrada,
+                        heuristicoEntrada,
+                        axiologicosEntrada,
+                        estrategiasAprendizajeEntrada,
+                        estrategiasEnsenanzaEntrada,
+                        materialesDidacticosEntrada,
+                        recursosDidacticosEntrada,
+                        acreditacionEntrada,
+                        bibliografiaBasicaEntrada,
+                        bibliografiaComplementariaEntrada);
+                
+                ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
+                programaExperienciaDAO.insertar(programaExperiencia);
+                
+                Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
+                        "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
+                alerta.showAndWait();
+                
+                
+                
+            } else {
+                Alert alerta = ControladorVentanas.crearAlerta("Datos incorrectos",
+                        "Los datos ingresados no son del tipo adecuado, por favor verificar", Alert.AlertType.ERROR);
+                alerta.showAndWait();
+            }
+        }
+        
+        
+         
+        
     }
+    
+    
 
     @FXML
     private void agregarEvaluacion(ActionEvent event) {
+        
     }
     
+    @FXML
+    private void cancelar(ActionEvent event){
+        Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
+                        "¿Está seguro que desea cancelar el registro?", Alert.AlertType.CONFIRMATION);
+        Optional<ButtonType> respuesta = alerta.showAndWait();
+        
+        if(respuesta.get() == ButtonType.OK){
+            cerrar();
+        }
+    }
+    
+    
+    private void cerrar(){
+        Stage stageActual = (Stage) cancelar.getScene().getWindow();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Catalogos/ExperienciaEducativa/Registros.fxml",
+                    "Catálogo de Experiencia Educativa", stageActual);
+    }
 }

@@ -34,7 +34,7 @@ public class ProgramaExperienciaDAO implements DAO{
    public boolean insertar(ProgramaExperiencia programaExperiencia){
        int filasModificadas = 0;
        conexion = db.obtenerConexion();
-       String consulta = "insert into programaExperiencia values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+       String consulta = "insert into programaExperiencia(academia, programa, campus, dependencia, codigo, nombreExperiencia, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, individualGrupal, maximo, minimo, agrupacion, proyecto, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, teorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
        try{
             PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
             consultaPreparada.setString(1, programaExperiencia.getAcademia());

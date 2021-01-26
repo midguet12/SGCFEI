@@ -12,6 +12,8 @@ import java.sql.Date;
  * @author midgu
  */
 public class ProgramaExperiencia {
+    
+    
     private int idProgramaEE;
     private String academia;
     private String programa;
