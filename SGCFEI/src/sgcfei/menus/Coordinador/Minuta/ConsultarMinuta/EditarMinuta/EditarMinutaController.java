@@ -11,8 +11,6 @@ import accesodatos.AspectoMinutaDAO;
 import accesodatos.CarreraDAO;
 import accesodatos.MinutaDAO;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -39,6 +37,7 @@ import pojos.AspectoMinuta;
 import pojos.Carrera;
 import pojos.Minuta;
 import sgcfei.menus.Coordinador.MenuController;
+import sgcfei.menus.Coordinador.Minuta.ConsultarMinuta.ConsultarMinutaController;
 import util.ControladorVentanas;
 
 /**
@@ -66,12 +65,7 @@ public class EditarMinutaController implements Initializable {
     private TableColumn<AspectoMinuta, String> cNombreParticipante;
     @FXML
     private TableColumn<AspectoMinuta, String> cAsunto;
-    @FXML
     private Button btnAgregarAspecto;
-    @FXML
-    private ComboBox<?> cbAcademicoAspecto;
-    @FXML
-    private TextField tfAsunto;
     @FXML
     private TextArea taTemas;
     @FXML
@@ -80,8 +74,7 @@ public class EditarMinutaController implements Initializable {
     private TableView<Academico> tbParticipantes;
     @FXML
     private TableColumn<Academico, String> cNombre;
-    @FXML
-    private ComboBox<?> cbAcademicoParticipante;
+    private ComboBox<Academico> cbAcademicoParticipante;
     @FXML
     private Label lbNombreCoordinador;
     @FXML
@@ -93,6 +86,8 @@ public class EditarMinutaController implements Initializable {
     private Minuta minutaEdicion;
     private boolean esInformacionValida = true;
     private Alert alerta;
+    private List<AspectoMinuta> aspectosAgregados;
+    private List<AspectoMinuta> aspectosEliminados;
 
     public EditarMinutaController(Academico academicoLogeado, Minuta minutaEdicion) {
         this.academicoLogeado = academicoLogeado;
@@ -108,10 +103,10 @@ public class EditarMinutaController implements Initializable {
         academicosParticipantes = FXCollections.observableArrayList();
         aspectosMinuta = FXCollections.observableArrayList();
         listaCarreras = FXCollections.observableArrayList();
+        recuperarCarreras();
         cargarInformacion();
         agregarListeners();
         asociarTablas();
-        recuperarCarreras();
     }
 
     private void agregarListeners() {
@@ -180,13 +175,6 @@ public class EditarMinutaController implements Initializable {
             }
         });
     }
-
-    private void asociarComponentes() {
-        cNombreParticipante.setCellValueFactory( new PropertyValueFactory<>("nombreParticipante") );
-        cAsunto.setCellValueFactory( new PropertyValueFactory<>("asunto") );
-        
-        cNombre.setCellValueFactory( new PropertyValueFactory<>("nombre") );
-    }
     
     private void sonCamposVacios(){
         if (tfPeriodo.getText().isEmpty()) {
@@ -214,12 +202,27 @@ public class EditarMinutaController implements Initializable {
     private void clicBotonModificar(ActionEvent event) {
         sonCamposVacios();
         if (esInformacionValida) {
-            Stage stageActual = (Stage) btnAgregarAspecto.getScene().getWindow();
-            MenuController menuController = new MenuController(academicoLogeado);
-                        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/" + academicoLogeado.getRol()
-                            +"/Menu.fxml", "Menu principal",menuController, stageActual);
-            alerta = ControladorVentanas.crearAlerta("Registro exitoso", "Los cambios se han guardado", Alert.AlertType.INFORMATION);
-            alerta.showAndWait();
+            minutaEdicion.setIdCarrera(cbCarrera.getSelectionModel().getSelectedItem().getIdCarrera());
+            minutaEdicion.setPeriodo(tfPeriodo.getText());
+            minutaEdicion.setFecha(dpFecha.getEditor().getText());
+            minutaEdicion.setLugar(tfLugar.getText());
+            minutaEdicion.setObjetivo(taObjetivo.getText());
+            minutaEdicion.setTemas(taTemas.getText());
+            minutaEdicion.setConclusiones(taConclusion.getText());
+            boolean guardado = new MinutaDAO().actualizar(minutaEdicion);
+            if (guardado) {
+                Stage stageActual = (Stage) tbAspectoAdicional.getScene().getWindow();
+                MenuController menuController = new MenuController(academicoLogeado);
+                ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/" + academicoLogeado.getRol() +"/Menu.fxml", "Menu principal",menuController, stageActual);
+                alerta = ControladorVentanas.crearAlerta("Registro exitoso", "Los cambios se han guardado", Alert.AlertType.INFORMATION);
+                alerta.showAndWait();
+            }else{
+                Stage stageActual = (Stage) tbAspectoAdicional.getScene().getWindow();
+                MenuController menuController = new MenuController(academicoLogeado);
+                ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/" + academicoLogeado.getRol() +"/Menu.fxml", "Menu principal",menuController, stageActual);
+                alerta = ControladorVentanas.crearAlerta("Error", "Se ha producido un fallo que impide guardar los cambios, intente mas tarde", Alert.AlertType.ERROR);
+                alerta.showAndWait();
+            }
         }else{
             alerta = ControladorVentanas.crearAlerta("Verificar informacion", "Existe un conflicto con la informacion, favor de verificar", Alert.AlertType.ERROR);
             alerta.showAndWait();
@@ -230,7 +233,10 @@ public class EditarMinutaController implements Initializable {
         tfCoordinador.setText(academicoLogeado.getNombre());
         Academia academia = new AcademiaDAO().obtenerAcademiaPorCoordinador(academicoLogeado.getNumeroPersonal());
         tfAcademia.setText(academia.getNombre());
+        Carrera carrera = new CarreraDAO().obtener(minutaEdicion.getIdCarrera());
+        cbCarrera.getSelectionModel().select(carrera);
         tfPeriodo.setText(minutaEdicion.getPeriodo());
+        dpFecha.getEditor().setText(minutaEdicion.getFecha());
         tfLugar.setText(minutaEdicion.getLugar());
         taObjetivo.setText(minutaEdicion.getObjetivo());
         taTemas.setText(minutaEdicion.getTemas());
@@ -260,6 +266,14 @@ public class EditarMinutaController implements Initializable {
         listaCarreras.addAll(carreras);
         cbCarrera.setItems(listaCarreras);
     }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) tbAspectoAdicional.getScene().getWindow();
+        ConsultarMinutaController consultarMinutaController = new ConsultarMinutaController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/ConsultarMinuta/ConsultarMinuta.fxml", "Consultar minuta",consultarMinutaController, stageActual);
+    }
+
 
     
     

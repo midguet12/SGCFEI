@@ -42,6 +42,7 @@ import pojos.Carrera;
 import pojos.Minuta;
 import sgcfei.menus.Coordinador.MenuController;
 import util.ControladorVentanas;
+import util.Validador;
 
 /**
  * FXML Controller class
@@ -99,6 +100,7 @@ public class RegistrarMinutaController implements Initializable {
     private List<Academico> academicosVaciar;
     private List<Academico> academicos;
     private List<Carrera> carreras;
+    private List<Academico> participantes;
     private Academia academia;
     private int idMinuta;
     private boolean esInformacionValida = false;
@@ -125,6 +127,7 @@ public class RegistrarMinutaController implements Initializable {
         academicosVaciar = new ArrayList<>();
         academicos = new ArrayList<>();
         carreras = new ArrayList<>();
+        participantes = new ArrayList<>();
         asociarComponentes();
         cargarTablas();
         recuperarCarreras();
@@ -149,6 +152,7 @@ public class RegistrarMinutaController implements Initializable {
     private void clicBotonAgregarParticipante(ActionEvent event) {
         if (cbAcademicoParticipante.getSelectionModel().getSelectedItem() != null) {
             Academico academico = cbAcademicoParticipante.getSelectionModel().getSelectedItem();
+            participantes.add(academico);
             listaParticipantesVaciar.remove(academico);
             academiscosParticipantes.add(academico);
             cargarParticipantes();
@@ -166,12 +170,7 @@ public class RegistrarMinutaController implements Initializable {
             Minuta minuta = new Minuta();
             minuta.setIdAcademia(academia.getIdAcademia());
             minuta.setIdCarrera(cbCarrera.getSelectionModel().getSelectedItem().getIdCarrera());
-            Date fecha = null;
-            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            fecha = formato.parse(dpFecha.getEditor().getText());
-            java.sql.Date fechaSql = new java.sql.Date(fecha.getDate());
-            minuta.setFecha(fechaSql);
-            //Date fecha2 = new Date(fechaSql.getTime());
+            minuta.setFecha(dpFecha.getEditor().getText());
             minuta.setPeriodo(tfPeriodo.getText());
             minuta.setLugar(tfLugar.getText());
             minuta.setObjetivo(taObjetivo.getText());
@@ -182,7 +181,7 @@ public class RegistrarMinutaController implements Initializable {
                 aspectoMinuta.setIdMinuta(idMinuta);
                 new AspectoMinutaDAO().insertar(aspectoMinuta);
             }
-            for(Academico academico: academiscosParticipantes){
+            for(Academico academico: participantes){
                 new AcademicoDAO().insertarParticipacion(academico.getNumeroPersonal(), idMinuta);
             }
             Stage stageActual = (Stage) btnAgregarAspecto.getScene().getWindow();
@@ -243,7 +242,7 @@ public class RegistrarMinutaController implements Initializable {
         tfPeriodo.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.isEmpty()){
+                if(newValue.isEmpty() && Validador.validarPeriodo(newValue)){
                     tfPeriodo.setStyle("-fx-background-color: red;");
                     esInformacionValida = false;
                 }else{
@@ -350,5 +349,12 @@ public class RegistrarMinutaController implements Initializable {
     private void cargarParticipantes(){
         listaParticipantes.removeAll(academiscosParticipantes);
         listaParticipantes.addAll(academiscosParticipantes);
+    }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) btnAgregarAspecto.getScene().getWindow();
+        MenuController menuController = new MenuController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Menu.fxml", "Menu principal",menuController, stageActual);
     }
 }

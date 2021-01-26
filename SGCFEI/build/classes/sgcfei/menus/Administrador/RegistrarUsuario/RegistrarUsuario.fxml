@@ -22,6 +22,7 @@
       <TextField fx:id="tfCorreo" layoutX="14.0" layoutY="240.0" prefHeight="25.0" prefWidth="364.0" />
       <Label layoutX="14.0" layoutY="285.0" text="Tipo de Usuario" />
       <ComboBox fx:id="cbTipoUsuario" layoutX="14.0" layoutY="311.0" prefHeight="25.0" prefWidth="364.0" />
-      <Button fx:id="btnRegistrar" layoutX="164.0" layoutY="359.0" mnemonicParsing="false" onAction="#clicBotonRegistrar" text="Registrar" />
+      <Button fx:id="btnRegistrar" layoutX="259.0" layoutY="359.0" mnemonicParsing="false" onAction="#clicBotonRegistrar" text="Registrar" />
+      <Button layoutX="80.0" layoutY="359.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="64.0" text="Cerrar" />
    </children>
 </AnchorPane>

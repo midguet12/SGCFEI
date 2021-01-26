@@ -20,6 +20,8 @@
           <TableColumn fx:id="cTemas" prefWidth="316.0" text="Temas" />
         </columns>
       </TableView>
-      <Button layoutX="267.0" layoutY="344.0" mnemonicParsing="false" onAction="#clicBotonModificar" text="Modificar" />
+      <Button layoutX="358.0" layoutY="344.0" mnemonicParsing="false" onAction="#clicModificar" text="Modificar" />
+      <Button layoutX="176.0" layoutY="344.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="67.0" text="Cerrar" />
+      <Button layoutX="267.0" layoutY="344.0" mnemonicParsing="false" onAction="#clicBotonEliminar" prefHeight="25.0" prefWidth="67.0" text="Eliminar" />
    </children>
 </AnchorPane>

@@ -57,9 +57,10 @@
       <Label layoutX="78.0" layoutY="683.0" text="Participante " />
       <ComboBox fx:id="cbAcademicoParticipante" layoutX="158.0" layoutY="679.0" prefHeight="25.0" prefWidth="233.0" />
       <Button layoutX="397.0" layoutY="679.0" mnemonicParsing="false" onAction="#clicBotonAgregarParticipante" text="Agregar" />
-      <Button layoutX="399.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonRegistrar" text="Registrar" />
+      <Button layoutX="516.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonRegistrar" text="Registrar" />
       <Label layoutX="353.0" layoutY="751.0" text="Nombre y firma del Coordinador" />
       <Label fx:id="lbNombreCoordinador" layoutX="315.0" layoutY="734.0" prefHeight="17.0" prefWidth="233.0" textAlignment="CENTER" />
       <DatePicker fx:id="dpFecha" editable="false" layoutX="512.0" layoutY="100.0" prefHeight="25.0" prefWidth="268.0" />
+      <Button layoutX="277.0" layoutY="778.0" mnemonicParsing="false" onAction="#clicBotonCerrar" prefHeight="25.0" prefWidth="76.0" text="Cerrar" />
    </children>
 </AnchorPane>

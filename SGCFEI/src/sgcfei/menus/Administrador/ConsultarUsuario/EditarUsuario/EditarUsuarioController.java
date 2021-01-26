@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 import pojos.Academico;
 import pojos.Usuario;
 import util.ControladorVentanas;
+import util.Encriptacion;
+import util.Portapapeles;
 import util.Validador;
 
 /**
@@ -48,6 +50,8 @@ public class EditarUsuarioController implements Initializable {
     private boolean datosValidos = true;
     Alert alerta;
     private String numeroPersonalAcademico;
+    @FXML
+    private TextField pfContraseña;
 
     public EditarUsuarioController(String numeroPersonalAcademico) {
         this.numeroPersonalAcademico = numeroPersonalAcademico;
@@ -61,6 +65,7 @@ public class EditarUsuarioController implements Initializable {
         recuperarAcademico();
         cargarRoles();
         tfNumeroPersonal.setEditable(false);
+        agregarListenerTextFields();
     }    
     
     private void cargarRoles(){
@@ -100,10 +105,24 @@ public class EditarUsuarioController implements Initializable {
             }
         
         });
+        
+        pfContraseña.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(validador.validarContraseña(newValue)){
+                    pfContraseña.setStyle("-fx-background-color: white;");
+                    datosValidos = true;
+                }else{
+                    pfContraseña.setStyle("-fx-background-color: red;");
+                    datosValidos = false;
+                }
+            }
+        
+        });
     }
 
     private void comprobarDatos() {
-        if(datosValidos && cbTipoUsuario.getSelectionModel().getSelectedItem() != null){
+        if(datosValidos && cbTipoUsuario.getSelectionModel().getSelectedItem() != null && !camposVacios()){
             validarCorreo();
         }else{
             alerta = ControladorVentanas.crearAlerta("Informacion invalida", "Favor de verificar su informacion", Alert.AlertType.ERROR);
@@ -128,12 +147,20 @@ public class EditarUsuarioController implements Initializable {
             Usuario usuario = new Usuario();
             usuario.setIdAcademico(numeroPersonalAcademico);
             usuario.setUsername(tfCorreo.getText());
-            boolean esUsuarioActualizado = new UsuarioDAO().actualizarCorreoUsuario(usuario);
+            boolean esUsuarioActualizado = false;
+            if (pfContraseña.getText().isEmpty()) {
+                esUsuarioActualizado = new UsuarioDAO().actualizarCorreoUsuario(usuario);
+            }else{
+                String contraseña = Encriptacion.encriptarSHA2(pfContraseña.getText());
+                usuario.setPassword(contraseña);
+                esUsuarioActualizado = new UsuarioDAO().actualizarUsuarioContraseña(usuario);
+            }
             if (esUsuarioActualizado) {
+                Portapapeles.CopiarAlPortapapeles(tfCorreo.getText(), pfContraseña.getText());
                 Stage stageActual = (Stage) btnModificar.getScene().getWindow();
                 ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/ConsultarUsuario/ConsultarUsuario.fxml",
                     "Consultar usuarios", stageActual);
-                alerta = ControladorVentanas.crearAlerta("Usuario modificado", "La informacion del usuario se ha actualizado en el sistema", Alert.AlertType.INFORMATION);
+                alerta = ControladorVentanas.crearAlerta("Usuario modificado", "La informacion del usuario se ha actualizado en el sistema y se ha copiado al portapapeles", Alert.AlertType.INFORMATION);
                 alerta.showAndWait();
             }
         }
@@ -156,4 +183,26 @@ public class EditarUsuarioController implements Initializable {
         cbTipoUsuario.getSelectionModel().select(academico.getRol());
     }
     
+    private boolean camposVacios() {
+        boolean esVacio = false;
+        if (tfNumeroPersonal.getText().isEmpty()) {
+            esVacio = true;
+        }
+        
+        if (tfNombre.getText().isEmpty()) {
+            esVacio = true;
+        }
+        
+        if (tfCorreo.getText().isEmpty()) {
+            esVacio = true;
+        }
+        return esVacio;
+    }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) btnModificar.getScene().getWindow();
+                ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/ConsultarUsuario/ConsultarUsuario.fxml",
+                    "Consultar usuarios", stageActual);
+    }
 }

@@ -18,7 +18,7 @@ public class Validador {
     public static boolean validarNombre (String nombre) {
         boolean esValidoNombre;
         Pattern pattern = Pattern
-                .compile("([A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,}(\\ [A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,})*)");
+                .compile("([A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,15}(\\ [A-Za-záéíóúüÁÉÍÓÚÜñÑ]{3,15})*)");
         Matcher mather = pattern.matcher(nombre);
         esValidoNombre = mather.find();
         return esValidoNombre;
@@ -40,4 +40,22 @@ public class Validador {
         esValidoNumeroPersonal = mather.find();
         return esValidoNumeroPersonal;
     } 
+
+    public static boolean validarContraseña(String contraseña) {
+        boolean esValidaContraseña;
+        Pattern pattern = Pattern
+                .compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])([A-Za-z\\d$@$!%*?&]|[^ ]){8,15}$");
+        Matcher mather = pattern.matcher(contraseña);
+        esValidaContraseña = mather.find();
+        return esValidaContraseña;
+    }
+    
+    public static boolean validarPeriodo(String periodo){
+        boolean esValidoPeriodo;
+        Pattern pattern = Pattern
+                .compile("([A-Z]{3}\\ [0-9]{4})\\ \\-\\ ([A-Z]{3}\\ [0-9]{4})");
+        Matcher mather = pattern.matcher(periodo);
+        esValidoPeriodo = mather.find();
+        return esValidoPeriodo;
+    }
 }

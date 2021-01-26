@@ -178,4 +178,10 @@ public class RegistrarUsuarioController implements Initializable {
         }
         return esVacio;
     }
+
+    @FXML
+    private void clicBotonCerrar(ActionEvent event) {
+        Stage stageActual = (Stage) tfCorreo.getScene().getWindow();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Menu.fxml","Menu principal Administrador",stageActual);
+    }
 }
