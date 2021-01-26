@@ -54,7 +54,7 @@ create table dependencia(
 	primary key(idDependencia)
 );
 
-create table ProgramaExperiencia(
+create table programaExperiencia(
 	idProgramaEE int not null auto_increment,
 	academia varchar(255) not null,
 	programa varchar(255) not null,
