@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import pojos.ProgramaExperiencia;
+import sgcfei.menus.Coordinador.MenuController;
 import sgcfei.menus.Coordinador.Programa.ActualizarPrograma.ActualizarProgramaController;
 import util.ControladorVentanas;
 
@@ -31,9 +32,8 @@ public class ConsultarProgramaController implements Initializable {
     @FXML
     private Button consultar;
     @FXML
-    private Button actualizar;
-    @FXML
-    private Button eliminar;
+    private Button regresar;
+
     private ObservableList<ProgramaExperiencia> listaExperiencias;
         
     public ConsultarProgramaController(){
@@ -53,10 +53,6 @@ public class ConsultarProgramaController implements Initializable {
     }
 
     @FXML
-    private void consultar(ActionEvent event) {
-    }
-
-    @FXML
     private void actualizar(ActionEvent event) {
         if(validarSeleccion()){
             ProgramaExperiencia pExp = tabla.getSelectionModel().getSelectedItem();
@@ -67,9 +63,13 @@ public class ConsultarProgramaController implements Initializable {
                     "Editar Academia", controlador, stageActual);
         }
     }
-
+    
     @FXML
-    private void eliminar(ActionEvent event) {
+    private void regresar(ActionEvent event) {
+        Stage stageActual = (Stage) agregar.getScene().getWindow();
+        MenuController menuController = new MenuController();
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Menu.fxml", "Menu principal",menuController, stageActual);
+
     }
 
     private void cargarTabla() {

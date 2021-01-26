@@ -6,29 +6,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="277.0" prefWidth="400.0" spacing="8.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de trabajo de academia" textAlignment="CENTER" textOverrun="CLIP">
-      <font>
+    <Label alignment="CENTER" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Minutas" textAlignment="CENTER" textOverrun="CLIP">
+         <font>
         <Font size="18.0" fx:id="x1" />
-      </font>
-    </Label>
-    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-      <children>
-        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanAcademia" text="Registrar" />
-        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanAcademia" text="Consultar" />
-      </children>
-    </HBox>
-    <Label />
-    <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Plan de curso" textAlignment="CENTER" textOverrun="CLIP" />
-    <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
-      <children>
-        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarPlanCurso" text="Registrar" />
-        <Button minWidth="130.0" mnemonicParsing="false" onMouseClicked="#consultarPlanCurso" text="Consultar" />
-      </children>
-    </HBox>
-    <Label />
-    <Label alignment="CENTER" font="$x1" minWidth="400.0" prefHeight="30.0" prefWidth="400.0" text="Minutas" textAlignment="CENTER" textOverrun="CLIP" />
+         </font></Label>
     <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
       <children>
         <Button fx:id="btnRegistrarMinuta" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#registrarMinuta" text="Registrar" />

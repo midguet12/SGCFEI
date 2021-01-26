@@ -16,9 +16,8 @@ import sgcfei.menus.Coordinador.Programa.ConsultarProgramaController;
 import util.ControladorVentanas;
 
 public class MenuController implements Initializable {
+    
     private Academico academicoLogeado;
-    @FXML
-    private Font x1;
     @FXML
     private Button btnRegistrarMinuta;
     
@@ -28,26 +27,14 @@ public class MenuController implements Initializable {
     public MenuController(Academico academicoLogeado) {
         this.academicoLogeado = academicoLogeado;
     }
+
+    public MenuController() {
+    }
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
-
-    @FXML
-    private void registrarPlanAcademia(MouseEvent event) {
-    }
-
-    @FXML
-    private void consultarPlanAcademia(MouseEvent event) {
-    }
-
-    @FXML
-    private void registrarPlanCurso(MouseEvent event) {
-    }
-
-    @FXML
-    private void consultarPlanCurso(MouseEvent event) {
-    }
 
     @FXML
     private void registrarMinuta(MouseEvent event) {
