@@ -55,8 +55,8 @@
         </FXCollections>
       </items>
     </ComboBox>
-    <TextField fx:id="nrc" layoutX="23.0" layoutY="284.0" prefWidth="56.0" />
-    <ComboBox fx:id="experienciaEducativa" layoutX="97.0" layoutY="284.0" onAction="#experienciaEducativa" prefHeight="21.0" prefWidth="203.0">
+    <TextField id="nrc" fx:id="codigo" layoutX="23.0" layoutY="284.0" prefWidth="56.0" />
+    <ComboBox fx:id="experienciaEducativa" layoutX="97.0" layoutY="284.0" prefHeight="21.0" prefWidth="203.0">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
@@ -66,7 +66,7 @@
       </items>
     </ComboBox>
     <Label layoutX="97.0" layoutY="267.0" text="6. Nombre de la experiencia educativa" />
-    <Label layoutX="23.0" layoutY="267.0" text="5. NRC " />
+    <Label layoutX="23.0" layoutY="267.0" text="5. Codigo" />
     <Label layoutX="23.0" layoutY="314.0" text="7. Area de formacion disciplinar" />
     <TextField fx:id="principal" layoutX="23.0" layoutY="347.0" prefWidth="82.0" />
     <TextField fx:id="secundaria" layoutX="111.0" layoutY="347.0" prefWidth="79.0" />
@@ -121,10 +121,10 @@
     <TextField fx:id="relacionDisciplinaria" layoutX="474.0" layoutY="307.0" prefWidth="125.0" />
     <TextArea fx:id="descripcion" layoutX="349.0" layoutY="356.0" prefWidth="255.0" wrapText="true" />
     <Label layoutX="349.0" layoutY="337.0" text="20. Descripcion" />
-    <Label layoutX="349.0" layoutY="536.0" text="21. Justificacion" />
-    <TextArea fx:id="justificacion" layoutX="349.0" layoutY="552.0" prefHeight="143.0" prefWidth="250.0" wrapText="true" />
-    <Label layoutX="349.0" layoutY="702.0" text="22. Unidad de competencia" />
-    <TextArea fx:id="unidadCompetencia" layoutX="349.0" layoutY="716.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="349.0" layoutY="577.0" text="21. Justificacion" />
+    <TextArea fx:id="justificacion" layoutX="349.0" layoutY="593.0" prefHeight="143.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="349.0" layoutY="743.0" text="22. Unidad de competencia" />
+    <TextArea fx:id="unidadCompetencia" layoutX="349.0" layoutY="757.0" prefWidth="250.0" wrapText="true" />
     <Label layoutX="631.0" layoutY="73.0" text="23. Articulacion de los ejes" />
     <Label layoutX="852.0" layoutY="65.0" prefWidth="83.0" text="24. Saberes" />
     <TextArea fx:id="articulacion" layoutX="627.0" layoutY="97.0" prefHeight="259.0" prefWidth="200.0" wrapText="true" />
@@ -150,21 +150,22 @@
     <Label layoutX="968.0" layoutY="524.0" text="29. Fuentes de informacion" />
     <TextArea fx:id="bibliografiaBasica" layoutX="968.0" layoutY="562.0" prefHeight="143.0" prefWidth="200.0" wrapText="true" />
     <TextArea fx:id="bibliografiaComplementaria" layoutX="1174.0" layoutY="562.0" prefHeight="143.0" prefWidth="200.0" wrapText="true" />
-    <Button fx:id="guardar" alignment="TOP_LEFT" layoutX="1293.0" layoutY="978.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" textFill="BLACK" />
+    <Button fx:id="guardar" alignment="TOP_LEFT" layoutX="988.0" layoutY="777.0" mnemonicParsing="false" onAction="#guardar" prefHeight="41.0" prefWidth="131.0" text="Guardar" textAlignment="CENTER" textFill="BLACK" wrapText="false">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Button>
     <Label layoutX="968.0" layoutY="543.0" text="Bibliografia basica" />
     <Label layoutX="1175.0" layoutY="542.0" text="Bibliogarfia complementaria" />
-    <TableView layoutX="618.0" layoutY="718.0" prefHeight="200.0" prefWidth="550.0">
+    <TableView layoutX="618.0" layoutY="718.0" prefHeight="200.0" prefWidth="250.0">
       <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="102.0" text="Evidencia" fx:id="evidencia" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="138.0" text="Criterio" fx:id="criterio" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="164.0" text="Ambito" fx:id="ambito" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="145.0" text="Porcentaje" fx:id="porcentaje" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="102.0" text="Criterio" fx:id="evidencia" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="148.0" text="Porcentaje" fx:id="criterio" />
       </columns>
     </TableView>
-    <TextArea fx:id="evidenciaEntrada" layoutX="618.0" layoutY="928.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
-    <TextArea fx:id="criterioEntrada" layoutX="740.0" layoutY="928.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
-    <TextArea id="ambito" fx:id="ambitoEntrada" layoutX="866.0" layoutY="928.0" prefHeight="32.0" prefWidth="166.0" wrapText="true" />
-    <TextArea fx:id="porcentajeEntrada" layoutX="1040.0" layoutY="928.0" prefHeight="32.0" prefWidth="125.0" wrapText="true" />
-    <Button fx:id="agregarEvaluacion" layoutX="1045.0" layoutY="978.0" mnemonicParsing="false" onAction="#agregarEvaluacion" text="Agregar evaluacion" />
+    <TextArea fx:id="evidenciaEntrada" layoutX="623.0" layoutY="927.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
+    <TextArea fx:id="criterioEntrada" layoutX="744.0" layoutY="927.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
+    <Button fx:id="agregarEvaluacion" layoutX="679.0" layoutY="972.0" mnemonicParsing="false" onAction="#agregarEvaluacion" text="Agregar evaluacion" />
+    <Button fx:id="cancelar" layoutX="998.0" layoutY="972.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
   </children>
 </AnchorPane>

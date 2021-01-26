@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="1036.0" prefWidth="1391.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Label layoutX="346.0" layoutY="25.0" text="Actualizar programa de experiencia educativa">
+      <font>
+        <Font size="24.0" />
+      </font>
+    </Label>
+    <ComboBox fx:id="areaAcademica" layoutX="20.0" layoutY="92.0" prefHeight="21.0" prefWidth="219.0" promptText="">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="20.0" layoutY="63.0" prefHeight="21.0" text="1. Area academica" />
+    <Label layoutX="20.0" layoutY="127.0" text="2. Programa educativo" />
+    <ComboBox fx:id="programaEducativo" layoutX="20.0" layoutY="143.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="20.0" layoutY="177.0" text="3. Campus" />
+    <ComboBox fx:id="campus" layoutX="20.0" layoutY="196.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="20.0" layoutY="230.0" text="4. Dependencia/Entidad Academica" />
+    <ComboBox fx:id="dependencia" layoutX="20.0" layoutY="246.0" prefHeight="21.0" prefWidth="219.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <TextField id="nrc" fx:id="codigo" layoutX="20.0" layoutY="295.0" prefWidth="56.0" />
+    <ComboBox fx:id="experienciaEducativa" layoutX="94.0" layoutY="295.0" prefHeight="21.0" prefWidth="203.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="94.0" layoutY="278.0" text="6. Nombre de la experiencia educativa" />
+    <Label layoutX="20.0" layoutY="278.0" text="5. Codigo" />
+    <Label layoutX="20.0" layoutY="325.0" text="7. Area de formacion disciplinar" />
+    <TextField fx:id="principal" layoutX="20.0" layoutY="358.0" prefWidth="82.0" />
+    <TextField fx:id="secundaria" layoutX="108.0" layoutY="358.0" prefWidth="79.0" />
+    <Label layoutX="34.0" layoutY="342.0" text="Principal" />
+    <Label layoutX="118.0" layoutY="342.0" text="Secundaria" />
+    <Label layoutX="20.0" layoutY="391.0" text="8. Valores de la experiencia educativa" />
+    <Label layoutX="31.0" layoutY="415.0" text="Creditos" />
+    <TextField fx:id="creditos" layoutX="94.0" layoutY="412.0" prefWidth="31.0" />
+    <TextField fx:id="teoria" layoutX="71.0" layoutY="438.0" prefWidth="31.0" />
+    <Label layoutX="31.0" layoutY="441.0" text="Teoria" />
+    <Label layoutX="116.0" layoutY="441.0" text="Practica" />
+    <TextField fx:id="practica" layoutX="166.0" layoutY="438.0" prefWidth="31.0" />
+    <TextField fx:id="totalHoras" layoutX="275.0" layoutY="438.0" prefWidth="31.0" />
+    <Label layoutX="208.0" layoutY="441.0" text="Total horas" />
+    <TextField fx:id="equivalencias" layoutX="108.0" layoutY="468.0" prefWidth="200.0" />
+    <Label layoutX="31.0" layoutY="468.0" text="Equivalencias" />
+    <Label layoutX="20.0" layoutY="502.0" text="9. Modalidad" />
+    <TextField id="modalida" fx:id="modalidad" layoutX="20.0" layoutY="518.0" prefWidth="70.0" />
+    <Label layoutX="119.0" layoutY="502.0" text="10. Oportunidades de evaluacion" />
+    <TextField id="oportunidadEvaluacion" fx:id="oportunidadesEvaluacion" layoutX="118.0" layoutY="518.0" prefWidth="200.0" />
+    <Label layoutX="20.0" layoutY="551.0" text="11. Requisitos" />
+    <Label layoutX="20.0" layoutY="575.0" text="Prerequisitos" />
+    <Label layoutX="177.0" layoutY="575.0" text="Co-requisitos" />
+    <TextArea fx:id="prerequisitos" layoutX="20.0" layoutY="598.0" prefHeight="110.0" prefWidth="131.0" wrapText="true" />
+    <TextArea fx:id="corequisitos" layoutX="175.0" layoutY="598.0" prefHeight="110.0" prefWidth="145.0" wrapText="true" />
+    <Label layoutX="20.0" layoutY="726.0" text="12.-Características del proceso de enseñanza aprendizaje" />
+    <Label layoutX="27.0" layoutY="750.0" text="Individual/Grupal" />
+    <ComboBox fx:id="individualGrupal" layoutX="27.0" layoutY="767.0" prefHeight="21.0" prefWidth="92.0">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <Label layoutX="158.0" layoutY="750.0" text="Maximo" />
+    <Label layoutX="248.0" layoutY="751.0" text="Minimo" />
+    <TextField fx:id="maximo" layoutX="158.0" layoutY="767.0" prefWidth="59.0" />
+    <TextField fx:id="minimo" layoutX="246.0" layoutY="767.0" prefWidth="71.0" />
+    <Label layoutX="20.0" layoutY="808.0" prefHeight="52.0" prefWidth="279.0" text="13.-Agrupación natural de la Experienciaeducativa (áreas de conocimiento, academia,ejes, módulos, departamentos) " wrapText="true" />
+    <TextField fx:id="agrupacion" layoutX="20.0" layoutY="858.0" prefWidth="200.0" />
+    <TextField fx:id="proyecto" layoutX="20.0" layoutY="909.0" prefWidth="200.0" />
+    <Label layoutX="346.0" layoutY="82.0" text="16. Academicos" />
+    <TextArea fx:id="academicos" layoutX="346.0" layoutY="98.0" prefHeight="41.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="346.0" layoutY="142.0" text="17. Perfil docente" />
+    <TextArea fx:id="perfil" layoutX="346.0" layoutY="156.0" prefHeight="130.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="346.0" layoutY="295.0" text="18. Espacio" />
+    <Label layoutX="471.0" layoutY="295.0" text="19. Relacion disciplinaria" />
+    <TextField fx:id="espacio" layoutX="346.0" layoutY="318.0" prefWidth="96.0" />
+    <TextField fx:id="relacionDisciplinaria" layoutX="471.0" layoutY="318.0" prefWidth="125.0" />
+    <TextArea fx:id="descripcion" layoutX="346.0" layoutY="367.0" prefWidth="255.0" wrapText="true" />
+    <Label layoutX="346.0" layoutY="348.0" text="20. Descripcion" />
+    <Label layoutX="346.0" layoutY="588.0" text="21. Justificacion" />
+    <TextArea fx:id="justificacion" layoutX="346.0" layoutY="604.0" prefHeight="143.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="346.0" layoutY="754.0" text="22. Unidad de competencia" />
+    <TextArea fx:id="unidadCompetencia" layoutX="346.0" layoutY="768.0" prefWidth="250.0" wrapText="true" />
+    <Label layoutX="628.0" layoutY="84.0" text="23. Articulacion de los ejes" />
+    <Label layoutX="849.0" layoutY="76.0" prefWidth="83.0" text="24. Saberes" />
+    <TextArea fx:id="articulacion" layoutX="624.0" layoutY="108.0" prefHeight="259.0" prefWidth="200.0" wrapText="true" />
+    <Label layoutX="849.0" layoutY="105.0" text="Teoricos" />
+    <Label layoutX="1019.0" layoutY="103.0" text="Heuristicos" />
+    <Label layoutX="1188.0" layoutY="105.0" text="Axiologicos" />
+    <TextArea fx:id="teorico" layoutX="849.0" layoutY="125.0" prefHeight="242.0" prefWidth="156.0" wrapText="true" />
+    <TextArea fx:id="heuristico" layoutX="1019.0" layoutY="125.0" prefHeight="242.0" prefWidth="149.0" wrapText="true" />
+    <TextArea fx:id="axiologico" layoutX="1191.0" layoutY="127.0" prefHeight="242.0" prefWidth="167.0" wrapText="true" />
+    <Label layoutX="622.0" layoutY="381.0" text=" 25.-Estrategias metodológicas " />
+    <Label layoutX="625.0" layoutY="400.0" text="De aprendizaje" />
+    <Label layoutX="795.0" layoutY="400.0" text="De enseñanza" />
+    <TextArea fx:id="estrategiaAprendizaje" layoutX="622.0" layoutY="419.0" prefHeight="111.0" prefWidth="156.0" wrapText="true" />
+    <TextArea fx:id="estrategiaEnsenanza" layoutX="788.0" layoutY="421.0" prefHeight="110.0" prefWidth="149.0" wrapText="true" />
+    <Label layoutX="622.0" layoutY="544.0" text="26. Apoyos educativos" />
+    <TextArea fx:id="materialesDidacticos" layoutX="620.0" layoutY="580.0" prefHeight="98.0" prefWidth="157.0" wrapText="true" />
+    <TextArea fx:id="recursosDidacticos" layoutX="791.0" layoutY="580.0" prefHeight="98.0" prefWidth="157.0" wrapText="true" />
+    <Label layoutX="622.0" layoutY="562.0" text="Materiales didacticos" />
+    <Label layoutX="795.0" layoutY="562.0" text="Recursos didacticos" />
+    <Label layoutX="622.0" layoutY="693.0" text="27. Evaluacion de desempeño" />
+    <TextArea fx:id="acreditacion" layoutX="965.0" layoutY="397.0" prefHeight="119.0" prefWidth="387.0" wrapText="true" />
+    <Label layoutX="965.0" layoutY="378.0" text="28. Acreditacion" />
+    <Label layoutX="965.0" layoutY="535.0" text="29. Fuentes de informacion" />
+    <TextArea fx:id="bibliografiaBasica" layoutX="965.0" layoutY="573.0" prefHeight="143.0" prefWidth="200.0" wrapText="true" />
+    <TextArea fx:id="bibliografiaComplementaria" layoutX="1171.0" layoutY="573.0" prefHeight="143.0" prefWidth="200.0" wrapText="true" />
+    <Button fx:id="guardar" alignment="TOP_LEFT" layoutX="1037.0" layoutY="789.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" textFill="BLACK">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Button>
+    <Label layoutX="965.0" layoutY="554.0" text="Bibliografia basica" />
+    <Label layoutX="1172.0" layoutY="553.0" text="Bibliogarfia complementaria" />
+    <TableView layoutX="615.0" layoutY="729.0" prefHeight="200.0" prefWidth="240.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="102.0" text="Criterio" fx:id="evidencia" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="145.0" text="Porcentaje" fx:id="porcentaje" />
+      </columns>
+    </TableView>
+    <TextArea id="evidenciaEntrada" fx:id="criterioEntrada" layoutX="615.0" layoutY="939.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
+    <TextArea id="criterioEntrada" fx:id="porcentajeEntrada" layoutX="737.0" layoutY="939.0" prefHeight="32.0" prefWidth="112.0" wrapText="true" />
+    <Button fx:id="agregarEvaluacion" layoutX="740.0" layoutY="977.0" mnemonicParsing="false" onAction="#agregarEvaluacion" text="Agregar evaluacion" />
+    <Button fx:id="cancelar" layoutX="1045.0" layoutY="914.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+    <Label layoutX="20.0" layoutY="893.0" text="14. Proyecto integrador" />
+  </children>
+</AnchorPane>

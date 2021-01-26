@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package sgcfei.menus.Coordinador.Programa.RegistrarPrograma;
+package sgcfei.menus.Coordinador.Programa.ActualizarPrograma;
 
 import accesodatos.AcademiaDAO;
 import accesodatos.CampusDAO;
@@ -26,21 +21,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import pojos.ExperienciaEducativa;
 import pojos.ProgramaExperiencia;
 import util.ControladorVentanas;
 import util.Validador;
 
-/**
- * FXML Controller class
- *
- * @author midgu
- */
-public class RegistrarProgramaController implements Initializable {
-    
-    
+public class ActualizarProgramaController implements Initializable {
 
     @FXML
     private ComboBox<String> areaAcademica;
@@ -133,23 +119,30 @@ public class RegistrarProgramaController implements Initializable {
     @FXML
     private TableColumn<?, ?> evidencia;
     @FXML
-    private TableColumn<?, ?> criterio;
-    @FXML
-    private TextArea evidenciaEntrada;
-    @FXML
-    private TextArea criterioEntrada;
+    private TableColumn<?, ?> porcentaje;
     @FXML
     private Button agregarEvaluacion;
     @FXML
     private Button cancelar;
+    @FXML
+    private TextArea criterioEntrada;
+    @FXML
+    private TextArea porcentajeEntrada;
+    ProgramaExperiencia programaExperiencia;
+    int idProgramaExperiencia;
 
-    /**
-     * Initializes the controller class.
-     */
+    public ActualizarProgramaController(ProgramaExperiencia programaExperiencia) {
+        this.programaExperiencia = programaExperiencia;
+    }
+
+    public ActualizarProgramaController() {
+    }
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         
+
+
         AcademiaDAO academiaDAO = new AcademiaDAO();
         areasAcademicas = FXCollections.observableArrayList(academiaDAO.obtenerNombres());
         areaAcademica.setItems(areasAcademicas);
@@ -171,18 +164,55 @@ public class RegistrarProgramaController implements Initializable {
         ExperienciaEducativaDAO experienciaEducativaDAO = new ExperienciaEducativaDAO();
         experienciasEducativas = FXCollections.observableArrayList(experienciaEducativaDAO.obtenerNombres());
         experienciaEducativa.setItems(experienciasEducativas);
+        idProgramaExperiencia = programaExperiencia.getIdProgramaEE();
+        areaAcademica.getSelectionModel().select(programaExperiencia.getAcademia());
+        programaEducativo.getSelectionModel().select(programaExperiencia.getPrograma());
+        campus.getSelectionModel().select(programaExperiencia.getCampus());
+        dependencia.getSelectionModel().select(programaExperiencia.getDependencia());
+        experienciaEducativa.getSelectionModel().select(programaExperiencia.getNombreExperiencia());
+        codigo.setText(programaExperiencia.getCodigo());
+        principal.setText(programaExperiencia.getAreaFormacionPrincipal());
+        secundaria.setText(programaExperiencia.getAreaFormacionSecundaria());
+        creditos.setText(String.valueOf(programaExperiencia.getCreditos()));
+        teoria.setText(String.valueOf(programaExperiencia.getTeoria()));
+        practica.setText(String.valueOf(programaExperiencia.getPractica()));
+        totalHoras.setText(String.valueOf(programaExperiencia.getTotalHoras()));
+        equivalencias.setText(programaExperiencia.getEquivalencias());
+        modalidad.setText(programaExperiencia.getModalidad());
+        oportunidadesEvaluacion.setText(programaExperiencia.getOportunidadesEvaluacion());
+        prerequisitos.setText(programaExperiencia.getRequisitos());
+        corequisitos.setText(programaExperiencia.getCoRequisitos());
         
-        individualGrupal.setItems(FXCollections.observableArrayList("Individual", "Grupal"));
+        individualGrupal.getSelectionModel().select(programaExperiencia.getIndividualGrupal());
         
-        
-        
+        maximo.setText(String.valueOf(programaExperiencia.getMaximo()));
+        minimo.setText(String.valueOf(programaExperiencia.getMinimo()));
+        agrupacion.setText(programaExperiencia.getAgrupacion());
+        proyecto.setText(programaExperiencia.getProyecto());
+        academicos.setText(programaExperiencia.getAcademicos());
+        perfil.setText(programaExperiencia.getPerfil());
+        espacio.setText(programaExperiencia.getEspacio());
+        relacionDisciplinaria.setText(programaExperiencia.getRelacionDisciplinaria());
+        descripcion.setText(programaExperiencia.getDescripcion());
+        justificacion.setText(programaExperiencia.getJustificacion());
+        unidadCompetencia.setText(programaExperiencia.getUnidadCompetencia());
+        articulacion.setText(programaExperiencia.getArticulacion());
+        teorico.setText(programaExperiencia.getTeorico());
+        heuristico.setText(programaExperiencia.getHeuristico());
+        axiologico.setText(programaExperiencia.getAxiologicos());
+        estrategiaAprendizaje.setText(programaExperiencia.getEstrategiasAprendizaje());
+        estrategiaEnsenanza.setText(programaExperiencia.getEstrategiasEnsenanza());
+        materialesDidacticos.setText(programaExperiencia.getMaterialesDidacticos());
+        recursosDidacticos.setText(programaExperiencia.getRecursosDidacticos());
+        acreditacion.setText(programaExperiencia.getAcreditacion());
+        bibliografiaBasica.setText(programaExperiencia.getBibliografiaBasica());
+        bibliografiaComplementaria.setText(programaExperiencia.getBibliografiaComplementaria());
         
     }    
 
-  
-
     @FXML
     private void guardar(ActionEvent event) {
+        
         String academiaEntrada = areaAcademica.getValue();
         String programaEntrada = programaEducativo.getValue();
         String campusEntrada = campus.getValue();
@@ -302,6 +332,7 @@ public class RegistrarProgramaController implements Initializable {
             if (datosCorrectos) {
                 
                 ProgramaExperiencia programaExperiencia = new ProgramaExperiencia(
+                        idProgramaExperiencia,
                         academiaEntrada,
                         programaEntrada,
                         campusEntrada,
@@ -349,7 +380,7 @@ public class RegistrarProgramaController implements Initializable {
                         bibliografiaComplementariaEntrada);
                 
                 ProgramaExperienciaDAO programaExperienciaDAO = new ProgramaExperienciaDAO();
-                programaExperienciaDAO.insertar(programaExperiencia);
+                programaExperienciaDAO.actualizar(programaExperiencia);
                 
                 Alert alerta = ControladorVentanas.crearAlerta("Operación exitosa",
                         "Se ha agregado una Experiencia Educativa correctamente", Alert.AlertType.INFORMATION);
@@ -366,16 +397,13 @@ public class RegistrarProgramaController implements Initializable {
             }
         }
     }
-    
-    
 
     @FXML
     private void agregarEvaluacion(ActionEvent event) {
-        
     }
-    
+
     @FXML
-    private void cancelar(ActionEvent event){
+    private void cancelar(ActionEvent event) {
         Alert alerta = ControladorVentanas.crearAlerta("Confirmación",
                         "¿Está seguro que desea cancelar el registro?", Alert.AlertType.CONFIRMATION);
         Optional<ButtonType> respuesta = alerta.showAndWait();
@@ -385,10 +413,10 @@ public class RegistrarProgramaController implements Initializable {
         }
     }
     
-    
     private void cerrar(){
         Stage stageActual = (Stage) cancelar.getScene().getWindow();
         ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/ConsultarPrograma.fxml",
                     "Consultar programa", stageActual);
     }
+    //
 }

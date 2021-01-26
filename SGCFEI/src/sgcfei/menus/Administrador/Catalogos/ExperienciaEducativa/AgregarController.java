@@ -102,8 +102,8 @@ public class AgregarController implements Initializable {
         
     private void cerrar(){
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
-        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Administrador/Catalogos/ExperienciaEducativa/Registros.fxml",
-                    "Catálogo de Experiencia Educativa", stageActual);
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Coordinador/Programa/ConsultarPrograma.fxml",
+                    "Catálogo de programa ", stageActual);
     }
     
 }

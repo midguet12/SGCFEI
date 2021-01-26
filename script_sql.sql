@@ -54,13 +54,14 @@ create table dependencia(
 	primary key(idDependencia)
 );
 
-create table ProgramaExperiencia(
+create table programaExperiencia(
 	idProgramaEE int not null auto_increment,
-	idAcademia int not null,
-	idPrograma int not null,
-	idCampus int not null,
-	idDependencia int not null,
-	codigo int not null,
+	academia varchar(255) not null,
+	programa varchar(255) not null,
+	campus varchar(255) not null,
+	dependencia varchar(255) not null,
+	codigo varchar(255) not null,
+	nombreExperiencia varchar(255) not null,
 	areaFormacionPrincipal varchar(255),
 	areaFormacionSecundaria varchar(255),
 	creditos int,
@@ -77,9 +78,6 @@ create table ProgramaExperiencia(
 	minimo int,
 	agrupacion varchar(255),
 	proyecto varchar(255),
-	elaboracion date,
-	modificacion date,
-	aprobacion date,
 	academicos varchar(255),
 	perfil varchar(255),
 	espacio varchar(30),
@@ -88,7 +86,7 @@ create table ProgramaExperiencia(
 	justificacion varchar(255),
 	unidadCompetencia varchar(255),
 	articulacion varchar(255),
-	saberTeorico varchar(255),
+	teorico varchar(255),
 	heuristico varchar(255),
 	axiologicos varchar(255),
 	estrategiasAprendizaje varchar(255),
@@ -117,3 +115,18 @@ insert into dependencia(nombre) values ('Facultad de estadistica e informatica')
 
 insert into programaEducativo(nombre) values ('Licenciatura en Ingenieria de software');
 insert into experienciaEducativa(nrc, nombre, idAcademia) values (18015,"Principios de diseño",9);
+insert into experienciaEducativa values (18012, "Principios de diseño", 9);
+
+insert into programaExperiencia(academia, programa, campus, dependencia, codigo, nombreExperiencia, areaFormacionPrincipal, areaFormacionSecundaria, creditos, teoria, practica, totalHoras, equivalencias, modalidad, oportunidadesEvaluacion, requisitos, coRequisitos, individualGrupal, maximo, minimo, agrupacion, proyecto, academicos, perfil, espacio, relacionDisciplinaria, descripcion, justificacion, unidadCompetencia, articulacion, teorico, heuristico, axiologicos, estrategiasAprendizaje, estrategiasEnsenanza, materialesDidacticos, recursosDidacticos, acreditacion, bibliografiaBasica, bibliografiaComplementaria) 
+	values("1", "2", "3", "4", "5", "6", "7", "8", "9", 
+		1, 2, 3, 4, "1", "2", "3", "4", "5", "6", 1, 2, 
+		"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
+		"11", "12", "13", "14", "15", "16", "17", "18", "19", "20");
+
+
+
+insert into programaExperiencia values("1", "2", "3", "4", "5", "6", "7", "8", "9", 1, 2, 3, 4, "1", "2", "3", "4", "5", "6", 1, 2, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20");
+
+insert into programaExperiencia values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+update programaExperiencia set academia = ?, programa = ?, campus = ?, dependencia = ?, codigo = ?, nombreExperiencia = ?, areaFormacionPrincipal = ?, areaFormacionSecundaria = ?, creditos = ?, teoria = ?, practica = ?, totalHoras = ?, equivalencias = ?, modalidad = ?, oportunidadesEvaluacion = ?, requisitos = ?, coRequisitos = ?, individualGrupal = ?, maximo = ?, minimo = ?, agrupacion = ?, proyecto = ?, academicos = ?, perfil = ?, espacio = ?, relacionDisciplinaria = ?, descripcion = ?, justificacion = ?, unidadCompetencia = ?, articulacion = ?, teorico = ?, heuristico = ?, axiologicos = ?, estrategiasAprendizaje = ?, estrategiasEnsenanza = ?, materialesDidacticos = ?, recursosDidacticos = ?, acreditacion = ?, bibliografiaBasica = ?, bibliografiaComplementaria = ? where idProgramaEE = ?;
