@@ -25,10 +25,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="400.0" spacing="15.0">
+      <HBox alignment="CENTER" prefHeight="71.0" prefWidth="400.0" spacing="15.0">
          <children>
             <Button fx:id="btnCatalogo" minWidth="130.0" mnemonicParsing="false" onMouseClicked="#abrirCatalogo" text="Consultar" />
          </children>
       </HBox>
+      <Button mnemonicParsing="false" onAction="#clicBotonCerrarSesion" text="Cerrar sesion" />
    </children>
 </VBox>

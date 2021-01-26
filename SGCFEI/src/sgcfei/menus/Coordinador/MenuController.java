@@ -2,6 +2,7 @@ package sgcfei.menus.Coordinador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import pojos.Academico;
+import sgcfei.menus.Coordinador.Minuta.ConsultarMinuta.ConsultarMinutaController;
 import sgcfei.menus.Coordinador.Minuta.RegistrarMinuta.RegistrarMinutaController;
 import util.ControladorVentanas;
 
@@ -18,6 +20,7 @@ public class MenuController implements Initializable {
     private Font x1;
     @FXML
     private Button btnRegistrarMinuta;
+    private Stage stageActual;
 
     public MenuController(Academico academicoLogeado) {
         this.academicoLogeado = academicoLogeado;
@@ -45,13 +48,16 @@ public class MenuController implements Initializable {
 
     @FXML
     private void registrarMinuta(MouseEvent event) {
+        recuperarStage();
         RegistrarMinutaController registrarMinutaController = new RegistrarMinutaController(academicoLogeado);
-        Stage stageActual = (Stage) btnRegistrarMinuta.getScene().getWindow();
-        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/RegistrarMinuta/RegistrarMinuta.fxml", "Menu principal",registrarMinutaController, stageActual);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/RegistrarMinuta/RegistrarMinuta.fxml", "Registrar minuta",registrarMinutaController, stageActual);
     }
 
     @FXML
     private void consultarMinuta(MouseEvent event) {
+        recuperarStage();
+        ConsultarMinutaController consultarMinutaController = new ConsultarMinutaController(academicoLogeado);
+        ControladorVentanas.abrirYCerrarConControlador("/sgcfei/menus/Coordinador/Minuta/ConsultarMinuta/ConsultarMinuta.fxml", "Consultar minuta",consultarMinutaController, stageActual);
     }
 
     @FXML
@@ -60,5 +66,15 @@ public class MenuController implements Initializable {
 
     @FXML
     private void consultarPlanEstudios(MouseEvent event) {
+    }
+
+    @FXML
+    private void clicBotonCerrarSesion(ActionEvent event) {
+        recuperarStage();
+        ControladorVentanas.abrirYCerrar("/sgcfei/menus/Login.fxml", "Login", stageActual);
+    }
+    
+    private void recuperarStage(){
+        stageActual = (Stage) btnRegistrarMinuta.getScene().getWindow();
     }
 }

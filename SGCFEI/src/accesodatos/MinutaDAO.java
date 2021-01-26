@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pojos.Minuta;
 import util.RegistroExcepciones;
 
@@ -61,5 +63,42 @@ public class MinutaDAO implements DAO{
             db.cerrarConexion();
         }
         return idMinuta;
+    }
+    
+    public List<Minuta> obtenerMinutasPorAcademia(int idAcademia){
+        List<Minuta> minutas = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT * FROM minuta WHERE idAcademia = ?;";    
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setInt(1, idAcademia);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                Minuta minuta = new Minuta();
+                minuta.setIdMinuta(resultados.getInt("idMinuta"));
+                minuta.setIdAcademia(resultados.getInt("idAcademia"));
+                minuta.setIdCarrera(resultados.getInt("idCarrera"));
+                minuta.setPeriodo(resultados.getString("periodo"));
+                minuta.setLugar(resultados.getString("lugar"));
+                minuta.setObjetivo(resultados.getString("objetivo"));
+                minuta.setTemas(resultados.getString("temas"));
+                minuta.setConclusiones(resultados.getString("conclusiones"));
+                minutas.add(minuta);
+            }
+        }catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        
+        return minutas;
     }
 }

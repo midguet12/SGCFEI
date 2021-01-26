@@ -292,4 +292,34 @@ public class AcademicoDAO implements DAO{
         
         return filasModificadas > 0;
     }
+
+ 
+    public List<Academico> obtenerAcademicosParticipantes(int idMinuta) {
+        List<Academico> academicos = new ArrayList<>();
+        conexion = db.obtenerConexion();
+        String consulta = "SELECT AC.nombre FROM academicoMinuta AS AM INNER JOIN academico AS AC WHERE AM.idMinuta = ?";
+        
+        try { 
+            PreparedStatement consultaPreparada = conexion.prepareStatement(consulta);
+            consultaPreparada.setInt(1, idMinuta);
+            resultados = consultaPreparada.executeQuery(); 
+            while (resultados.next()) {
+                Academico academico = new Academico();
+                academico.setNombre(resultados.getString("nombre"));
+                academicos.add(academico);
+            }
+        }catch (SQLException ex){    
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        } 
+        catch (NullPointerException ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        catch (Exception ex){
+            RegistroExcepciones.escribirExcepcion(ex, this.getClass().getName());
+        }
+        finally{
+            db.cerrarConexion();
+        }
+        return academicos;
+    }
 }
